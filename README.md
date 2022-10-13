@@ -24,6 +24,12 @@ Ivan Milanović-Litre | imilanovi20@student.foi.hr | 0016150879 | imilanovi20
 
 
 ## Opis domene
+Domena koju naš softver pokriva je rezervacija te praćenje stanja knjiga u knjižnici. Softver će biti povezan s bazom podataka unutar koje se nalaze sve knjige iz knjižnice. Softver će razlikovati dvije uloge, knjižničar i član knjižnice. 
+Knjižničar će moći pregledati sve knjige, rezervirati i otkazati rezervaciju knjige, dodati novopristiglu knjigu u knjižnicu te ih pretraživati. Osim toga, knjižničar može dodati nove članove u knjižnicu, pretraživati ih, ažurirati njihove podatke te izbrisati njihov profil. 
+Član knjižnice moći će, kao i knjižničar, pregledati knjige i njihovo stanje, rezervirati i otkazati rezervaciju knjiga, ažurirati svoje korisničke podatke te izbrisati profil. Član ima mogućnost pretraživanja knjiga, pregledati svoje rezervirane i trenutno iznajmljene knjige.
+
+imati uvid u izdane knjige, prikazane penale ako zakasni pri povratku artikla.
+
 Umjesto ovih uputa opišite domenu ili problem koji pokrivate vašim  projektom. Domena može biti proizvoljna, ali obratite pozornost da sukladno ishodima učenja, domena omogući primjenu zahtijevanih koncepata kako je to navedeno u sljedećem poglavlju. Priložite odgovarajuće skice gdje je to prikladno.
 
 ## Specifikacija projekta
@@ -49,8 +55,10 @@ F15 | Rezervacija naslova od strane člana knjižnice | Član knjižnice treba m
 F16 | Otkazivanje rezervacije od strane člana knjižnice | Član knjižnice može otkazati vlastitu rezervaciju prethodno rezerviranog naslova u knjižnici. | ...
 F17 | Pregledati podatke naslova od strane knjižničara | Knjižničar može pregledati podatke djela poput autora, naslova, godine nastanka. | ...
 F18 | Pregledati stanje naslova | Član knjižnice i knjižničar trebaju moći pregledati stanje naslova, odnosno provjeriti broj rezerviranih, broj zauzetih i broj dostupnih naslova. | ...
-F19 | Pregled vlastite povijesti posuđivanja | Član knjižnice će imati mogućnost pregleda posuđenih naslova. | ...
+F19 | Pregled vlastitu povijest posuđivanja | Član knjižnice će imati mogućnost pregleda posuđenih naslova. | ...
 
 
 ## Tehnologije i oprema
+Za izradu softvera koristit ćemo programski jezik C# u .NET Framework. Za rad s bazom podataka koristit ćemo MySQL. Vrsta projekta je...
+
 Umjesto ovih uputa jasno popišite sve tehnologije, alate i opremu koju ćete koristiti pri implementaciji vašeg rješenja. Projekti se razvijaju koristeći .Net Framework ili .Net Core razvojne okvire, a vrsta projekta može biti WinForms, WPF i UWP. Ne zaboravite planirati korištenje tehnologija u aktivnostima kao što su projektni menadžment ili priprema dokumentacije. Tehnologije koje ćete koristiti bi trebale biti javno dostupne, a ako ih ne budemo obrađivali na vježbama u vašoj dokumentaciji ćete morati navesti način preuzimanja, instaliranja i korištenja onih tehnologija koje su neopbodne kako bi se vaš programski proizvod preveo i pokrenuo. Pazite da svi alati koje ćete koristiti moraju imati odgovarajuću licencu. Što se tiče zahtjeva nastavnika, obvezno je koristiti git i GitHub za verzioniranje programskog koda, GitHub Wiki za pisanje tehničke i projektne dokumentacije, a projektne zadatke je potrebno planirati i pratiti u alatu GitHub projects. 
