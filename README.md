@@ -31,4 +31,4 @@ F11 | Vraćanje posuđenog primjerka knjige | Aplikacija će pratiti vremenski p
 
 
 ## Tehnologije i oprema
-Za izradu softvera koristit ćemo programski jezik C# u .NET Frameworku. Vrsta projekta je WinForms. Dokumentaciju ćemo većinski izrađivati u Wordu i Visual Paradigmu.
+Za izradu softvera koristit ćemo programski jezik C# u .NET Frameworku, u integriranom razvojnom okruženju Visual Studio. Po potrebi ćemo koristiti određene programske knjižnice (eng. library) za izradu. Vrsta projekta je WinForms. Dokumentaciju ćemo većinski izrađivati u Wordu i Visual Paradigmu.
