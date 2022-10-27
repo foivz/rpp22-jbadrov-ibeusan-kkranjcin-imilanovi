@@ -16,22 +16,17 @@ Domena koju naš softver pokriva je rezervacija te praćenje broja i stanja knji
 ## Specifikacija projekta
 Oznaka | Naziv | Kratki opis | Odgovorni član tima
 ------ | ----- | ----------- | -------------------
-F01 | Prijava u sustav | Knjižničar će imati mogućnost prijave u sustav koristeći dodijeljene korisničke podatke. | Karlo Kranjčina
-F02 | Unos naslova |Knjižničar će imati mogućnost dodavanja novog naslova u sustav pri nabavi novih naslova. | Karlo Kranjčina
-F03 | Brisanje naslova | Knjižničar će imati mogućnost brisanja pojedinog naslova iz sustava prilikom gubitka primjerka, oštećivanja i sličnih situacija. | Karlo Kranjčina
-F04 | Ažuriranje podataka o naslovu | Knjižničar će imati mogućnost ažuriranja podataka o pojedinom naslovu. | Karlo Kranjčina
-F05 | Pregled naslova | Knjižničar će imati mogućnost pregled svih naslov koji se nalaze u sustavu. | Jan Badrov
-F06 | Pregledati podatke naslova  | Knjižničar će imati mogućnost pregleda podatka naslova poput autora, naslova, godine izdanja. Također će moći provjeriti broj rezerviranih, broj zauzetih i broj dostupnih naslova. | Jan Badrov
-F07 | Pretraživanje naslova | Knjižničar će imati mogućnost pretraživanja pojedinog naslova. | Jan Badrov
-F08 | Registracija člana knjižnice | Knjižničar će imati mogućnost dodavanja novog člana knjižnice u sustav te unos korisničkih podataka člana. | Ivan Beusan
-F09 | Brisanje člana knjižnice | Knjižničar će imati mogućnost brisanja člana knjižnice iz sustava. | Ivan Beusan
-F10 | Ažuriranje korisničkih podataka člana knjižnice | Knjižničar će imati mogućnost ažuriranja podataka pojedinog korisnika. | Ivan Beusan
-F11 | Pregled svih članova knjižnice | Knjižničar će imati uvid u sve registrirane članove knjižnice. | Ivan Beusan
-F12 | Pregled podataka o pojedinom članu knjižnice | Knjižničar će imati mogućnost pregleda podataka pojedinog člana knjižnice kao što su ime, prezime, datum učlanjenja i sl. Također će imati mogućnost provjere trenutno rezerviranih i korištenih naslova. | Ivan Milanović-Litre
-F13 | Pretraživanje članova knjižnice | Knjižničar će imati mogućnost pretrage članova po njihovim korisničkim podatcima. | Ivan Milanović-Litre
-F14 | Rezervacija knjige za člana knjižnice | Knjižničar će imati mogućnost rezervacije naslova za pojedinoga člana knjižnice ako postoji slobodan primjerak. | Ivan Milanović-Litre
-F15 | Otkazivanje rezervacije knjige za člana knjižnice | Knjižničar će imati mogućnost otkazivanja bilo koje aktivne rezervacije. | Ivan Milanović-Litre
-F16 | Dodavanje penala za kašnjenje pri povratku posuđenih naslova | Sustav će izračunati iznos kazne ukoliko član ne vrati posuđeni naslov na vrijeme. | Jan Badrov
+F01 | Prijava u sustav | Knjižničar će imati mogućnost prijave u sustav koristeći QR kod. | Karlo Kranjčina
+F02 | Unos, ažuriranje i brisanje naslova | Knjižničar će imati mogućnost dodavanja novog naslova u sustav pri nabavi novih naslova. Knjižničar će imati mogućnost ažuriranja podataka o pojedinom naslovu. Knjižničar će imati mogućnost brisanja pojedinog naslova iz sustava prilikom gubitka primjerka, oštećivanja i sličnih situacija. | Karlo Kranjčina
+F03 | Pregled i pretraživanje naslova | Knjižničar će imati mogućnost pregled svih naslov koji se nalaze u sustavu. Knjižničar će imati mogućnost pretraživanja i filtriranja pojedinog naslova. | Jan Badrov
+F04 | Pregledati podatke naslova  | Knjižničar će imati mogućnost pregleda podatka naslova poput autora, naslova, godine izdanja. Također će moći provjeriti broj rezerviranih, broj zauzetih i broj dostupnih naslova. Knjižničar će imati mogućnost dodavanja PDF verzije knjige te će biti moguće pregledati PDF verziju kroz aplikaciju. | Jan Badrov
+F05 | Registracija i brisanje člana knjižnice te Ažuriranje korisničkih podataka | Knjižničar će imati mogućnost dodavanja novog člana knjižnice u sustav te unos korisničkih podataka člana. Knjižničar će imati mogućnost brisanja člana knjižnice iz sustava. Knjižničar će imati mogućnost ažuriranja podataka pojedinog korisnika. | Ivan Beusan
+F06 | Pregled  i pretraživanje svih članova knjižnice | Knjižničar će imati uvid u sve registrirane članove knjižnice. Knjižničar će imati mogućnost pretrage i filtriranja članova po njihovim korisničkim podacima. | Ivan Beusan
+F07 | Pregled podataka o pojedinom članu knjižnice | Knjižničar će imati mogućnost pregleda podataka pojedinog člana knjižnice kao što su ime, prezime, datum učlanjenja i sl. Također će imati mogućnost provjere trenutno rezerviranih i korištenih naslova. Popis trenutno posuđenih knjiga, rezerviranih knjiga, kao i popis svih dosadašnjih posudbi | Ivan Milanović-Litre
+F08 | Rezervacija i otkazivanje rezervacije knjige za člana knjižnice | Knjižničar će imati mogućnost rezervacije naslova za pojedinoga člana knjižnice ako postoji slobodan primjerak. Knjižničar će imati mogućnost otkazivanja bilo koje aktivne rezervacije. | Ivan Milanović-Litre
+F09 | Dodavanje penala za kašnjenje pri povratku posuđenih naslova | Sustav će izračunati iznos kazne ukoliko član ne vrati posuđeni naslov na vrijeme. | Jan Badrov
+F10 | Posudba knjige | Prilikom dodavanja knjige na posudbu nekom korisniku potrebno je koristiti QR kodove i za skeniranje člana knjižnice i za skeniranje knjige. | ...
+F11 | Vraćanje posuđene knjige |  | ...
 
 
 ## Tehnologije i oprema
