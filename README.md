@@ -28,7 +28,7 @@ F08 | Pregled podataka o pojedinom članu knjižnice | Knjižničar će imati mo
 F09 | Rezervacija i otkazivanje rezervacije primjerka knjige za člana knjižnice | Knjižničar će imati mogućnost rezervacije primjerka za pojedinoga člana knjižnice ako postoji slobodan primjerak kao i mogućnost otkazivanja bilo koje aktivne rezervacije. | Ivan Milanović-Litre
 F10 | Posudba primjerka knjige | Knjižničar će imati mogućnost davanja primjerka knjige na posudbu te će to činiti očitavanjem QR koda knjige te QR koda člana. | Ivan Milanović-Litre
 F11 | Vraćanje posuđenog primjerka knjige | Aplikacija će pratiti vremenski period posuđenosti knjige. Knjižničar će imati mogućnost vraćanja knjige korištenjem QR koda te pregled penala. | Ivan Milanović-Litre
-F12 | Registracija novog knjižničara | Administrator će imati mogućnost registracije novog knjižničara koji će imati pravo na pristup aplikaciji.  | Karlo Kranjčina
+F12 | Registracija novog knjižničara te brisanje i ažuriranje knjižničara | Administrator će imati mogućnost registracije novog knjižničara koji će imati pravo na pristup aplikaciji te brisanje knjižničara i ažuriranje podataka o pojedinom knjižničaru.  | Karlo Kranjčina
 
 
 ## Tehnologije i oprema
