@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EB643A8E-E348-4465-9324-0EFE83C01D4B}</ProjectGuid>
+    <ProjectGuid>{F9FA9489-56B3-4497-8111-96E389D5E1EA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>proba</RootNamespace>
-    <AssemblyName>proba</AssemblyName>
+    <RootNamespace>LibRes</RootNamespace>
+    <AssemblyName>LibRes</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

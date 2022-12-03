@@ -1,4 +1,4 @@
-﻿namespace proba
+﻿namespace LibRes
 {
     partial class Form1
     {

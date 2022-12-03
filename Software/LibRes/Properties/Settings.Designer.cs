@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace proba.Properties
+namespace LibRes.Properties
 {
 
 
