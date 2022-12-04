@@ -46,14 +46,179 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="FrmBookBorrow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FrmBookBorrow.Designer.cs">
+      <DependentUpon>FrmBookBorrow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmBookReturn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBookReturn.Designer.cs">
+      <DependentUpon>FrmBookReturn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmBooksOverview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBooksOverview.Designer.cs">
+      <DependentUpon>FrmBooksOverview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLibrarians.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLibrarians.Designer.cs">
+      <DependentUpon>FrmLibrarians.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLibraryMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLibraryMember.Designer.cs">
+      <DependentUpon>FrmLibraryMember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNewLibraryMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNewLibraryMember.Designer.cs">
+      <DependentUpon>FrmNewLibraryMember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBook.Designer.cs">
+      <DependentUpon>FrmBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmBookSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBookSearch.Designer.cs">
+      <DependentUpon>FrmBookSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLibraryMemberSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLibraryMemberSearch.Designer.cs">
+      <DependentUpon>FrmLibraryMemberSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNewAuthor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNewAuthor.Designer.cs">
+      <DependentUpon>FrmNewAuthor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNewBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNewBook.Designer.cs">
+      <DependentUpon>FrmNewBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNewBookCopy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNewBookCopy.Designer.cs">
+      <DependentUpon>FrmNewBookCopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNewLibrarian.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNewLibrarian.Designer.cs">
+      <DependentUpon>FrmNewLibrarian.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNewPublisher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNewPublisher.Designer.cs">
+      <DependentUpon>FrmNewPublisher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUpdateBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUpdateBook.Designer.cs">
+      <DependentUpon>FrmUpdateBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUpdateBookCopy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUpdateBookCopy.Designer.cs">
+      <DependentUpon>FrmUpdateBookCopy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUpdateLibrarian.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUpdateLibrarian.Designer.cs">
+      <DependentUpon>FrmUpdateLibrarian.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUpdateMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUpdateMember.Designer.cs">
+      <DependentUpon>FrmUpdateMember.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmBook.resx">
+      <DependentUpon>FrmBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmBookBorrow.resx">
+      <DependentUpon>FrmBookBorrow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmBookReturn.resx">
+      <DependentUpon>FrmBookReturn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmBooksOverview.resx">
+      <DependentUpon>FrmBooksOverview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLibrarians.resx">
+      <DependentUpon>FrmLibrarians.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLibraryMember.resx">
+      <DependentUpon>FrmLibraryMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNewLibrarian.resx">
+      <DependentUpon>FrmNewLibrarian.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNewLibraryMember.resx">
+      <DependentUpon>FrmNewLibraryMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmBookSearch.resx">
+      <DependentUpon>FrmBookSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLibraryMemberSearch.resx">
+      <DependentUpon>FrmLibraryMemberSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNewAuthor.resx">
+      <DependentUpon>FrmNewAuthor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNewBook.resx">
+      <DependentUpon>FrmNewBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNewBookCopy.resx">
+      <DependentUpon>FrmNewBookCopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNewPublisher.resx">
+      <DependentUpon>FrmNewPublisher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUpdateBook.resx">
+      <DependentUpon>FrmUpdateBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUpdateBookCopy.resx">
+      <DependentUpon>FrmUpdateBookCopy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUpdateLibrarian.resx">
+      <DependentUpon>FrmUpdateLibrarian.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUpdateMember.resx">
+      <DependentUpon>FrmUpdateMember.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

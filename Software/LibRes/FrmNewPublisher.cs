@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace LibRes
 {
-    public partial class Form1 : Form
+    public partial class FrmNewPublisher : Form
     {
-        public Form1()
+        public FrmNewPublisher()
         {
             InitializeComponent();
+        }
+
+        private void btnAddPublisher_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Successfully added a new publisher!");
         }
     }
 }
