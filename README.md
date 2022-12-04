@@ -17,7 +17,7 @@ Domena koju naš softver pokriva je rezervacija te praćenje broja i stanja knji
 ## Specifikacija projekta
 Oznaka | Naziv | Kratki opis | Odgovorni član tima
 ------ | ----- | ----------- | -------------------
-F01 | Prijava u sustav | Knjižničar će imati mogućnost prijave u sustav koristeći QR kod. | Ivan Beusan
+F01 | Prijava u sustav | Knjižničar će imati mogućnost prijave u sustav koristeći face recognition tehnologije. | Ivan Beusan
 F02 | Unos, ažuriranje i brisanje knjige | Knjižničar će imati mogućnost dodavanja nove knjige u sustav pri nabavi novih knjiga. Knjižničar će imati mogućnost ažuriranja podataka o pojedinoj knjizi. Knjižničar će imati mogućnost brisanja pojedine knjige iz sustava. | Karlo Kranjčina
 F03 | Pregled i pretraživanje knjige | Knjižničar će imati mogućnost pregleda svih knjiga koje se nalaze u sustavu. Knjižničar će imati mogućnost pretraživanja i filtriranja pojedine knjige. | Ivan Beusan
 F04 | Pregledati podatke knjige | Knjižničar će imati mogućnost pregleda podataka knjige poput autora, naslova, godine izdanja. Također će moći provjeriti broj rezerviranih, broj zauzetih i broj dostupnih primjeraka knjige. Knjižničar će imati mogućnost dodavanja PDF verzije knjige te će biti moguće pregledati PDF verziju kroz aplikaciju. | Ivan Beusan
