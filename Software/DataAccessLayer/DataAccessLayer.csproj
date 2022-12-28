@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\LibRes\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\LibRes\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,10 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\LibRes\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\LibRes\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\LibRes\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\LibRes\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -50,19 +53,106 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LibResModel.cs" />
+    <Compile Include="Author.cs">
+      <DependentUpon>LibResModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Book.cs">
+      <DependentUpon>LibResModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BookAuthor.cs">
+      <DependentUpon>LibResModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BookCopy.cs">
+      <DependentUpon>LibResModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BookGenre.cs">
+      <DependentUpon>LibResModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BorrowableBookState.cs">
+      <DependentUpon>LibResModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BorrowedBookOverview.cs">
+      <DependentUpon>LibResModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BorrowedBookState.cs">
+      <DependentUpon>LibResModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Genre.cs">
+      <DependentUpon>LibResModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LibraryMember.cs">
+      <DependentUpon>LibResModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LibResModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibResModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LibResModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibResModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LibResModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LibResModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Publisher.cs">
+      <DependentUpon>LibResModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\AuthorRepository.cs" />
+    <Compile Include="Repositories\BookCopyStateRepository.cs" />
+    <Compile Include="Repositories\BookRepository.cs" />
+    <Compile Include="Repositories\BookCopyRepository.cs" />
+    <Compile Include="Repositories\BorrowedBookOverviewRepository.cs" />
+    <Compile Include="Repositories\BorrowedBookStateRepository.cs" />
+    <Compile Include="Repositories\GenreRepository.cs" />
+    <Compile Include="Repositories\LibraryMemberRepository.cs" />
+    <Compile Include="Repositories\PublisherRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Role.cs">
+      <DependentUpon>LibResModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>LibResModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="LibResModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LibResModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="LibResModel.edmx.diagram">
+      <DependentUpon>LibResModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EntityLayer\EntityLayer.csproj">
-      <Project>{a84d692f-9d93-4cea-89e1-8a9b56cc238a}</Project>
-      <Name>EntityLayer</Name>
-    </ProjectReference>
+    <Content Include="LibResModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LibResModel.edmx</DependentUpon>
+      <LastGenOutput>LibResModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="LibResModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LibResModel.edmx</DependentUpon>
+      <LastGenOutput>LibResModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\LibRes\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\LibRes\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\LibRes\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\LibRes\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\LibRes\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\LibRes\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

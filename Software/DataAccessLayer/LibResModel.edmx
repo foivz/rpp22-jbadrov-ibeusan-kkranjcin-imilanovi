@@ -1,0 +1,778 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RPP22_07_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="NumberOfPages" Type="int" />
+          <Property Name="IdBorrowableState" Type="int" />
+        </EntityType>
+        <EntityType Name="BookAuthors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdBook" Type="int" />
+          <Property Name="IdAuthor" Type="int" />
+        </EntityType>
+        <EntityType Name="BookCopy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Edition" Type="varchar" MaxLength="10" />
+          <Property Name="IdPublisher" Type="int" />
+          <Property Name="IdBook" Type="int" />
+          <Property Name="YearOfPublication" Type="int" />
+          <Property Name="ISBN" Type="varchar" MaxLength="20" />
+          <Property Name="Language" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="BookGenres">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdBook" Type="int" />
+          <Property Name="IdGenre" Type="int" />
+        </EntityType>
+        <EntityType Name="BorrowableBookState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BorrowedBookOverview">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdLibraryMember" Type="int" />
+          <Property Name="IdState" Type="int" />
+          <Property Name="BorrowDate" Type="datetime" />
+          <Property Name="ReturnDate" Type="datetime" />
+          <Property Name="IdBookCopy" Type="int" />
+        </EntityType>
+        <EntityType Name="BorrowedBookState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="LibraryMember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Publisher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdRole" Type="int" />
+        </EntityType>
+        <Association Name="FK_Book_BorrowableBookState">
+          <End Role="BorrowableBookState" Type="Self.BorrowableBookState" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BorrowableBookState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="IdBorrowableState" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookAuthors_Author">
+          <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
+          <End Role="BookAuthors" Type="Self.BookAuthors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookAuthors">
+              <PropertyRef Name="IdAuthor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookAuthors_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="BookAuthors" Type="Self.BookAuthors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookAuthors">
+              <PropertyRef Name="IdBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookCopy_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="BookCopy" Type="Self.BookCopy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookCopy">
+              <PropertyRef Name="IdBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookGenres_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="BookGenres" Type="Self.BookGenres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookGenres">
+              <PropertyRef Name="IdBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookGenres_Genre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+          <End Role="BookGenres" Type="Self.BookGenres" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookGenres">
+              <PropertyRef Name="IdGenre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BorrowableBookCopy_Publisher">
+          <End Role="Publisher" Type="Self.Publisher" Multiplicity="0..1" />
+          <End Role="BookCopy" Type="Self.BookCopy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publisher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookCopy">
+              <PropertyRef Name="IdPublisher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BorrowedBookOverview_BorrowedBookState">
+          <End Role="BorrowedBookState" Type="Self.BorrowedBookState" Multiplicity="0..1" />
+          <End Role="BorrowedBookOverview" Type="Self.BorrowedBookOverview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BorrowedBookState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BorrowedBookOverview">
+              <PropertyRef Name="IdState" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BorrowedBookOverview_LibraryMember">
+          <End Role="LibraryMember" Type="Self.LibraryMember" Multiplicity="0..1" />
+          <End Role="BorrowedBookOverview" Type="Self.BorrowedBookOverview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LibraryMember">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BorrowedBookOverview">
+              <PropertyRef Name="IdLibraryMember" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RPP22_07_DBModelStoreContainer">
+          <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookAuthors" EntityType="Self.BookAuthors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookCopy" EntityType="Self.BookCopy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookGenres" EntityType="Self.BookGenres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BorrowableBookState" EntityType="Self.BorrowableBookState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BorrowedBookOverview" EntityType="Self.BorrowedBookOverview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BorrowedBookState" EntityType="Self.BorrowedBookState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LibraryMember" EntityType="Self.LibraryMember" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publisher" EntityType="Self.Publisher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Book_BorrowableBookState" Association="Self.FK_Book_BorrowableBookState">
+            <End Role="BorrowableBookState" EntitySet="BorrowableBookState" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookAuthors_Author" Association="Self.FK_BookAuthors_Author">
+            <End Role="Author" EntitySet="Author" />
+            <End Role="BookAuthors" EntitySet="BookAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookAuthors_Book" Association="Self.FK_BookAuthors_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="BookAuthors" EntitySet="BookAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookCopy_Book" Association="Self.FK_BookCopy_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="BookCopy" EntitySet="BookCopy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookGenres_Book" Association="Self.FK_BookGenres_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="BookGenres" EntitySet="BookGenres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookGenres_Genre" Association="Self.FK_BookGenres_Genre">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="BookGenres" EntitySet="BookGenres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BorrowableBookCopy_Publisher" Association="Self.FK_BorrowableBookCopy_Publisher">
+            <End Role="Publisher" EntitySet="Publisher" />
+            <End Role="BookCopy" EntitySet="BookCopy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BorrowedBookOverview_BorrowedBookState" Association="Self.FK_BorrowedBookOverview_BorrowedBookState">
+            <End Role="BorrowedBookState" EntitySet="BorrowedBookState" />
+            <End Role="BorrowedBookOverview" EntitySet="BorrowedBookOverview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BorrowedBookOverview_LibraryMember" Association="Self.FK_BorrowedBookOverview_LibraryMember">
+            <End Role="LibraryMember" EntitySet="LibraryMember" />
+            <End Role="BorrowedBookOverview" EntitySet="BorrowedBookOverview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RPP22_07_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Author">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="BookAuthors" Relationship="Self.FK_BookAuthors_Author" FromRole="Author" ToRole="BookAuthors" />
+        </EntityType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfPages" Type="Int32" />
+          <Property Name="IdBorrowableState" Type="Int32" />
+          <NavigationProperty Name="BorrowableBookState" Relationship="Self.FK_Book_BorrowableBookState" FromRole="Book" ToRole="BorrowableBookState" />
+          <NavigationProperty Name="BookAuthors" Relationship="Self.FK_BookAuthors_Book" FromRole="Book" ToRole="BookAuthors" />
+          <NavigationProperty Name="BookGenres" Relationship="Self.FK_BookGenres_Book" FromRole="Book" ToRole="BookGenres" />
+          <NavigationProperty Name="BookCopies" Relationship="RPP22_07_DBModel.FK_BookCopy_Book" FromRole="Book" ToRole="BookCopy" />
+        </EntityType>
+        <EntityType Name="BookAuthor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdBook" Type="Int32" />
+          <Property Name="IdAuthor" Type="Int32" />
+          <NavigationProperty Name="Author" Relationship="Self.FK_BookAuthors_Author" FromRole="BookAuthors" ToRole="Author" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_BookAuthors_Book" FromRole="BookAuthors" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="BookCopy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Edition" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IdPublisher" Type="Int32" />
+          <Property Name="IdBook" Type="Int32" />
+          <NavigationProperty Name="Publisher" Relationship="Self.FK_BorrowableBookCopy_Publisher" FromRole="BookCopy" ToRole="Publisher" />
+          <NavigationProperty Name="BorrowedBookOverviews" Relationship="Self.FK_BorrowedBookOverview_BookCopy" FromRole="BookCopy" ToRole="BorrowedBookOverview" />
+          <NavigationProperty Name="Book" Relationship="RPP22_07_DBModel.FK_BookCopy_Book" FromRole="BookCopy" ToRole="Book" />
+          <Property Name="YearOfPublication" Type="Int32" />
+          <Property Name="ISBN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Language" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BookGenre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdBook" Type="Int32" />
+          <Property Name="IdGenre" Type="Int32" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_BookGenres_Book" FromRole="BookGenres" ToRole="Book" />
+          <NavigationProperty Name="Genre" Relationship="Self.FK_BookGenres_Genre" FromRole="BookGenres" ToRole="Genre" />
+        </EntityType>
+        <EntityType Name="BorrowableBookState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Books" Relationship="Self.FK_Book_BorrowableBookState" FromRole="BorrowableBookState" ToRole="Book" />
+        </EntityType>
+        <EntityType Name="BorrowedBookOverview">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdLibraryMember" Type="Int32" />
+          <Property Name="IdState" Type="Int32" />
+          <Property Name="BorrowDate" Type="DateTime" Precision="3" />
+          <Property Name="ReturnDate" Type="DateTime" Precision="3" />
+          <Property Name="IdBookCopy" Type="Int32" />
+          <NavigationProperty Name="BookCopy" Relationship="Self.FK_BorrowedBookOverview_BookCopy" FromRole="BorrowedBookOverview" ToRole="BookCopy" />
+          <NavigationProperty Name="BorrowedBookState" Relationship="Self.FK_BorrowedBookOverview_BorrowedBookState" FromRole="BorrowedBookOverview" ToRole="BorrowedBookState" />
+          <NavigationProperty Name="LibraryMember" Relationship="Self.FK_BorrowedBookOverview_LibraryMember" FromRole="BorrowedBookOverview" ToRole="LibraryMember" />
+        </EntityType>
+        <EntityType Name="BorrowedBookState">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BorrowedBookOverviews" Relationship="Self.FK_BorrowedBookOverview_BorrowedBookState" FromRole="BorrowedBookState" ToRole="BorrowedBookOverview" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BookGenres" Relationship="Self.FK_BookGenres_Genre" FromRole="Genre" ToRole="BookGenres" />
+        </EntityType>
+        <EntityType Name="LibraryMember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BorrowedBookOverviews" Relationship="Self.FK_BorrowedBookOverview_LibraryMember" FromRole="LibraryMember" ToRole="BorrowedBookOverview" />
+        </EntityType>
+        <EntityType Name="Publisher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BookCopies" Relationship="Self.FK_BorrowableBookCopy_Publisher" FromRole="Publisher" ToRole="BookCopy" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdRole" Type="Int32" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK_BookAuthors_Author">
+          <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
+          <End Role="BookAuthors" Type="Self.BookAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Author">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookAuthors">
+              <PropertyRef Name="IdAuthor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Book_BorrowableBookState">
+          <End Role="BorrowableBookState" Type="Self.BorrowableBookState" Multiplicity="0..1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BorrowableBookState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="IdBorrowableState" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookAuthors_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="BookAuthors" Type="Self.BookAuthor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookAuthors">
+              <PropertyRef Name="IdBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookGenres_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+          <End Role="BookGenres" Type="Self.BookGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookGenres">
+              <PropertyRef Name="IdBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BorrowableBookCopy_Publisher">
+          <End Role="Publisher" Type="Self.Publisher" Multiplicity="0..1" />
+          <End Role="BookCopy" Type="Self.BookCopy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publisher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookCopy">
+              <PropertyRef Name="IdPublisher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BorrowedBookOverview_BookCopy">
+          <End Role="BookCopy" Type="Self.BookCopy" Multiplicity="0..1" />
+          <End Role="BorrowedBookOverview" Type="Self.BorrowedBookOverview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookCopy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BorrowedBookOverview">
+              <PropertyRef Name="IdBookCopy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookGenres_Genre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+          <End Role="BookGenres" Type="Self.BookGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookGenres">
+              <PropertyRef Name="IdGenre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BorrowedBookOverview_BorrowedBookState">
+          <End Role="BorrowedBookState" Type="Self.BorrowedBookState" Multiplicity="0..1" />
+          <End Role="BorrowedBookOverview" Type="Self.BorrowedBookOverview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BorrowedBookState">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BorrowedBookOverview">
+              <PropertyRef Name="IdState" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BorrowedBookOverview_LibraryMember">
+          <End Role="LibraryMember" Type="Self.LibraryMember" Multiplicity="0..1" />
+          <End Role="BorrowedBookOverview" Type="Self.BorrowedBookOverview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LibraryMember">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BorrowedBookOverview">
+              <PropertyRef Name="IdLibraryMember" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RPP22_07_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authors" EntityType="Self.Author" />
+          <EntitySet Name="Books" EntityType="Self.Book" />
+          <EntitySet Name="BookAuthors" EntityType="Self.BookAuthor" />
+          <EntitySet Name="BookCopies" EntityType="Self.BookCopy" />
+          <EntitySet Name="BookGenres" EntityType="Self.BookGenre" />
+          <EntitySet Name="BorrowableBookStates" EntityType="Self.BorrowableBookState" />
+          <EntitySet Name="BorrowedBookOverviews" EntityType="Self.BorrowedBookOverview" />
+          <EntitySet Name="BorrowedBookStates" EntityType="Self.BorrowedBookState" />
+          <EntitySet Name="Genres" EntityType="Self.Genre" />
+          <EntitySet Name="LibraryMembers" EntityType="Self.LibraryMember" />
+          <EntitySet Name="Publishers" EntityType="Self.Publisher" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_BookAuthors_Author" Association="Self.FK_BookAuthors_Author">
+            <End Role="Author" EntitySet="Authors" />
+            <End Role="BookAuthors" EntitySet="BookAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Book_BorrowableBookState" Association="Self.FK_Book_BorrowableBookState">
+            <End Role="BorrowableBookState" EntitySet="BorrowableBookStates" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookAuthors_Book" Association="Self.FK_BookAuthors_Book">
+            <End Role="Book" EntitySet="Books" />
+            <End Role="BookAuthors" EntitySet="BookAuthors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookGenres_Book" Association="Self.FK_BookGenres_Book">
+            <End Role="Book" EntitySet="Books" />
+            <End Role="BookGenres" EntitySet="BookGenres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BorrowableBookCopy_Publisher" Association="Self.FK_BorrowableBookCopy_Publisher">
+            <End Role="Publisher" EntitySet="Publishers" />
+            <End Role="BookCopy" EntitySet="BookCopies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BorrowedBookOverview_BookCopy" Association="Self.FK_BorrowedBookOverview_BookCopy">
+            <End Role="BookCopy" EntitySet="BookCopies" />
+            <End Role="BorrowedBookOverview" EntitySet="BorrowedBookOverviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookGenres_Genre" Association="Self.FK_BookGenres_Genre">
+            <End Role="Genre" EntitySet="Genres" />
+            <End Role="BookGenres" EntitySet="BookGenres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BorrowedBookOverview_BorrowedBookState" Association="Self.FK_BorrowedBookOverview_BorrowedBookState">
+            <End Role="BorrowedBookState" EntitySet="BorrowedBookStates" />
+            <End Role="BorrowedBookOverview" EntitySet="BorrowedBookOverviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BorrowedBookOverview_LibraryMember" Association="Self.FK_BorrowedBookOverview_LibraryMember">
+            <End Role="LibraryMember" EntitySet="LibraryMembers" />
+            <End Role="BorrowedBookOverview" EntitySet="BorrowedBookOverviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookCopy_Book" Association="RPP22_07_DBModel.FK_BookCopy_Book">
+            <End Role="Book" EntitySet="Books" />
+            <End Role="BookCopy" EntitySet="BookCopies" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_BookCopy_Book">
+          <End Type="RPP22_07_DBModel.Book" Role="Book" Multiplicity="0..1" />
+          <End Type="RPP22_07_DBModel.BookCopy" Role="BookCopy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookCopy">
+              <PropertyRef Name="IdBook" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RPP22_07_DBModelStoreContainer" CdmEntityContainer="RPP22_07_DBEntities">
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="RPP22_07_DBModel.Author">
+              <MappingFragment StoreEntitySet="Author">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="RPP22_07_DBModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="NumberOfPages" ColumnName="NumberOfPages" />
+                <ScalarProperty Name="IdBorrowableState" ColumnName="IdBorrowableState" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookAuthors">
+            <EntityTypeMapping TypeName="RPP22_07_DBModel.BookAuthor">
+              <MappingFragment StoreEntitySet="BookAuthors">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdBook" ColumnName="IdBook" />
+                <ScalarProperty Name="IdAuthor" ColumnName="IdAuthor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookCopies">
+            <EntityTypeMapping TypeName="RPP22_07_DBModel.BookCopy">
+              <MappingFragment StoreEntitySet="BookCopy">
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="YearOfPublication" ColumnName="YearOfPublication" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Edition" ColumnName="Edition" />
+                <ScalarProperty Name="IdPublisher" ColumnName="IdPublisher" />
+                <ScalarProperty Name="IdBook" ColumnName="IdBook" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookGenres">
+            <EntityTypeMapping TypeName="RPP22_07_DBModel.BookGenre">
+              <MappingFragment StoreEntitySet="BookGenres">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdBook" ColumnName="IdBook" />
+                <ScalarProperty Name="IdGenre" ColumnName="IdGenre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BorrowableBookStates">
+            <EntityTypeMapping TypeName="RPP22_07_DBModel.BorrowableBookState">
+              <MappingFragment StoreEntitySet="BorrowableBookState">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BorrowedBookOverviews">
+            <EntityTypeMapping TypeName="RPP22_07_DBModel.BorrowedBookOverview">
+              <MappingFragment StoreEntitySet="BorrowedBookOverview">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdLibraryMember" ColumnName="IdLibraryMember" />
+                <ScalarProperty Name="IdState" ColumnName="IdState" />
+                <ScalarProperty Name="BorrowDate" ColumnName="BorrowDate" />
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="IdBookCopy" ColumnName="IdBookCopy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BorrowedBookStates">
+            <EntityTypeMapping TypeName="RPP22_07_DBModel.BorrowedBookState">
+              <MappingFragment StoreEntitySet="BorrowedBookState">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genres">
+            <EntityTypeMapping TypeName="RPP22_07_DBModel.Genre">
+              <MappingFragment StoreEntitySet="Genre">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LibraryMembers">
+            <EntityTypeMapping TypeName="RPP22_07_DBModel.LibraryMember">
+              <MappingFragment StoreEntitySet="LibraryMember">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publishers">
+            <EntityTypeMapping TypeName="RPP22_07_DBModel.Publisher">
+              <MappingFragment StoreEntitySet="Publisher">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="RPP22_07_DBModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="RPP22_07_DBModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

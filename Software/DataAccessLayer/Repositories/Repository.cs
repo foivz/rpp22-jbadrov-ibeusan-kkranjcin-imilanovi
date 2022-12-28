@@ -9,11 +9,11 @@ namespace DataAccessLayer.Repositories
 {
     public abstract class Repository<T> : IDisposable where T : class
     {
-        protected LibResModel context { get; set; }
+        protected RPP22_07_DBEntities Context { get; set; }
         protected DbSet<T> Entities { get; set; }
-        public Repository(LibResModel context)
+        public Repository(RPP22_07_DBEntities context)
         {
-            this.context = context;
+            this.Context = context;
             Entities = context.Set<T>();
         }
 
@@ -30,7 +30,7 @@ namespace DataAccessLayer.Repositories
             return SaveChanges();
         }
 
-        public abstract int Update(T entity);
+        public virtual int Update(T entity) { return 0; }
 
         public virtual int Delete(T entity)
         {
@@ -41,12 +41,12 @@ namespace DataAccessLayer.Repositories
 
         public virtual int SaveChanges()
         {
-            return context.SaveChanges();
+            return Context.SaveChanges();
         }
 
         public void Dispose()
         {
-            context.Dispose();
+            Context.Dispose();
         }
     }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3d30471120d94c9b939f425c528ef45e" Name="Diagram1">
+        <EntityTypeShape EntityType="RPP22_07_DBModel.Author" Width="1.5" PointX="8" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPP22_07_DBModel.Book" Width="1.5" PointX="8" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPP22_07_DBModel.BookAuthor" Width="1.5" PointX="10.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPP22_07_DBModel.BookCopy" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPP22_07_DBModel.BookGenre" Width="1.5" PointX="10.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPP22_07_DBModel.BorrowableBookState" Width="1.5" PointX="5.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPP22_07_DBModel.BorrowedBookOverview" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPP22_07_DBModel.BorrowedBookState" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPP22_07_DBModel.Genre" Width="1.5" PointX="8" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPP22_07_DBModel.LibraryMember" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPP22_07_DBModel.Publisher" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPP22_07_DBModel.Role" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RPP22_07_DBModel.User" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <AssociationConnector Association="RPP22_07_DBModel.FK_BookAuthors_Author" ManuallyRouted="false" />
+        <AssociationConnector Association="RPP22_07_DBModel.FK_Book_BorrowableBookState" ManuallyRouted="false" />
+        <AssociationConnector Association="RPP22_07_DBModel.FK_BookAuthors_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="RPP22_07_DBModel.FK_BookGenres_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="RPP22_07_DBModel.FK_BorrowableBookCopy_Publisher" ManuallyRouted="false" />
+        <AssociationConnector Association="RPP22_07_DBModel.FK_BorrowedBookOverview_BookCopy" ManuallyRouted="false" />
+        <AssociationConnector Association="RPP22_07_DBModel.FK_BookGenres_Genre" ManuallyRouted="false" />
+        <AssociationConnector Association="RPP22_07_DBModel.FK_BorrowedBookOverview_BorrowedBookState" ManuallyRouted="false" />
+        <AssociationConnector Association="RPP22_07_DBModel.FK_BorrowedBookOverview_LibraryMember" ManuallyRouted="false" />
+        <AssociationConnector Association="RPP22_07_DBModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="RPP22_07_DBModel.FK_BookCopy_Book" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
