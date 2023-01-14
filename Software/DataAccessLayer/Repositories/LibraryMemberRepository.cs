@@ -8,7 +8,7 @@ namespace DataAccessLayer.Repositories
 {
     public class LibraryMemberRepository : Repository<LibraryMember>
     {
-        public LibraryMemberRepository(RPP22_07_DBEntities context) : base(context)
+        public LibraryMemberRepository() : base(new RPP22_07_DBEntities())
         {
         }
 

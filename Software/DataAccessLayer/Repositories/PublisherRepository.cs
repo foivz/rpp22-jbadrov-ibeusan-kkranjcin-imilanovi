@@ -8,7 +8,7 @@ namespace DataAccessLayer.Repositories
 {
     public class PublisherRepository : Repository<Publisher>
     {
-        public PublisherRepository(RPP22_07_DBEntities context) : base(context)
+        public PublisherRepository() : base(new RPP22_07_DBEntities())
         {
         }
 

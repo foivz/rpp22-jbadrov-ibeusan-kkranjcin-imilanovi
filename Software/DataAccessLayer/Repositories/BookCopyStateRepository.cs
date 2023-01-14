@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
-    public class BookCopyStateRepository : Repository<BookCopyStateRepository>
+    public class BookCopyStateRepository : Repository<BorrowableBookState>
     {
-        public BookCopyStateRepository(RPP22_07_DBEntities context) : base(context)
+        public BookCopyStateRepository() : base(new RPP22_07_DBEntities())
         {
         }
 
-        public override IQueryable<BookCopyStateRepository> GetAll()
+        public override IQueryable<BorrowableBookState> GetAll()
         {
             var query = from b in Entities
                         select b;

@@ -8,7 +8,7 @@ namespace DataAccessLayer.Repositories
 {
     public class GenreRepository : Repository<Genre>
     {
-        public GenreRepository(RPP22_07_DBEntities context) : base(context)
+        public GenreRepository() : base(new RPP22_07_DBEntities())
         {
         }
 

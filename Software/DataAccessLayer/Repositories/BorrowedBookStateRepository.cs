@@ -8,7 +8,7 @@ namespace DataAccessLayer.Repositories
 {
     public class BorrowedBookStateRepository : Repository<BorrowedBookState>
     {
-        public BorrowedBookStateRepository(RPP22_07_DBEntities context) : base(context)
+        public BorrowedBookStateRepository() : base(new RPP22_07_DBEntities())
         {
         }
 

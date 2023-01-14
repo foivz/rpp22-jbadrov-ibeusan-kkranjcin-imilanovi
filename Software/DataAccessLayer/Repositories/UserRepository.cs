@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
-    internal class UserRepository : Repository<User>
+    public class UserRepository : Repository<User>
     {
-        public UserRepository(RPP22_07_DBEntities context) : base(context)
+        public UserRepository() : base(new RPP22_07_DBEntities())
         {
         }
 

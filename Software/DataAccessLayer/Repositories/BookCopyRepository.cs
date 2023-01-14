@@ -8,7 +8,7 @@ namespace DataAccessLayer.Repositories
 {
     public class BookCopyRepository : Repository<BookCopy>
     {
-        public BookCopyRepository(RPP22_07_DBEntities context) : base(context)
+        public BookCopyRepository() : base(new RPP22_07_DBEntities())
         {
         }
 
