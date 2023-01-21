@@ -44,7 +44,7 @@ namespace LibRes
         {
             FrmNewLibraryMember frmNewLibraryMember = new FrmNewLibraryMember();
             frmNewLibraryMember.ShowDialog();
-            frmNewLibraryMember.FormClosed += FrmLibraryMember_FormClosed;
+            frmNewLibraryMember.Closed += FrmLibraryMember_FormClosed;
         }
 
         private void btnDeleteMember_Click(object sender, EventArgs e)
@@ -66,7 +66,7 @@ namespace LibRes
 
         }
 
-        private void FrmLibraryMember_FormClosed(object sender, FormClosedEventArgs e)
+        private void FrmLibraryMember_FormClosed(object sender, EventArgs e)
         {
             ShowAllMembers();
         }

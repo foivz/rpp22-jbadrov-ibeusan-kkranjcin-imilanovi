@@ -43,7 +43,7 @@ namespace LibRes
 
         private void btnUpdateMember_Click(object sender, EventArgs e)
         {
-            FrmUpdateMember frmUpdateMember = new FrmUpdateMember();
+            FrmUpdateMember frmUpdateMember = new FrmUpdateMember(_member);
             frmUpdateMember.ShowDialog();
             frmUpdateMember.FormClosed += FrmUpdateMember_FormClosed;
         }
