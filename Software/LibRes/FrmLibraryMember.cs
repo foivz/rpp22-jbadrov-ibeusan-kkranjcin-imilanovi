@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ namespace LibRes
 {
     public partial class FrmLibraryMember : Form
     {
-        public FrmLibraryMember()
+        public FrmLibraryMember(LibraryMember member)
         {
             InitializeComponent();
         }
