@@ -19,9 +19,11 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
+
+
         public override int Add(BorrowedBookOverview entity)
         {
-            var borrowedBookOverview = new BorrowedBookOverview 
+            var borrowedBookOverview = new BorrowedBookOverview
             { 
                 BookCopy = entity.BookCopy,
                 BorrowedBookState = entity.BorrowedBookState,

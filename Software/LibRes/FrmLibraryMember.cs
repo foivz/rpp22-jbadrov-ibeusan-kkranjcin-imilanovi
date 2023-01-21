@@ -1,4 +1,5 @@
-﻿using DataAccessLayer;
+﻿using BusinessLogicLayer.Services_1;
+using DataAccessLayer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,12 @@ namespace LibRes
 {
     public partial class FrmLibraryMember : Form
     {
+        BorrowedBookOverviewService service = new BorrowedBookOverviewService();
+        LibraryMember _member = null;
         public FrmLibraryMember(LibraryMember member)
         {
             InitializeComponent();
+            _member = member;
         }
 
         private void FrmLibraryMember_Load(object sender, EventArgs e)
@@ -25,13 +29,28 @@ namespace LibRes
 
         private void ShowMemberData()
         {
-            throw new NotImplementedException();
+            if(_member != null)
+            {
+                txtFirstName.Text = _member.FirstName;
+                txtLastName.Text = _member.LastName;
+                txtMemberEmail.Text = _member.Email;
+                var membersBooks = from b in service.GetBorrowedBookOverviews()
+                                   where b.IdLibraryMember == _member.Id
+                                   select b;
+                dgvMembersBooks.DataSource = membersBooks;
+            }
         }
 
         private void btnUpdateMember_Click(object sender, EventArgs e)
         {
             FrmUpdateMember frmUpdateMember = new FrmUpdateMember();
             frmUpdateMember.ShowDialog();
+            frmUpdateMember.FormClosed += FrmUpdateMember_FormClosed;
+        }
+
+        private void FrmUpdateMember_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ShowMemberData();
         }
     }
 }

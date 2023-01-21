@@ -8,7 +8,7 @@ using DataAccessLayer.Repositories;
 
 namespace BusinessLogicLayer.Services_1
 {
-    internal class BorrowedBookOverviewService
+    public class BorrowedBookOverviewService
     {
         public bool AddBorrowedBookOverview(BorrowedBookOverview borrowedBookOverview)
         {
