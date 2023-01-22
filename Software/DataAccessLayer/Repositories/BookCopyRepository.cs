@@ -27,6 +27,8 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
+
+
         public override int Add(BookCopy entity)
         {
             var bookCopy = new BookCopy

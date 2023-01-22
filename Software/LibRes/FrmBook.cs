@@ -16,6 +16,8 @@ namespace LibRes
 {
     public partial class FrmBook : Form
     {
+        BorrowedBookOverviewService service = new BorrowedBookOverviewService();
+
         public FrmBook()
         {
             InitializeComponent();
@@ -23,6 +25,8 @@ namespace LibRes
         
         private void FrmBook_Load(object sender, EventArgs e)
         {
+            
+
             //ShowAllGenres();
             //ShowAllAuthors();
             //ShowBook();
@@ -71,7 +75,7 @@ namespace LibRes
         private void btnReserve_Click(object sender, EventArgs e)
         {
 
-            var service = new BorrowedBookOverviewService();
+            //var service = new BorrowedBookOverviewService();
             var bookCopy = dgvBookCopies.CurrentRow.DataBoundItem as BookCopy;
             if (service.IsReserved(bookCopy.Id))
             {
@@ -110,7 +114,7 @@ namespace LibRes
 
         private void btnReserveForMember_Click(object sender, EventArgs e)
         {
-            var service = new BorrowedBookOverviewService();
+            //var service = new BorrowedBookOverviewService();
             var bookCopy = dgvBookCopies.CurrentRow.DataBoundItem as BookCopy;
             if (service.IsReserved(bookCopy.Id))
             {
@@ -186,7 +190,7 @@ namespace LibRes
             
             var bookCopy = (BookCopy)row.DataBoundItem;
 
-            var service = new BorrowedBookOverviewService();
+            //var service = new BorrowedBookOverviewService();
             if (service.IsReserved(bookCopy.Id))
             {
                 
