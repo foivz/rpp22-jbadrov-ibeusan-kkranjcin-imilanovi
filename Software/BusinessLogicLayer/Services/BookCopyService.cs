@@ -8,7 +8,7 @@ using DataAccessLayer.Repositories;
 
 namespace BusinessLogicLayer.Services
 {
-    internal class BookCopyService
+    public class BookCopyService
     {
 
         public bool AddBookCopy(BookCopy bookCopy)

@@ -28,17 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnScanMember = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.btnScanBook = new System.Windows.Forms.Button();
             this.btnBorrow = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.cmbDevices = new System.Windows.Forms.ComboBox();
+            this.timmerForScaning = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnScanMember
             // 
-            this.btnScanMember.Location = new System.Drawing.Point(50, 72);
+            this.btnScanMember.Location = new System.Drawing.Point(123, 72);
             this.btnScanMember.Name = "btnScanMember";
             this.btnScanMember.Size = new System.Drawing.Size(121, 23);
             this.btnScanMember.TabIndex = 0;
@@ -49,7 +54,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(50, 101);
+            this.comboBox1.Location = new System.Drawing.Point(123, 114);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 24);
             this.comboBox1.TabIndex = 1;
@@ -57,14 +62,14 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(177, 101);
+            this.comboBox2.Location = new System.Drawing.Point(424, 114);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 24);
             this.comboBox2.TabIndex = 3;
             // 
             // btnScanBook
             // 
-            this.btnScanBook.Location = new System.Drawing.Point(177, 72);
+            this.btnScanBook.Location = new System.Drawing.Point(424, 72);
             this.btnScanBook.Name = "btnScanBook";
             this.btnScanBook.Size = new System.Drawing.Size(121, 23);
             this.btnScanBook.TabIndex = 2;
@@ -74,7 +79,7 @@
             // 
             // btnBorrow
             // 
-            this.btnBorrow.Location = new System.Drawing.Point(80, 131);
+            this.btnBorrow.Location = new System.Drawing.Point(340, 486);
             this.btnBorrow.Name = "btnBorrow";
             this.btnBorrow.Size = new System.Drawing.Size(91, 28);
             this.btnBorrow.TabIndex = 4;
@@ -84,7 +89,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(177, 131);
+            this.btnCancel.Location = new System.Drawing.Point(454, 486);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(91, 28);
             this.btnCancel.TabIndex = 5;
@@ -92,11 +97,35 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(123, 157);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(422, 309);
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // cmbDevices
+            // 
+            this.cmbDevices.FormattingEnabled = true;
+            this.cmbDevices.Location = new System.Drawing.Point(123, 12);
+            this.cmbDevices.Name = "cmbDevices";
+            this.cmbDevices.Size = new System.Drawing.Size(422, 24);
+            this.cmbDevices.TabIndex = 7;
+            this.cmbDevices.SelectedIndexChanged += new System.EventHandler(this.cmbDevices_SelectedIndexChanged);
+            // 
+            // timmerForScaning
+            // 
+            this.timmerForScaning.Tick += new System.EventHandler(this.timmerForScaning_Tick);
+            // 
             // FrmBookBorrow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(348, 235);
+            this.ClientSize = new System.Drawing.Size(706, 526);
+            this.Controls.Add(this.cmbDevices);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnBorrow);
             this.Controls.Add(this.comboBox2);
@@ -105,7 +134,9 @@
             this.Controls.Add(this.btnScanMember);
             this.Name = "FrmBookBorrow";
             this.Text = "FrmBookBorrow";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmBookBorrow_FormClosing);
             this.Load += new System.EventHandler(this.FrmBookBorrow_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -118,5 +149,8 @@
         private System.Windows.Forms.Button btnScanBook;
         private System.Windows.Forms.Button btnBorrow;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ComboBox cmbDevices;
+        private System.Windows.Forms.Timer timmerForScaning;
     }
 }

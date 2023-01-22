@@ -28,9 +28,9 @@ namespace DataAccessLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BorrowedBookOverview> BorrowedBookOverviews { get; set; }
 
-        public override string ToString()
+        /*public override string ToString()
         {
             return FirstName + " " + LastName;
-        }
+        }*/
     }
 }
