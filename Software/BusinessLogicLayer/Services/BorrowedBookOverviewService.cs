@@ -10,6 +10,32 @@ namespace BusinessLogicLayer.Services_1
 {
     public class BorrowedBookOverviewService
     {
+        private readonly System.Timers.Timer _timer = new System.Timers.Timer(86400000);
+        
+
+        public BorrowedBookOverviewService()
+        {
+            
+            _timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            _timer.Enabled = true;
+        }
+
+        private static void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
+            //var dateTime = DateTime.Now;
+            using(var repo = new BorrowedBookOverviewRepository())
+            {
+                var borrowedBookOverviews = repo.GetAll().ToList();
+                foreach(var borrowedBookOverview in borrowedBookOverviews)
+                {
+                    if(borrowedBookOverview.ReturnDate > DateTime.Now && borrowedBookOverview.IdState == 3)
+                    {
+                        repo.Delete(borrowedBookOverview);
+                    }
+                }
+            }
+            //foreach ()
+        }
         public bool AddBorrowedBookOverview(BorrowedBookOverview borrowedBookOverview)
         {
             using (var repo = new BorrowedBookOverviewRepository())

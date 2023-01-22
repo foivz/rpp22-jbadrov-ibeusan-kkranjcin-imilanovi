@@ -65,6 +65,7 @@
     <Compile Include="BookCopy.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BookCopy.Ext.cs" />
     <Compile Include="BookGenre.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
@@ -83,6 +84,7 @@
     <Compile Include="LibraryMember.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="LibraryMember.Ext.cs" />
     <Compile Include="LibResModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

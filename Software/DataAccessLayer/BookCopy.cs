@@ -11,7 +11,8 @@ namespace DataAccessLayer
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class BookCopy
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +23,7 @@ namespace DataAccessLayer
     
         public int Id { get; set; }
         public string Edition { get; set; }
+
         public Nullable<int> IdPublisher { get; set; }
         public Nullable<int> IdBook { get; set; }
         public Nullable<int> YearOfPublication { get; set; }
@@ -32,5 +34,9 @@ namespace DataAccessLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BorrowedBookOverview> BorrowedBookOverviews { get; set; }
         public virtual Book Book { get; set; }
+
+        
+
+
     }
 }

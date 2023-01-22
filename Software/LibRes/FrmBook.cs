@@ -23,6 +23,29 @@ namespace LibRes
             //ShowBook();
         }
 
+        private void ShowAllLibraryMembers()
+        {
+            var service = new LibraryMemberService();
+            cmbMember.DataSource = service.GetLibraryMembers();
+            //cmbMember.DisplayMember = "Id";
+            
+        }
+
+        private void ShowAllBooks()
+        {
+            var service = new BookCopyService();
+            dgvBookCopies.DataSource = service.GetBookCopies();
+            dgvBookCopies.Columns["Publisher"].Visible = false;
+            dgvBookCopies.Columns["Book"].Visible = false;
+            dgvBookCopies.Columns["BorrowedBookOverviews"].Visible = false;
+            
+            
+            
+           dgvBookCopies.CellFormatting += dgvBookCopies_CellFormatting;
+            
+            
+        }
+
         private void ShowBook()
         {
             throw new NotImplementedException();
