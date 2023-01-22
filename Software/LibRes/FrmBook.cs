@@ -41,7 +41,7 @@ namespace LibRes
             
             
             
-           dgvBookCopies.CellFormatting += dgvBookCopies_CellFormatting;
+           //dgvBookCopies.CellFormatting += dgvBookCopies_CellFormatting;
             
             
         }
