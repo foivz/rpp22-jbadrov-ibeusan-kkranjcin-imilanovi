@@ -29,7 +29,7 @@ namespace LibRes
 
         private void ShowAllBooks()
         {
-            throw new NotImplementedException();
+            
         }
 
         private void btnScanMember_Click(object sender, EventArgs e)

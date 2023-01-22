@@ -33,5 +33,10 @@ namespace LibRes
             FrmUpdateMember frmUpdateMember = new FrmUpdateMember();
             frmUpdateMember.ShowDialog();
         }
+
+        private void dgvMembersBooks_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
