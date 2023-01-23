@@ -102,6 +102,7 @@
             this.btnVewMember.TabIndex = 5;
             this.btnVewMember.Text = "View Member";
             this.btnVewMember.UseVisualStyleBackColor = true;
+            this.btnVewMember.Click += new System.EventHandler(this.btnViewMember_Click);
             // 
             // FrmLibraryMemberSearch
             // 

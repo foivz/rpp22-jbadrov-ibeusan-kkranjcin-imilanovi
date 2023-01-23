@@ -8,7 +8,7 @@ using DataAccessLayer.Repositories;
 
 namespace BusinessLogicLayer.Services
 {
-    internal class LibraryMemberService
+    public class LibraryMemberService
     {
         public bool AddLibraryMember(LibraryMember libraryMember)
         {
