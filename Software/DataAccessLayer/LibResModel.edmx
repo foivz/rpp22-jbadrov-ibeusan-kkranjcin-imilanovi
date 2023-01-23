@@ -22,6 +22,7 @@
           <Property Name="Title" Type="nvarchar" MaxLength="100" />
           <Property Name="NumberOfPages" Type="int" />
           <Property Name="IdBorrowableState" Type="int" />
+          <Property Name="ISBN" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="BookAuthors">
           <Key>
@@ -40,7 +41,6 @@
           <Property Name="IdPublisher" Type="int" />
           <Property Name="IdBook" Type="int" />
           <Property Name="YearOfPublication" Type="int" />
-          <Property Name="ISBN" Type="varchar" MaxLength="20" />
           <Property Name="Language" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="BookGenres">
@@ -98,6 +98,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="40" />
+          <Property Name="Founded" Type="int" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -318,6 +319,7 @@
           <NavigationProperty Name="BookAuthors" Relationship="Self.FK_BookAuthors_Book" FromRole="Book" ToRole="BookAuthors" />
           <NavigationProperty Name="BookGenres" Relationship="Self.FK_BookGenres_Book" FromRole="Book" ToRole="BookGenres" />
           <NavigationProperty Name="BookCopies" Relationship="RPP22_07_DBModel.FK_BookCopy_Book" FromRole="Book" ToRole="BookCopy" />
+          <Property Name="ISBN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="BookAuthor">
           <Key>
@@ -341,7 +343,6 @@
           <NavigationProperty Name="BorrowedBookOverviews" Relationship="Self.FK_BorrowedBookOverview_BookCopy" FromRole="BookCopy" ToRole="BorrowedBookOverview" />
           <NavigationProperty Name="Book" Relationship="RPP22_07_DBModel.FK_BookCopy_Book" FromRole="BookCopy" ToRole="Book" />
           <Property Name="YearOfPublication" Type="Int32" />
-          <Property Name="ISBN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Language" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="BookGenre">
@@ -409,6 +410,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BookCopies" Relationship="Self.FK_BorrowableBookCopy_Publisher" FromRole="Publisher" ToRole="BookCopy" />
+          <Property Name="Founded" Type="Int32" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -640,6 +642,7 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="RPP22_07_DBModel.Book">
               <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="NumberOfPages" ColumnName="NumberOfPages" />
@@ -660,7 +663,6 @@
             <EntityTypeMapping TypeName="RPP22_07_DBModel.BookCopy">
               <MappingFragment StoreEntitySet="BookCopy">
                 <ScalarProperty Name="Language" ColumnName="Language" />
-                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
                 <ScalarProperty Name="YearOfPublication" ColumnName="YearOfPublication" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Edition" ColumnName="Edition" />
@@ -727,6 +729,7 @@
           <EntitySetMapping Name="Publishers">
             <EntityTypeMapping TypeName="RPP22_07_DBModel.Publisher">
               <MappingFragment StoreEntitySet="Publisher">
+                <ScalarProperty Name="Founded" ColumnName="Founded" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>

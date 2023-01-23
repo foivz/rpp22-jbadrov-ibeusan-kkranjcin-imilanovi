@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessLogicLayer.Services;
+using DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,26 +14,24 @@ namespace LibRes
 {
     public partial class FrmNewBookCopy : Form
     {
-        public FrmNewBookCopy()
+        public Book _book { get; set; }
+        public FrmNewBookCopy(Book book)
         {
             InitializeComponent();
+            _book = book;
         }
 
 
         private void FrmNewBookCopy_Load(object sender, EventArgs e)
         {
-            //ShowBook();
-            //ShowAllPublishers();
-        }
-
-        private void ShowAllBooks()
-        {
-            throw new NotImplementedException();
+            txtTitle.Text = _book.Title;
+            ShowAllPublishers();
         }
 
         private void ShowAllPublishers()
         {
-            throw new NotImplementedException();
+            PublisherService publisherService = new PublisherService();
+            cmbPublishers.DataSource = publisherService.GetPublishers();
         }
 
         private void btnAddBookCopy_Click(object sender, EventArgs e)
@@ -43,6 +43,11 @@ namespace LibRes
         {
             FrmNewPublisher frmNewPublisher = new FrmNewPublisher();
             frmNewPublisher.ShowDialog();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

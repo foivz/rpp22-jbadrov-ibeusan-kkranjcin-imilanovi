@@ -8,7 +8,7 @@ using DataAccessLayer.Repositories;
 
 namespace BusinessLogicLayer.Services
 {
-    internal class AuthorService
+    public class AuthorService
     {
 
         public List<Author> GetAuthors()

@@ -45,6 +45,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,21 +57,25 @@
     <Compile Include="Author.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Author.Ext.cs" />
     <Compile Include="Book.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BookAuthor.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BookAuthor.Ext.cs" />
     <Compile Include="BookCopy.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BookGenre.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BookGenre.Ext.cs" />
     <Compile Include="BorrowableBookState.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BorrowableBookState.Ext.cs" />
     <Compile Include="BorrowedBookOverview.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
@@ -80,6 +85,7 @@
     <Compile Include="Genre.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Genre.Ext.cs" />
     <Compile Include="LibraryMember.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
@@ -102,8 +108,11 @@
     <Compile Include="Publisher.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Publisher.Ext.cs" />
     <Compile Include="Repositories\AuthorRepository.cs" />
+    <Compile Include="Repositories\BookAuthorRepository.cs" />
     <Compile Include="Repositories\BookCopyStateRepository.cs" />
+    <Compile Include="Repositories\BookGenreRepository.cs" />
     <Compile Include="Repositories\BookRepository.cs" />
     <Compile Include="Repositories\BookCopyRepository.cs" />
     <Compile Include="Repositories\BorrowedBookOverviewRepository.cs" />

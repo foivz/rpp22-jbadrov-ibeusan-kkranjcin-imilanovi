@@ -21,5 +21,10 @@ namespace LibRes
         {
             MessageBox.Show("Successfully added a new publisher!");
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

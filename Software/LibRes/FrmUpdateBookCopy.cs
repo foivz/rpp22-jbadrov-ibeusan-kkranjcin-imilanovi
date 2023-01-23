@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessLogicLayer.Services;
+using DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,30 +14,38 @@ namespace LibRes
 {
     public partial class FrmUpdateBookCopy : Form
     {
-        public FrmUpdateBookCopy()
+        public BookCopy _bookCopy { get; set; }
+        public Book _book { get; set; }
+        public FrmUpdateBookCopy(BookCopy bookCopy, Book book)
         {
             InitializeComponent();
+            _bookCopy = bookCopy;
+            _book = book;
         }
 
         private void FrmUpdateBookCopy_Load(object sender, EventArgs e)
         {
-            //ShowBook();
-            //ShowAllPublishers();
+            ShowBookCopy();
+            ShowAllPublishers();
         }
 
-        private void ShowBook()
+        private void ShowBookCopy()
         {
-            throw new NotImplementedException();
+            txtTitle.Text = _book.Title;
+            txtEdition.Text = _bookCopy.Edition;
+            txtYearOfPublication.Text = _bookCopy.YearOfPublication.ToString();
+            txtLanguage.Text = _bookCopy.Language;
         }
 
         private void ShowAllPublishers()
         {
-            throw new NotImplementedException();
+            PublisherService publisherService = new PublisherService();
+            cmbPublishers.DataSource = publisherService.GetPublishers();
         }
 
         private void btnUpdateBookCopy_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Successfully added a new book copy!");
+            MessageBox.Show("Successfully updated the book copy!");
             Close();
         }
     }

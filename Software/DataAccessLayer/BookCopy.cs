@@ -25,7 +25,6 @@ namespace DataAccessLayer
         public Nullable<int> IdPublisher { get; set; }
         public Nullable<int> IdBook { get; set; }
         public Nullable<int> YearOfPublication { get; set; }
-        public string ISBN { get; set; }
         public string Language { get; set; }
     
         public virtual Publisher Publisher { get; set; }

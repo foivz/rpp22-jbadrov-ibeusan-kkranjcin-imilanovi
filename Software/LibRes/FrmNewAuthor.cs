@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessLogicLayer.Services;
+using DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +21,27 @@ namespace LibRes
 
         private void btnAddAuthor_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Successfully added author!");
+            AuthorService authorService = new AuthorService();
+            Author author = new Author
+            {
+                FirstName = txtFirstName.Text,
+                LastName = txtLastName.Text,
+                DateOfBirth = dtpDateOfBirth.Value
+            };
+
+            if (authorService.AddAuthor(author))
+            {
+                MessageBox.Show("Successfully added new author!");
+            }
+            else
+            {
+                MessageBox.Show("Problem occured while adding the author!");
+            }
+            Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
             Close();
         }
     }

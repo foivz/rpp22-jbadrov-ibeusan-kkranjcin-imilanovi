@@ -35,7 +35,6 @@ namespace DataAccessLayer.Repositories
                 Publisher = entity.Publisher,
                 Book = entity.Book,
                 YearOfPublication = entity.YearOfPublication,
-                ISBN = entity.ISBN,
                 Language = entity.Language
             };
 
@@ -50,7 +49,6 @@ namespace DataAccessLayer.Repositories
             bookCopy.Publisher = entity.Publisher;
             bookCopy.Book = entity.Book;
             bookCopy.YearOfPublication = entity.YearOfPublication;
-            bookCopy.ISBN = entity.ISBN;
             bookCopy.Language = entity.Language;
 
             return SaveChanges();

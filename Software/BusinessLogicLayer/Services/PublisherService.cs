@@ -8,9 +8,8 @@ using DataAccessLayer.Repositories;
 
 namespace BusinessLogicLayer.Services
 {
-    internal class PublisherService
+    public class PublisherService
     {
-
         public bool AddPublisher(Publisher publisher)
         {
             using (var repo = new PublisherRepository())

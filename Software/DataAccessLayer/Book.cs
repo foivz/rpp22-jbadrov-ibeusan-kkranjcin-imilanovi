@@ -26,6 +26,7 @@ namespace DataAccessLayer
         public string Title { get; set; }
         public Nullable<int> NumberOfPages { get; set; }
         public Nullable<int> IdBorrowableState { get; set; }
+        public string ISBN { get; set; }
     
         public virtual BorrowableBookState BorrowableBookState { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
