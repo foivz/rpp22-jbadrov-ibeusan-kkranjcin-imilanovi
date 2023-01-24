@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessLogicLayer.Services;
+using DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +21,22 @@ namespace LibRes
 
         private void btnAddPublisher_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Successfully added a new publisher!");
+            Publisher publisher = new Publisher
+            {
+                Name = txtName.Text,
+                Founded = int.Parse(txtYearOfEst.Text)
+            };
+
+            PublisherService publisherService = new PublisherService();
+            if (publisherService.AddPublisher(publisher))
+            {
+                MessageBox.Show("Successfully added a new publisher!");
+            }
+            else
+            {
+                MessageBox.Show("Problem occurred while adding new publisher!");
+            }
+            Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

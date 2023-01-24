@@ -98,9 +98,11 @@
             this.btnCancel.TabIndex = 24;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtTitle
             // 
+            this.txtTitle.Enabled = false;
             this.txtTitle.Location = new System.Drawing.Point(56, 51);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(286, 22);
@@ -131,6 +133,7 @@
             this.btnUpdateBookCopy.TabIndex = 19;
             this.btnUpdateBookCopy.Text = "Update Book Copy";
             this.btnUpdateBookCopy.UseVisualStyleBackColor = true;
+            this.btnUpdateBookCopy.Click += new System.EventHandler(this.btnUpdateBookCopy_Click);
             // 
             // lblTitle
             // 

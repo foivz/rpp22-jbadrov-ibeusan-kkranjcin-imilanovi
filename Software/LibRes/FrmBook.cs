@@ -10,7 +10,9 @@ namespace LibRes
     public partial class FrmBook : Form
     {
         public Book _book { get; set; }
-        
+        BookService bookService = new BookService();
+        BookCopyService bookCopyService = new BookCopyService();
+
         public FrmBook(Book book)
         {
             InitializeComponent();
@@ -23,13 +25,11 @@ namespace LibRes
 
         private void ShowBook()
         {
-            BookService bookService = new BookService();
-            var bookFromService = bookService.GetBookById(_book.Id);
-            var bookUpdated = bookFromService[0];
+            var updatedBook = GetUpdatedBook();
 
-            txtTitle.Text = bookUpdated.Title;
+            txtTitle.Text = updatedBook.Title;
 
-            dgvAuthors.DataSource = bookUpdated.BookAuthors.ToList();
+            dgvAuthors.DataSource = updatedBook.BookAuthors.ToList();
             dgvAuthors.RowHeadersVisible = false;
             dgvAuthors.ColumnHeadersVisible = false;
             dgvAuthors.Columns[0].Visible = false;
@@ -39,7 +39,7 @@ namespace LibRes
             dgvAuthors.BackgroundColor = Color.White;
             dgvAuthors.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
-            dgvGenres.DataSource = bookUpdated.BookGenres.ToList();
+            dgvGenres.DataSource = updatedBook.BookGenres.ToList();
             dgvGenres.RowHeadersVisible = false;
             dgvGenres.ColumnHeadersVisible = false;
             dgvGenres.Columns[0].Visible = false;
@@ -49,8 +49,22 @@ namespace LibRes
             dgvGenres.BackgroundColor = Color.White;
             dgvGenres.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
-            txtNumberOfPages.Text = bookUpdated.NumberOfPages.ToString();
-            txtISBN.Text = bookUpdated.ISBN.ToString();
+            txtNumberOfPages.Text = updatedBook.NumberOfPages.ToString();
+            txtISBN.Text = updatedBook.ISBN.ToString();
+
+            dgvBookCopies.DataSource = updatedBook.BookCopies.ToList();
+            dgvBookCopies.Columns[0].Visible = false;
+            dgvBookCopies.Columns[2].Visible = false;
+            dgvBookCopies.Columns[3].Visible = false;
+            dgvBookCopies.Columns[6].Visible = false;
+            dgvBookCopies.Columns[7].Visible = false;
+            dgvBookCopies.Columns[8].Visible = false;
+        }
+
+        private Book GetUpdatedBook()
+        {
+            var bookUpdated = bookService.GetBookById(_book.Id);
+            return bookUpdated[0];
         }
 
         private void btnReserve_Click(object sender, EventArgs e)
@@ -82,25 +96,49 @@ namespace LibRes
 
         private void btnUpdateCopy_Click(object sender, EventArgs e)
         {
-            var bookCopy = dgvBookCopies.CurrentRow.DataBoundItem as BookCopy;
-            FrmUpdateBookCopy frmUpdateBookCopy = new FrmUpdateBookCopy(bookCopy, _book);
-            frmUpdateBookCopy.ShowDialog();
+            if(dgvBookCopies.SelectedRows.Count == 1)
+            {
+                var bookCopy = dgvBookCopies.CurrentRow.DataBoundItem as BookCopy;
+                FrmUpdateBookCopy frmUpdateBookCopy = new FrmUpdateBookCopy(bookCopy, _book);
+                frmUpdateBookCopy.FormClosed += (s, args) => ShowBook();
+                frmUpdateBookCopy.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Choose one book copy that you want to update.");
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            BookCopyService bookCopyService = new BookCopyService();
-            var dr = MessageBox.Show("Are you sure you want to delete this copy?", "Delete Copy", MessageBoxButtons.YesNo);
-            if (dr == DialogResult.Yes)
+            if (dgvBookCopies.SelectedRows.Count == 1)
             {
-                var bookCopy = dgvBookCopies.CurrentRow.DataBoundItem as BookCopy;
-                bookCopyService.DeleteBookCopy(bookCopy);
+                var dr = MessageBox.Show("Are you sure you want to delete this copy?", "Delete Copy", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    var bookCopy = dgvBookCopies.CurrentRow.DataBoundItem as BookCopy;
+                    if (bookCopyService.DeleteBookCopy(bookCopy))
+                    {
+                        MessageBox.Show("Successfully deleted selected book copy!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Problem occurred while deleting the book copy!");
+                    }
+                    ShowBook();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Choose one book copy that you want to delete.");
             }
         }
 
         private void btnAddCopy_Click(object sender, EventArgs e)
         {
-            FrmNewBookCopy frmNewBookCopy = new FrmNewBookCopy(_book);
+            var updatedBook = GetUpdatedBook();
+            FrmNewBookCopy frmNewBookCopy = new FrmNewBookCopy(updatedBook);
+            frmNewBookCopy.FormClosed += (s, args) => ShowBook();
             frmNewBookCopy.ShowDialog();
         }
     }

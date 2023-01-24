@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lblName = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.txtYearOfEst = new System.Windows.Forms.TextBox();
             this.lblYearOfEst = new System.Windows.Forms.Label();
             this.btnAddPublisher = new System.Windows.Forms.Button();
@@ -45,12 +45,12 @@
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Name";
             // 
-            // textBox1
+            // txtName
             // 
-            this.textBox1.Location = new System.Drawing.Point(56, 57);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(286, 22);
-            this.textBox1.TabIndex = 1;
+            this.txtName.Location = new System.Drawing.Point(56, 57);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(286, 22);
+            this.txtName.TabIndex = 1;
             // 
             // txtYearOfEst
             // 
@@ -97,7 +97,7 @@
             this.Controls.Add(this.btnAddPublisher);
             this.Controls.Add(this.txtYearOfEst);
             this.Controls.Add(this.lblYearOfEst);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblName);
             this.Name = "FrmNewPublisher";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -110,7 +110,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtYearOfEst;
         private System.Windows.Forms.Label lblYearOfEst;
         private System.Windows.Forms.Button btnAddPublisher;

@@ -14,7 +14,7 @@ namespace DataAccessLayer.Repositories
 
         public override IQueryable<BookCopy> GetAll()
         {
-            var query = from b in Entities
+            var query = from b in Entities.Include("Publisher").Include("Book")
                         select b;
             return query;
         }
@@ -32,8 +32,8 @@ namespace DataAccessLayer.Repositories
             var bookCopy = new BookCopy
             {
                 Edition = entity.Edition,
-                Publisher = entity.Publisher,
-                Book = entity.Book,
+                IdPublisher = entity.IdPublisher,
+                IdBook = entity.IdBook,
                 YearOfPublication = entity.YearOfPublication,
                 Language = entity.Language
             };
@@ -44,10 +44,10 @@ namespace DataAccessLayer.Repositories
 
         public override int Update(BookCopy entity)
         {
-            var bookCopy = Entities.SingleOrDefault(a => a.Id == entity.Id);
+            var bookCopy = Entities.SingleOrDefault(b => b.Id == entity.Id);
             bookCopy.Edition = entity.Edition;
-            bookCopy.Publisher = entity.Publisher;
-            bookCopy.Book = entity.Book;
+            bookCopy.IdPublisher = entity.IdPublisher;
+            bookCopy.IdBook = entity.IdBook;
             bookCopy.YearOfPublication = entity.YearOfPublication;
             bookCopy.Language = entity.Language;
 

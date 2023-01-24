@@ -16,6 +16,7 @@ namespace LibRes
     {
         public BookCopy _bookCopy { get; set; }
         public Book _book { get; set; }
+        BookCopyService bookCopyService = new BookCopyService();
         public FrmUpdateBookCopy(BookCopy bookCopy, Book book)
         {
             InitializeComponent();
@@ -45,7 +46,26 @@ namespace LibRes
 
         private void btnUpdateBookCopy_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Successfully updated the book copy!");
+            var publisher = cmbPublishers.SelectedItem as Publisher;
+
+            _bookCopy.Edition = txtEdition.Text;
+            _bookCopy.IdPublisher = publisher.Id;
+            _bookCopy.YearOfPublication = int.Parse(txtYearOfPublication.Text);
+            _bookCopy.Language = txtLanguage.Text;
+
+            if (bookCopyService.UpdateBookCopy(_bookCopy))
+            {
+                MessageBox.Show("Successfully updated the book copy!");
+            }
+            else
+            {
+                MessageBox.Show("Problem occurred while updating the book copy!");
+            }
+            Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
             Close();
         }
     }

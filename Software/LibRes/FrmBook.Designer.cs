@@ -48,12 +48,12 @@
             this.lblISBN = new System.Windows.Forms.Label();
             this.txtISBN = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dgvAuthors = new System.Windows.Forms.DataGridView();
             this.dgvGenres = new System.Windows.Forms.DataGridView();
+            this.dgvAuthors = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookCopies)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAuthors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGenres)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAuthors)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -110,7 +110,7 @@
             // 
             // btnReserve
             // 
-            this.btnReserve.Location = new System.Drawing.Point(530, 527);
+            this.btnReserve.Location = new System.Drawing.Point(542, 527);
             this.btnReserve.Name = "btnReserve";
             this.btnReserve.Size = new System.Drawing.Size(104, 43);
             this.btnReserve.TabIndex = 21;
@@ -120,7 +120,7 @@
             // 
             // btnBorrow
             // 
-            this.btnBorrow.Location = new System.Drawing.Point(420, 527);
+            this.btnBorrow.Location = new System.Drawing.Point(432, 527);
             this.btnBorrow.Name = "btnBorrow";
             this.btnBorrow.Size = new System.Drawing.Size(104, 43);
             this.btnBorrow.TabIndex = 22;
@@ -189,13 +189,12 @@
             // 
             // btnUpdateCopy
             // 
-            this.btnUpdateCopy.Location = new System.Drawing.Point(755, 527);
+            this.btnUpdateCopy.Location = new System.Drawing.Point(762, 527);
             this.btnUpdateCopy.Name = "btnUpdateCopy";
             this.btnUpdateCopy.Size = new System.Drawing.Size(104, 43);
             this.btnUpdateCopy.TabIndex = 30;
             this.btnUpdateCopy.Text = "Update Copy";
             this.btnUpdateCopy.UseVisualStyleBackColor = true;
-            this.btnUpdateCopy.Visible = false;
             this.btnUpdateCopy.Click += new System.EventHandler(this.btnUpdateCopy_Click);
             // 
             // btnDelete
@@ -206,12 +205,11 @@
             this.btnDelete.TabIndex = 31;
             this.btnDelete.Text = "Delete Copy";
             this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Visible = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnAddCopy
             // 
-            this.btnAddCopy.Location = new System.Drawing.Point(638, 527);
+            this.btnAddCopy.Location = new System.Drawing.Point(652, 527);
             this.btnAddCopy.Name = "btnAddCopy";
             this.btnAddCopy.Size = new System.Drawing.Size(104, 43);
             this.btnAddCopy.TabIndex = 32;
@@ -256,20 +254,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selected book data";
             // 
-            // dgvAuthors
-            // 
-            this.dgvAuthors.AllowUserToAddRows = false;
-            this.dgvAuthors.AllowUserToDeleteRows = false;
-            this.dgvAuthors.AllowUserToResizeColumns = false;
-            this.dgvAuthors.AllowUserToResizeRows = false;
-            this.dgvAuthors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAuthors.Location = new System.Drawing.Point(6, 104);
-            this.dgvAuthors.Name = "dgvAuthors";
-            this.dgvAuthors.RowHeadersWidth = 51;
-            this.dgvAuthors.RowTemplate.Height = 24;
-            this.dgvAuthors.Size = new System.Drawing.Size(204, 43);
-            this.dgvAuthors.TabIndex = 37;
-            // 
             // dgvGenres
             // 
             this.dgvGenres.AllowUserToAddRows = false;
@@ -283,6 +267,20 @@
             this.dgvGenres.RowTemplate.Height = 24;
             this.dgvGenres.Size = new System.Drawing.Size(204, 92);
             this.dgvGenres.TabIndex = 38;
+            // 
+            // dgvAuthors
+            // 
+            this.dgvAuthors.AllowUserToAddRows = false;
+            this.dgvAuthors.AllowUserToDeleteRows = false;
+            this.dgvAuthors.AllowUserToResizeColumns = false;
+            this.dgvAuthors.AllowUserToResizeRows = false;
+            this.dgvAuthors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAuthors.Location = new System.Drawing.Point(6, 104);
+            this.dgvAuthors.Name = "dgvAuthors";
+            this.dgvAuthors.RowHeadersWidth = 51;
+            this.dgvAuthors.RowTemplate.Height = 24;
+            this.dgvAuthors.Size = new System.Drawing.Size(204, 43);
+            this.dgvAuthors.TabIndex = 37;
             // 
             // FrmBook
             // 
@@ -307,8 +305,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookCopies)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAuthors)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGenres)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAuthors)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

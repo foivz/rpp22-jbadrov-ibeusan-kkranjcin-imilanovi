@@ -26,11 +26,10 @@ namespace LibRes
 
             dgvBooks.Columns[2].HeaderText = "Number of pages";
             dgvBooks.Columns[5].HeaderText = "Borrowable";
-            dgvBooks.Columns[6].HeaderText = "Author(s)";
-            dgvBooks.Columns[7].HeaderText = "Genre(s)";
-
             dgvBooks.Columns[0].Visible = false;
             dgvBooks.Columns[3].Visible = false;
+            dgvBooks.Columns[6].Visible = false;
+            dgvBooks.Columns[7].Visible = false;
             dgvBooks.Columns[8].Visible = false;
         }
 
@@ -98,15 +97,13 @@ namespace LibRes
             {
                 var selectedBook = dgvBooks.CurrentRow.DataBoundItem as Book;
                 FrmBook frmBook = new FrmBook(selectedBook);
-                Hide();
+                frmBook.FormClosed += (s, args) => ShowAllBooks();
                 frmBook.ShowDialog();
             }
             else
             {
                 MessageBox.Show("Select a book from the list for which you want to see the details.");
             }
-            Show();
-            ShowAllBooks();
         }
 
         private void btnAddLibrarian_Click(object sender, EventArgs e)
