@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QRCode;
 
 namespace LibRes
 {
@@ -51,13 +52,17 @@ namespace LibRes
             {
                 MessageBox.Show("Successfully added a new book copy!");
 
+                var bookCopies = bookCopyService.GetBookCopies();
+                var book = bookCopies.Last();
+                FrmQRCode frmQRCode = new FrmQRCode(book.Id.ToString());
+                frmQRCode.ShowDialog();
+                Close();
             }
             else
             {
                 MessageBox.Show("Problem occurred while adding a new book copy!");
+                Close();
             }
-
-            Close();
         }
 
         private void btnAddPublisher_Click(object sender, EventArgs e)
