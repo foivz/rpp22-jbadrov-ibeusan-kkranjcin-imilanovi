@@ -38,6 +38,7 @@
             this.btnAddCopy = new System.Windows.Forms.Button();
             this.btnViewLibrarians = new System.Windows.Forms.Button();
             this.btnBorrowBook = new System.Windows.Forms.Button();
+            this.hpBookSearch = new System.Windows.Forms.HelpProvider();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).BeginInit();
             this.SuspendLayout();
             // 
@@ -142,6 +143,10 @@
             this.btnBorrowBook.Text = "Borrow Book";
             this.btnBorrowBook.UseVisualStyleBackColor = true;
             // 
+            // hpBookSearch
+            // 
+            this.hpBookSearch.HelpNamespace = "S:\\FOI - 5.sem\\RPP\\HelpFiles\\FrmBookSearchHelp.html";
+            // 
             // FrmBookSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -159,7 +164,9 @@
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.dgvBooks);
+            this.hpBookSearch.SetHelpKeyword(this, "F1");
             this.Name = "FrmBookSearch";
+            this.hpBookSearch.SetShowHelp(this, true);
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "FrmMain";
             this.Load += new System.EventHandler(this.FrmBookSearch_Load);
@@ -181,5 +188,6 @@
         private System.Windows.Forms.Button btnAddCopy;
         private System.Windows.Forms.Button btnViewLibrarians;
         private System.Windows.Forms.Button btnBorrowBook;
+        private System.Windows.Forms.HelpProvider hpBookSearch;
     }
 }
