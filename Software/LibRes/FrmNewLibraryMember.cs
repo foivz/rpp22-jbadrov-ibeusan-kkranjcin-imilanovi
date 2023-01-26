@@ -51,6 +51,8 @@ namespace LibRes
                     var dr = MessageBox.Show("Successfully added a new library member!");
                     if(dr == DialogResult.OK)
                     {
+                        var memberForQr = service.GetLibraryMembers().Last();
+                        FrmQRCode frmQRCode = new FrmQRCode(memberForQr.Id.ToString());
                         Close();
                     }
                 }
