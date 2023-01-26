@@ -23,40 +23,46 @@ namespace LibRes
 
         private void btnAddMember_Click(object sender, EventArgs e)
         {
-            var email = txtMemberEmail.Text;
-            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            Match match = regex.Match(email);
-            LibraryMember member = null;
-            if (match.Success)
-            { 
-                member = new LibraryMember
+            if(txtFirstName.Text == "" || txtLastName.Text == "" || txtMemberEmail.Text == "")
+            {
+                MessageBox.Show("All member data is required!");
+            }
+            else
+            {
+
+                var member = new LibraryMember
                 {
                     FirstName = txtFirstName.Text,
                     LastName = txtLastName.Text,
                     Email = txtMemberEmail.Text,
 
                 };
-            } 
-            else
-            {
-                MessageBox.Show("Member email is invalid");
-                return;
-            }
-            var add = service.AddLibraryMember(member);
-            if (add)
-            {
-                var dr = MessageBox.Show("Successfully added a new library member!");
-                if(dr == DialogResult.OK)
+                var add = false;
+                try
                 {
-                    Close();
+                    add = service.AddLibraryMember(member);
                 }
-            }
-            else
-            {
-                var dr = MessageBox.Show("I couldn't add a new library member!");
-                if (dr == DialogResult.OK)
+                catch (Exception ex)
                 {
-                    Close();
+                    MessageBox.Show(ex.Message);
+                }
+                if (add)
+                {
+                    var dr = MessageBox.Show("Successfully added a new library member!");
+                    if(dr == DialogResult.OK)
+                    {
+                        var memberForQr = service.GetLibraryMembers().Last();
+                        FrmQRCode frmQRCode = new FrmQRCode(memberForQr.Id.ToString());
+                        Close();
+                    }
+                }
+                else
+                {
+                    var dr = MessageBox.Show("I couldn't add a new library member!", "Invalid member data", MessageBoxButtons.RetryCancel);
+                    if (dr == DialogResult.Cancel)
+                    {
+                        Close();
+                    }
                 }
             }
         }

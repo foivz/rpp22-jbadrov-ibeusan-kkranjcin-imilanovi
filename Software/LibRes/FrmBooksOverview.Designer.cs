@@ -108,7 +108,7 @@
             this.Controls.Add(this.dgvReservedBooks);
             this.Controls.Add(this.lblReservedBooks);
             this.Name = "FrmBooksOverview";
-            this.Text = "FrmBooksOverview";
+            this.Text = "v";
             this.Load += new System.EventHandler(this.FrmBooksOverview_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservedBooks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBorrowedBooks)).EndInit();

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace DataAccessLayer.Repositories
 {
@@ -14,7 +10,12 @@ namespace DataAccessLayer.Repositories
 
         public override IQueryable<Book> GetAll()
         {
-            var query = from b in Entities
+            var query = from b in Entities.Include("BorrowableBookState")
+                                          .Include("BookAuthors")
+                                          .Include("BookAuthors.Author")
+                                          .Include("BookCopies")
+                                          .Include("BookGenres")
+                                          .Include("BookGenres.Genre")
                         select b;
             return query;
         }
@@ -25,9 +26,8 @@ namespace DataAccessLayer.Repositories
             {
                 Title = entity.Title,
                 NumberOfPages = entity.NumberOfPages,
-                BookAuthors = entity.BookAuthors,
-                BookGenres = entity.BookGenres,
-                BorrowableBookState = entity.BorrowableBookState
+                IdBorrowableState = entity.IdBorrowableState,
+                ISBN = entity.ISBN
             };
 
             Entities.Add(book);
@@ -39,16 +39,20 @@ namespace DataAccessLayer.Repositories
             var book = Entities.SingleOrDefault(b => b.Id == entity.Id);
             book.Title = entity.Title;
             book.NumberOfPages = entity.NumberOfPages;
-            book.BookAuthors = entity.BookAuthors;
-            book.BookGenres = entity.BookGenres;
-            book.BorrowableBookState = entity.BorrowableBookState;
+            book.IdBorrowableState = entity.IdBorrowableState;
+            book.ISBN = entity.ISBN;
 
             return SaveChanges();
         }
 
         public IQueryable<Book> GetBookById(int id)
         {
-            var query = from b in Entities
+            var query = from b in Entities.Include("BorrowableBookState")
+                                          .Include("BookAuthors")
+                                          .Include("BookAuthors.Author")
+                                          .Include("BookCopies")
+                                          .Include("BookGenres")
+                                          .Include("BookGenres.Genre")
                         where b.Id == id
                         select b;
             return query;

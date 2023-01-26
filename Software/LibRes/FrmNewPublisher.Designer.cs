@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.lblName = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.txtYearOfEst = new System.Windows.Forms.TextBox();
             this.lblYearOfEst = new System.Windows.Forms.Label();
             this.btnAddPublisher = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblName
@@ -44,18 +45,18 @@
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Name";
             // 
-            // textBox1
+            // txtName
             // 
-            this.textBox1.Location = new System.Drawing.Point(56, 57);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(159, 22);
-            this.textBox1.TabIndex = 1;
+            this.txtName.Location = new System.Drawing.Point(56, 57);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(286, 22);
+            this.txtName.TabIndex = 1;
             // 
             // txtYearOfEst
             // 
             this.txtYearOfEst.Location = new System.Drawing.Point(56, 112);
             this.txtYearOfEst.Name = "txtYearOfEst";
-            this.txtYearOfEst.Size = new System.Drawing.Size(159, 22);
+            this.txtYearOfEst.Size = new System.Drawing.Size(286, 22);
             this.txtYearOfEst.TabIndex = 3;
             // 
             // lblYearOfEst
@@ -69,7 +70,7 @@
             // 
             // btnAddPublisher
             // 
-            this.btnAddPublisher.Location = new System.Drawing.Point(79, 146);
+            this.btnAddPublisher.Location = new System.Drawing.Point(114, 166);
             this.btnAddPublisher.Name = "btnAddPublisher";
             this.btnAddPublisher.Size = new System.Drawing.Size(111, 35);
             this.btnAddPublisher.TabIndex = 7;
@@ -77,18 +78,30 @@
             this.btnAddPublisher.UseVisualStyleBackColor = true;
             this.btnAddPublisher.Click += new System.EventHandler(this.btnAddPublisher_Click);
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(231, 166);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(111, 35);
+            this.btnCancel.TabIndex = 8;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // FrmNewPublisher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(268, 241);
+            this.ClientSize = new System.Drawing.Size(397, 222);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAddPublisher);
             this.Controls.Add(this.txtYearOfEst);
             this.Controls.Add(this.lblYearOfEst);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblName);
             this.Name = "FrmNewPublisher";
-            this.Text = "FrmNewPublisher";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "New publisher";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -97,9 +110,10 @@
         #endregion
 
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtYearOfEst;
         private System.Windows.Forms.Label lblYearOfEst;
         private System.Windows.Forms.Button btnAddPublisher;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

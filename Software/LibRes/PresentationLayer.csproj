@@ -187,6 +187,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FrmQRCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmQRCode.Designer.cs">
+      <DependentUpon>FrmQRCode.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FrmBook.resx">
       <DependentUpon>FrmBook.cs</DependentUpon>
     </EmbeddedResource>
@@ -253,6 +259,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FrmQRCode.resx">
+      <DependentUpon>FrmQRCode.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -269,12 +278,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj">
-      <Project>{e0ad3172-414d-407e-98eb-ed90c82ded23}</Project>
+      <Project>{E0AD3172-414D-407E-98EB-ED90C82DED23}</Project>
       <Name>BusinessLogicLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
-      <Project>{7377fd3c-919f-4c2d-a201-a04b2aa08563}</Project>
+      <Project>{7377FD3C-919F-4C2D-A201-A04B2AA08563}</Project>
       <Name>DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QRCode\QRCode.csproj">
+      <Project>{949090e9-85a5-433f-9c74-546b0d24e5bc}</Project>
+      <Name>QRCode</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

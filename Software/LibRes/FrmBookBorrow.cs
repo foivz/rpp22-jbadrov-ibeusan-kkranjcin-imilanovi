@@ -25,7 +25,7 @@ namespace LibRes
         private void FrmBookBorrow_Load(object sender, EventArgs e)
         {
             filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-            foreach(FilterInfo filterInfo in filterInfoCollection)
+            foreach (FilterInfo filterInfo in filterInfoCollection)
             {
                 cmbDevices.Items.Add(filterInfo.Name);
             }
@@ -42,7 +42,7 @@ namespace LibRes
 
         private void ShowAllBooks()
         {
-            throw new NotImplementedException();
+            
         }
 
         private void btnScanMember_Click(object sender, EventArgs e)
@@ -95,11 +95,11 @@ namespace LibRes
 
         private void timmerForScaning_Tick(object sender, EventArgs e)
         {
-            if(pictureBox1.Image != null)
+            if (pictureBox1.Image != null)
             {
                 BarcodeReader barcodeReader = new BarcodeReader();
                 Result result = barcodeReader.Decode((Bitmap)pictureBox1.Image);
-                if(result != null)
+                if (result != null)
                 {
                     comboBox1.Text = result.ToString();
                     timmerForScaning.Stop();

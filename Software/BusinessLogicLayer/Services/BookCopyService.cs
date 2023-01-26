@@ -10,6 +10,7 @@ namespace BusinessLogicLayer.Services
 {
     public class BookCopyService
     {
+        
 
         public bool AddBookCopy(BookCopy bookCopy)
         {
@@ -72,14 +73,16 @@ namespace BusinessLogicLayer.Services
 
         }
 
-        public BookCopy GetBookById(int id)
+        public BookCopy GetBookCopyById(int id)
         {
             using (var repo = new BookCopyRepository())
             {
-                var bookCopy = repo.GetBookById(id);
+                var bookCopy = repo.GetBookCopyById(id);
                 return bookCopy as BookCopy;
             }
 
         }
+
+
     }
 }

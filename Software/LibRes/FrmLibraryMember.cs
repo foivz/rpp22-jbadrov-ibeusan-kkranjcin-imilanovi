@@ -1,4 +1,4 @@
-﻿using BusinessLogicLayer.Services_1;
+﻿using BusinessLogicLayer.Services;
 using DataAccessLayer;
 using System;
 using System.Collections.Generic;
@@ -51,6 +51,11 @@ namespace LibRes
         private void FrmUpdateMember_FormClosed(object sender, FormClosedEventArgs e)
         {
             ShowMemberData();
+        }
+
+        private void dgvMembersBooks_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

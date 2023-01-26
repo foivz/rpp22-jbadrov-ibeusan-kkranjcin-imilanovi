@@ -7,7 +7,7 @@ using System.Timers;
 using DataAccessLayer;
 using DataAccessLayer.Repositories;
 
-namespace BusinessLogicLayer.Services_1
+namespace BusinessLogicLayer.Services
 {
     public class BorrowedBookOverviewService
     {
@@ -91,6 +91,14 @@ namespace BusinessLogicLayer.Services_1
             {
                 var borrowedBookOverviews = repo.GetAll();
                 return borrowedBookOverviews.ToList();
+            }
+        }
+
+        public bool IsReserved(int id)
+        {
+            using(var repo = new BorrowedBookOverviewRepository())
+            {
+                return repo.IsReserved(id);
             }
         }
     }
