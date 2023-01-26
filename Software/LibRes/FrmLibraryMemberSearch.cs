@@ -25,19 +25,9 @@ namespace LibRes
             ShowAllMembers();
         }
 
-        private void ShowAllMembers()
-        {
-            var allMembers = service.GetLibraryMembers();
-            dgvMembers.DataSource = allMembers;
-            dgvMembers.Columns[4].Visible = false;
-        }
-
         private void btnSearchMembers_Click(object sender, EventArgs e)
         {
-            var members = from m in service.GetLibraryMembers()
-                          where m.ToString().Contains(txtSearchMember.Text)
-                          select m;
-            dgvMembers.DataSource = members.ToList();
+            SearchMembers();
         }
 
         private void btnAddMember_Click(object sender, EventArgs e)
@@ -69,6 +59,70 @@ namespace LibRes
         private void FrmLibraryMember_FormClosed(object sender, EventArgs e)
         {
             ShowAllMembers();
+        }
+
+        private void txtSearchMember_TextChanged(object sender, EventArgs e)
+        {
+            SearchMembers();
+        }
+
+        private void ShowAllMembers()
+        {
+            var allMembers = service.GetLibraryMembers();
+            dgvMembers.DataSource = allMembers;
+            dgvMembers.Columns[4].Visible = false;
+        }
+
+        private void SearchMembers()
+        {
+            var members = from m in service.GetLibraryMembers()
+                          where m.ToString().ToLower().Contains(txtSearchMember.Text.ToLower())
+                          select m;
+            dgvMembers.DataSource = members.ToList();
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            if (pnFilter.Visible)
+            {
+                pnFilter.Visible = false;
+            }
+            else
+            {
+                pnFilter.Visible = true;
+            }
+        }
+
+        private void btnFirstNameAsc_Click(object sender, EventArgs e)
+        {
+            var members = from m in service.GetLibraryMembers()
+                          orderby m.FirstName ascending
+                          select m;
+            dgvMembers.DataSource = members.ToList();
+        }
+
+        private void btnFirstNameDesc_Click(object sender, EventArgs e)
+        {
+            var members = from m in service.GetLibraryMembers()
+                          orderby m.FirstName descending
+                          select m;
+            dgvMembers.DataSource = members.ToList();
+        }
+
+        private void btnLastNameAsc_Click(object sender, EventArgs e)
+        {
+            var members = from m in service.GetLibraryMembers()
+                          orderby m.LastName ascending
+                          select m;
+            dgvMembers.DataSource = members.ToList();
+        }
+
+        private void btnLastNameDesc_Click(object sender, EventArgs e)
+        {
+            var members = from m in service.GetLibraryMembers()
+                          orderby m.LastName descending
+                          select m;
+            dgvMembers.DataSource = members.ToList();
         }
     }
 }

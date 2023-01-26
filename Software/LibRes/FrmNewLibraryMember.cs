@@ -53,6 +53,7 @@ namespace LibRes
                     {
                         var memberForQr = service.GetLibraryMembers().Last();
                         FrmQRCode frmQRCode = new FrmQRCode(memberForQr.Id.ToString());
+                        frmQRCode.ShowDialog();
                         Close();
                     }
                 }
