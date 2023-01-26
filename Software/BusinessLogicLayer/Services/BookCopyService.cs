@@ -10,6 +10,7 @@ namespace BusinessLogicLayer.Services
 {
     public class BookCopyService
     {
+        
 
         public bool AddBookCopy(BookCopy bookCopy)
         {
@@ -81,5 +82,7 @@ namespace BusinessLogicLayer.Services
             }
 
         }
+
+
     }
 }

@@ -25,9 +25,12 @@ namespace DataAccessLayer.Repositories
         {
             var borrowedBookOverview = new BorrowedBookOverview
             { 
-                BookCopy = entity.BookCopy,
-                BorrowedBookState = entity.BorrowedBookState,
-                LibraryMember = entity.LibraryMember,
+                IdBookCopy = entity.IdBookCopy,
+                IdLibraryMember = entity.IdLibraryMember,
+                IdState = entity.IdState,
+                //BookCopy = entity.BookCopy,
+                //BorrowedBookState = entity.BorrowedBookState,
+               //LibraryMember = entity.LibraryMember,
                 BorrowDate = entity.BorrowDate,
                 ReturnDate = entity.ReturnDate
             };
@@ -35,5 +38,36 @@ namespace DataAccessLayer.Repositories
             Entities.Add(borrowedBookOverview);
             return SaveChanges();
         }
+
+        public bool IsReserved(int id)
+        {
+            using (var repo = new BookCopyRepository())
+            {
+                var bookCopy = repo.GetBookById(id).ToList();
+                foreach (var book in bookCopy)
+                {
+                    if (book != null)
+                    {
+                        if (book.BorrowedBookOverviews != null)
+                        {
+                            foreach (var overview in book.BorrowedBookOverviews)
+                            {
+                                if (overview.IdState == 3)
+                                {
+                                    return true;
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+                
+                
+            }
+            return false;
+        }
     }
+
+   
 }

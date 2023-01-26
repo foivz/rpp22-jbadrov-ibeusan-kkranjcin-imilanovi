@@ -27,6 +27,8 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
+
+
         public override int Add(BookCopy entity)
         {
             var bookCopy = new BookCopy
@@ -35,6 +37,7 @@ namespace DataAccessLayer.Repositories
                 IdPublisher = entity.IdPublisher,
                 IdBook = entity.IdBook,
                 YearOfPublication = entity.YearOfPublication,
+                //ISBN = entity.ISBN,
                 Language = entity.Language
             };
 
@@ -49,6 +52,7 @@ namespace DataAccessLayer.Repositories
             bookCopy.IdPublisher = entity.IdPublisher;
             bookCopy.IdBook = entity.IdBook;
             bookCopy.YearOfPublication = entity.YearOfPublication;
+            //bookCopy.ISBN = entity.ISBN;
             bookCopy.Language = entity.Language;
 
             return SaveChanges();
