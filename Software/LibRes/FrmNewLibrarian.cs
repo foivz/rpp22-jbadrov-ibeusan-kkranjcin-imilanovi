@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessLogicLayer.Services;
+using DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,19 +14,55 @@ namespace LibRes
 {
     public partial class FrmNewLibrarian : Form
     {
+        UserService userService = new UserService();
         public FrmNewLibrarian()
         {
             InitializeComponent();
         }
 
-        private void btnAddLibrarian_Click(object sender, EventArgs e)
+        private void FrmNewLibrarian_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Successfully added a new librarian");
+            txtPassword.UseSystemPasswordChar = true;
         }
 
-        private void btnFaceRecognition_Click(object sender, EventArgs e)
+        private void btnAddLibrarian_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Successfully added a new face for recognition");
+            var user = new User
+            {
+                FirstName = txtFirstName.Text,
+                LastName = txtLastName.Text,
+                Username = txtUsername.Text,
+                Password = txtPassword.Text,
+                IdRole = 2
+            };
+
+            if (userService.AddUser(user))
+            {
+                MessageBox.Show("Successfully added new user!");
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Problem occurred while adding new user!");
+                Close();
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void cbPasswordVisible_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (cbPasswordVisible.Checked)
+            {
+                txtPassword.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                txtPassword.UseSystemPasswordChar = true;
+            }
         }
     }
 }

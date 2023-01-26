@@ -170,6 +170,7 @@
     <Compile Include="FrmUpdateMember.Designer.cs">
       <DependentUpon>FrmUpdateMember.cs</DependentUpon>
     </Compile>
+    <Compile Include="LibResUser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FrmQRCode.cs">

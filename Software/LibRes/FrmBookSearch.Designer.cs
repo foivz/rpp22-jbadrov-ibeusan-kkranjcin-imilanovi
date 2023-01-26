@@ -119,8 +119,7 @@
             this.btnViewLibrarians.TabIndex = 8;
             this.btnViewLibrarians.Text = "View Librarians";
             this.btnViewLibrarians.UseVisualStyleBackColor = true;
-            this.btnViewLibrarians.Visible = false;
-            this.btnViewLibrarians.Click += new System.EventHandler(this.btnAddLibrarian_Click);
+            this.btnViewLibrarians.Click += new System.EventHandler(this.btnViewLibrarians_Click);
             // 
             // btnBorrowBook
             // 

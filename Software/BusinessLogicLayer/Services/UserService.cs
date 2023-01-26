@@ -8,7 +8,7 @@ using DataAccessLayer.Repositories;
 
 namespace BusinessLogicLayer.Services
 {
-    internal class UserService
+    public class UserService
     {
         public bool AddUser(User user)
         {
@@ -67,12 +67,12 @@ namespace BusinessLogicLayer.Services
             }
         }
 
-        public User GetUserByUsername(string username)
+        public List<User> GetUserByUsername(string username)
         {
             using (var repo = new UserRepository())
             {
                 var user = repo.GetByUsername(username);
-                return user as User;
+                return user.ToList();
             }
         }
     }
