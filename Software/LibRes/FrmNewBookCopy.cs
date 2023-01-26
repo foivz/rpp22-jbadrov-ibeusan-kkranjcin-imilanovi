@@ -1,15 +1,8 @@
 ﻿using BusinessLogicLayer.Services;
 using DataAccessLayer;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using QRCode;
 
 namespace LibRes
 {
@@ -53,8 +46,8 @@ namespace LibRes
                 MessageBox.Show("Successfully added a new book copy!");
 
                 var bookCopies = bookCopyService.GetBookCopies();
-                var book = bookCopies.Last();
-                FrmQRCode frmQRCode = new FrmQRCode(book.Id.ToString());
+                var addedBookCopy = bookCopies.Last();
+                FrmQRCode frmQRCode = new FrmQRCode(addedBookCopy.Id.ToString());
                 frmQRCode.ShowDialog();
                 Close();
             }

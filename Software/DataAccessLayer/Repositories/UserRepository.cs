@@ -34,7 +34,8 @@ namespace DataAccessLayer.Repositories
                 FirstName= entity.FirstName,
                 LastName= entity.LastName,
                 Username = entity.Username,
-                Password= entity.Password
+                Password= entity.Password,
+                IdRole = entity.IdRole
             };
 
             Entities.Add(user);
