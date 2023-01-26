@@ -13,6 +13,9 @@ namespace LibRes
         BookService bookService = new BookService();
         AuthorService authorService = new AuthorService();
         GenreService genreService = new GenreService();
+        BookAuthorService bookAuthorService = new BookAuthorService();
+        BookGenreService bookGenreService = new BookGenreService();
+
         public FrmUpdateBook(Book book)
         {
             InitializeComponent();
@@ -115,8 +118,6 @@ namespace LibRes
 
         private void btnUpdateBook_Click(object sender, EventArgs e)
         {
-            BookAuthorService bookAuthorService = new BookAuthorService();
-            BookGenreService bookGenreService = new BookGenreService();
             var updatedBook = GetUpdatedBook();
             var hasChanged = false;
 
