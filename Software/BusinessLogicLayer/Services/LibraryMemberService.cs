@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DataAccessLayer;
 using DataAccessLayer.Repositories;
@@ -12,17 +13,27 @@ namespace BusinessLogicLayer.Services
     {
         public bool AddLibraryMember(LibraryMember libraryMember)
         {
-            using (var repo = new LibraryMemberRepository())
+            var email = libraryMember.Email;
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(email);
+            if (match.Success)
             {
-                var num = repo.Add(libraryMember);
-                if (num > 0)
+                using (var repo = new LibraryMemberRepository())
                 {
-                    return true;
+                    var num = repo.Add(libraryMember);
+                    if (num > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-                else
-                {
-                    return false;
-                }
+            }
+            else
+            {
+                throw new Exception("Member e-mail is not a valid e-mail adress");
             }
         }
 
