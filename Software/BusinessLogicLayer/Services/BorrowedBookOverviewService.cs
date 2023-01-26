@@ -7,7 +7,7 @@ using System.Timers;
 using DataAccessLayer;
 using DataAccessLayer.Repositories;
 
-namespace BusinessLogicLayer.Services_1
+namespace BusinessLogicLayer.Services
 {
     public class BorrowedBookOverviewService
     {

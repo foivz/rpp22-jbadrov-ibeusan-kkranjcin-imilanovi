@@ -4,10 +4,6 @@ using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using BusinessLogicLayer.Services;
-using BusinessLogicLayer.Services_1;
-using DataAccessLayer;
-using DataAccessLayer.Repositories;
 
 namespace LibRes
 {
@@ -17,10 +13,9 @@ namespace LibRes
         BookService bookService = new BookService();
         BookCopyService bookCopyService = new BookCopyService();
 
-        public FrmBook(Book book)
         BorrowedBookOverviewService service = new BorrowedBookOverviewService();
 
-        public FrmBook()
+        public FrmBook(Book book)
         {
             InitializeComponent();
             _book = book;
@@ -28,6 +23,7 @@ namespace LibRes
         
         private void FrmBook_Load(object sender, EventArgs e)
         {
+            ShowAllLibraryMembers();
             ShowBook();
         }
 
@@ -39,20 +35,7 @@ namespace LibRes
             
         }
 
-        private void ShowAllBooks()
-        {
-            var service = new BookCopyService();
-            dgvBookCopies.DataSource = service.GetBookCopies();
-            dgvBookCopies.Columns["Publisher"].Visible = false;
-            dgvBookCopies.Columns["Book"].Visible = false;
-            dgvBookCopies.Columns["BorrowedBookOverviews"].Visible = false;
-            
-            
-            
-           dgvBookCopies.CellFormatting += dgvBookCopies_CellFormatting;
-            
-            
-        }
+        
 
         private void ShowBook()
         {
@@ -90,6 +73,8 @@ namespace LibRes
             dgvBookCopies.Columns[6].Visible = false;
             dgvBookCopies.Columns[7].Visible = false;
             dgvBookCopies.Columns[8].Visible = false;
+
+            dgvBookCopies.CellFormatting += dgvBookCopies_CellFormatting;
         }
 
         private Book GetUpdatedBook()
@@ -193,6 +178,14 @@ namespace LibRes
             
         }
 
+        private void btnAddCopy_Click(object sender, EventArgs e)
+        {
+            var updatedBook = GetUpdatedBook();
+            FrmNewBookCopy frmNewBookCopy = new FrmNewBookCopy(updatedBook);
+            frmNewBookCopy.FormClosed += (s, args) => ShowBook();
+            frmNewBookCopy.ShowDialog();
+        }
+
         private void btnUpdateCopy_Click(object sender, EventArgs e)
         {
             if(dgvBookCopies.SelectedRows.Count == 1)
@@ -233,30 +226,15 @@ namespace LibRes
             }
         }
 
-        }
-
-        private void dgvBookCopies_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        private void btnAddCopy_Click(object sender, EventArgs e)
-        {
-            var updatedBook = GetUpdatedBook();
-            FrmNewBookCopy frmNewBookCopy = new FrmNewBookCopy(updatedBook);
-            frmNewBookCopy.FormClosed += (s, args) => ShowBook();
-            frmNewBookCopy.ShowDialog();
-        }
-
         private void dgvBookCopies_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            
-            var row = dgvBookCopies.Rows[e.RowIndex];
-            
-            var bookCopy = (BookCopy)row.DataBoundItem;
 
-            //var service = new BorrowedBookOverviewService();
+            var row = dgvBookCopies.Rows[e.RowIndex];
+
+            var bookCopy = (BookCopy)row.DataBoundItem;
             if (service.IsReserved(bookCopy.Id))
             {
-                
+
                 row.DefaultCellStyle.BackColor = Color.Red;
             }
         }

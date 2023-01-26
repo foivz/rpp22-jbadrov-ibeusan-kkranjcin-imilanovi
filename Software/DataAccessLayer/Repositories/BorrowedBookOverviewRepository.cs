@@ -43,7 +43,7 @@ namespace DataAccessLayer.Repositories
         {
             using (var repo = new BookCopyRepository())
             {
-                var bookCopy = repo.GetBookById(id).ToList();
+                var bookCopy = repo.GetBookCopyById(id).ToList();
                 foreach (var book in bookCopy)
                 {
                     if (book != null)
