@@ -76,6 +76,7 @@
     <Compile Include="Book.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Book.Ext.cs" />
     <Compile Include="BookAuthor.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>

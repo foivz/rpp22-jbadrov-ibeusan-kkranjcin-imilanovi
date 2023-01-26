@@ -94,12 +94,38 @@ namespace BusinessLogicLayer.Services
             }
         }
 
+        public List<BorrowedBookOverview> GetBookOverviewByIdBookAndIdLibraryMember(int bookId, int libraryMemberId)
+        {
+            using (var repo = new BorrowedBookOverviewRepository())
+            {
+                var borrowedBookOverviews = repo.GetBookOverviewByBookIDAndLibraryMemberId(bookId, libraryMemberId);
+                return borrowedBookOverviews.ToList();
+            }
+        }
+
         public bool IsReserved(int id)
         {
             using(var repo = new BorrowedBookOverviewRepository())
             {
                 return repo.IsReserved(id);
             }
+        }
+
+        public bool IsBorrowed(int id)
+        {
+            using (var repo = new BorrowedBookOverviewRepository())
+            {
+                return repo.IsBorrowed(id);
+            }
+        }
+
+        public bool IsReservedForLibraryMember(int bookId, int libraryMemberId)
+        {
+            using (var repo = new BorrowedBookOverviewRepository())
+            {
+                return repo.IsReservedForLibraryMember(bookId, libraryMemberId);
+            }
+
         }
     }
 }

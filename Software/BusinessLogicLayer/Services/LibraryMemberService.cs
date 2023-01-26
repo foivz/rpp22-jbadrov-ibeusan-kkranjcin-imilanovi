@@ -78,12 +78,12 @@ namespace BusinessLogicLayer.Services
             }
         }
 
-        public LibraryMember GetLibraryMemberById(int id)
+        public List<LibraryMember> GetLibraryMemberById(int id)
         {
             using (var repo = new LibraryMemberRepository())
             {
                 var libraryMembers = repo.GetById(id);
-                return libraryMembers as LibraryMember;
+                return libraryMembers.ToList();
             }
         }
     }

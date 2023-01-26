@@ -27,6 +27,8 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
+       
+
 
 
         public override int Add(BookCopy entity)
@@ -57,5 +59,13 @@ namespace DataAccessLayer.Repositories
 
             return SaveChanges();
         }
+
+        public IQueryable<BookCopy> GetBookCopiesByBookId(int id)
+        {
+            var query = from bc in Entities
+                        where bc.IdBook == id
+                        select bc;
+            return query;
+        } 
     }
 }

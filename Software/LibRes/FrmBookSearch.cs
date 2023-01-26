@@ -111,5 +111,11 @@ namespace LibRes
             FrmNewLibrarian frmNewLibrarian = new FrmNewLibrarian();
             frmNewLibrarian.ShowDialog();
         }
+
+        private void btnBorrowBook_Click(object sender, EventArgs e)
+        {
+            FrmBookBorrow frmBookBorrow = new FrmBookBorrow();
+            frmBookBorrow.ShowDialog();
+        }
     }
 }

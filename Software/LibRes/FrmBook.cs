@@ -93,6 +93,10 @@ namespace LibRes
             {
                 MessageBox.Show("Book is already reserved");
             }
+            else if(service.IsBorrowed(bookCopy.Id))
+            {
+                MessageBox.Show("Book is already borrowed");
+            }
             else if (dgvBookCopies.SelectedRows.Count > 1)
             {
                 MessageBox.Show("Select one book");
@@ -132,6 +136,10 @@ namespace LibRes
             if (service.IsReserved(bookCopy.Id))
             {
                 MessageBox.Show("Book is already reserved");
+            }
+            else if (service.IsBorrowed(bookCopy.Id))
+            {
+                MessageBox.Show("Book is already borrowed");
             }
 
             else if (dgvBookCopies.SelectedRows.Count == 1)
@@ -236,8 +244,13 @@ namespace LibRes
             if (service.IsReserved(bookCopy.Id))
             {
 
-                row.DefaultCellStyle.BackColor = Color.Red;
+                row.DefaultCellStyle.BackColor = Color.Orange;
             }
+            else if (service.IsBorrowed(bookCopy.Id))
+            {
+                row.DefaultCellStyle.BackColor= Color.Red;
+            }
+            
         }
     }
 }
