@@ -52,5 +52,10 @@ namespace LibRes
         {
             ShowMemberData();
         }
+
+        private void dgvMembersBooks_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

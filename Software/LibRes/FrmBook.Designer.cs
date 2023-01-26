@@ -177,6 +177,7 @@
             this.dgvBookCopies.RowTemplate.Height = 24;
             this.dgvBookCopies.Size = new System.Drawing.Size(682, 447);
             this.dgvBookCopies.TabIndex = 28;
+            this.dgvBookCopies.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBookCopies_CellContentClick);
             // 
             // lblBookCopies
             // 
