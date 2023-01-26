@@ -23,7 +23,8 @@ namespace DataAccessLayer.Repositories
         {
             var publisher = new Publisher
             {
-                Name = entity.Name
+                Name = entity.Name,
+                Founded = entity.Founded
             };
 
             Entities.Add(publisher);

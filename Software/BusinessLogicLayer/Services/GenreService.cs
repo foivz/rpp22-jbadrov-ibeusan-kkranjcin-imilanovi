@@ -8,7 +8,7 @@ using DataAccessLayer.Repositories;
 
 namespace BusinessLogicLayer.Services
 {
-    internal class GenreService
+    public class GenreService
     {
         public List<Genre> GetGenres()
         {

@@ -35,7 +35,6 @@
             this.btnViewBook = new System.Windows.Forms.Button();
             this.btnAddBook = new System.Windows.Forms.Button();
             this.btnMembers = new System.Windows.Forms.Button();
-            this.btnAddCopy = new System.Windows.Forms.Button();
             this.btnViewLibrarians = new System.Windows.Forms.Button();
             this.btnBorrowBook = new System.Windows.Forms.Button();
             this.hpBookSearch = new System.Windows.Forms.HelpProvider();
@@ -49,7 +48,7 @@
             this.dgvBooks.Name = "dgvBooks";
             this.dgvBooks.RowHeadersWidth = 51;
             this.dgvBooks.RowTemplate.Height = 24;
-            this.dgvBooks.Size = new System.Drawing.Size(861, 394);
+            this.dgvBooks.Size = new System.Drawing.Size(867, 394);
             this.dgvBooks.TabIndex = 0;
             // 
             // txtSearch
@@ -63,7 +62,7 @@
             // btnSearch
             // 
             this.btnSearch.BackColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(791, 66);
+            this.btnSearch.Location = new System.Drawing.Point(797, 66);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(83, 28);
             this.btnSearch.TabIndex = 2;
@@ -73,7 +72,7 @@
             // 
             // btnDeleteBook
             // 
-            this.btnDeleteBook.Location = new System.Drawing.Point(751, 500);
+            this.btnDeleteBook.Location = new System.Drawing.Point(757, 500);
             this.btnDeleteBook.Name = "btnDeleteBook";
             this.btnDeleteBook.Size = new System.Drawing.Size(123, 33);
             this.btnDeleteBook.TabIndex = 3;
@@ -83,7 +82,7 @@
             // 
             // btnViewBook
             // 
-            this.btnViewBook.Location = new System.Drawing.Point(644, 500);
+            this.btnViewBook.Location = new System.Drawing.Point(650, 500);
             this.btnViewBook.Name = "btnViewBook";
             this.btnViewBook.Size = new System.Drawing.Size(101, 33);
             this.btnViewBook.TabIndex = 4;
@@ -104,7 +103,7 @@
             // btnMembers
             // 
             this.btnMembers.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnMembers.Location = new System.Drawing.Point(756, 12);
+            this.btnMembers.Location = new System.Drawing.Point(762, 12);
             this.btnMembers.Name = "btnMembers";
             this.btnMembers.Size = new System.Drawing.Size(118, 33);
             this.btnMembers.TabIndex = 6;
@@ -112,27 +111,17 @@
             this.btnMembers.UseVisualStyleBackColor = false;
             this.btnMembers.Click += new System.EventHandler(this.btnMembers_Click);
             // 
-            // btnAddCopy
-            // 
-            this.btnAddCopy.Location = new System.Drawing.Point(520, 500);
-            this.btnAddCopy.Name = "btnAddCopy";
-            this.btnAddCopy.Size = new System.Drawing.Size(118, 33);
-            this.btnAddCopy.TabIndex = 7;
-            this.btnAddCopy.Text = "Add New Copy";
-            this.btnAddCopy.UseVisualStyleBackColor = true;
-            this.btnAddCopy.Click += new System.EventHandler(this.btnAddCopy_Click);
-            // 
             // btnViewLibrarians
             // 
             this.btnViewLibrarians.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnViewLibrarians.Location = new System.Drawing.Point(13, 500);
+            this.btnViewLibrarians.Location = new System.Drawing.Point(19, 500);
             this.btnViewLibrarians.Name = "btnViewLibrarians";
             this.btnViewLibrarians.Size = new System.Drawing.Size(118, 33);
             this.btnViewLibrarians.TabIndex = 8;
             this.btnViewLibrarians.Text = "View Librarians";
             this.btnViewLibrarians.UseVisualStyleBackColor = true;
             this.btnViewLibrarians.Visible = false;
-            this.btnViewLibrarians.Click += new System.EventHandler(this.btnAddLibrerian_Click);
+            this.btnViewLibrarians.Click += new System.EventHandler(this.btnAddLibrarian_Click);
             // 
             // btnBorrowBook
             // 
@@ -153,10 +142,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(886, 545);
+            this.ClientSize = new System.Drawing.Size(892, 545);
             this.Controls.Add(this.btnBorrowBook);
             this.Controls.Add(this.btnViewLibrarians);
-            this.Controls.Add(this.btnAddCopy);
             this.Controls.Add(this.btnMembers);
             this.Controls.Add(this.btnAddBook);
             this.Controls.Add(this.btnViewBook);
@@ -168,7 +156,8 @@
             this.Name = "FrmBookSearch";
             this.hpBookSearch.SetShowHelp(this, true);
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.Text = "FrmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "LibRes";
             this.Load += new System.EventHandler(this.FrmBookSearch_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).EndInit();
             this.ResumeLayout(false);
@@ -185,7 +174,6 @@
         private System.Windows.Forms.Button btnViewBook;
         private System.Windows.Forms.Button btnAddBook;
         private System.Windows.Forms.Button btnMembers;
-        private System.Windows.Forms.Button btnAddCopy;
         private System.Windows.Forms.Button btnViewLibrarians;
         private System.Windows.Forms.Button btnBorrowBook;
         private System.Windows.Forms.HelpProvider hpBookSearch;

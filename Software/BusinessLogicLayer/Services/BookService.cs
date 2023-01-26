@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using DataAccessLayer;
 using DataAccessLayer.Repositories;
 
 namespace BusinessLogicLayer.Services
 {
-    internal class BookService
+    public class BookService
     {
         public bool AddBook(Book book)
         {
@@ -24,7 +25,6 @@ namespace BusinessLogicLayer.Services
                     return false;
                 }
             }
-
         }
 
         public bool UpdateBook(Book book)
@@ -41,7 +41,6 @@ namespace BusinessLogicLayer.Services
                     return false;
                 }
             }
-
         }
 
         public bool DeleteBook(Book book)
@@ -58,7 +57,6 @@ namespace BusinessLogicLayer.Services
                     return false;
                 }
             }
-
         }
 
         public List<Book> GetBooks()
@@ -67,20 +65,16 @@ namespace BusinessLogicLayer.Services
             {
                 var book = repo.GetAll();
                 return book.ToList();
-
             }
-
         }
 
-        public Book GetBookById(int id)
+        public List<Book> GetBookById(int id)
         {
             using (var repo = new BookRepository())
             {
                 var book = repo.GetBookById(id);
-                return book as Book;
-
+                return book.ToList();
             }
-
         }
 
         public List<Book> GetBooksByTitle(string title)
@@ -89,9 +83,7 @@ namespace BusinessLogicLayer.Services
             {
                 var book = repo.GetBooksByTitle(title);
                 return book.ToList();
-
             }
-
         }
 
         public List<Book> GetBooksByAuthors(string author)
@@ -100,9 +92,7 @@ namespace BusinessLogicLayer.Services
             {
                 var book = repo.GetBooksByAuthors(author);
                 return book.ToList();
-
             }
-
         }
 
         public List<Book> GetBooksByGenre(string genre)
@@ -111,11 +101,7 @@ namespace BusinessLogicLayer.Services
             {
                 var book = repo.GetBooksByGenre(genre);
                 return book.ToList();
-
             }
-
         }
-
-
     }
 }

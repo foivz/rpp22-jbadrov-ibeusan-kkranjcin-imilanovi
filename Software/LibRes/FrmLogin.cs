@@ -21,12 +21,18 @@ namespace LibRes
         {
             FrmBookSearch frmBookSearch = new FrmBookSearch();
             Hide();
-            frmBookSearch.ShowDialog();
+            frmBookSearch.Closed += (s, args) => Close();
+            frmBookSearch.Show();
         }
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
