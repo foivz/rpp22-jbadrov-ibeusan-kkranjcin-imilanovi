@@ -92,6 +92,15 @@ namespace BusinessLogicLayer.Services
             }
         }
 
+        public List<BorrowedBookOverview> GetBorrowedBookOverviewsByIdLibraryMember(int libraryMemberId)
+        {
+            using (var repo = new BorrowedBookOverviewRepository())
+            {
+                var borrowedBookOverviews = repo.GetBorrowedBookOverviewsByLibrraryMember(libraryMemberId);
+                return borrowedBookOverviews.ToList();
+            }
+        }
+
         public List<BorrowedBookOverview> GetBookOverviewByIdBookAndIdLibraryMember(int bookId, int libraryMemberId)
         {
             using (var repo = new BorrowedBookOverviewRepository())

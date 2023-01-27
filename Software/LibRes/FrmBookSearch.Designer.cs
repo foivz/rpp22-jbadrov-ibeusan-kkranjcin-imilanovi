@@ -38,6 +38,7 @@
             this.btnViewLibrarians = new System.Windows.Forms.Button();
             this.btnBorrowBook = new System.Windows.Forms.Button();
             this.hpBookSearch = new System.Windows.Forms.HelpProvider();
+            this.btnReturnBook = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).BeginInit();
             this.SuspendLayout();
             // 
@@ -136,6 +137,16 @@
             // 
             this.hpBookSearch.HelpNamespace = "S:\\FOI - 5.sem\\RPP\\HelpFiles\\FrmBookSearchHelp.html";
             // 
+            // btnReturnBook
+            // 
+            this.btnReturnBook.Location = new System.Drawing.Point(261, 12);
+            this.btnReturnBook.Name = "btnReturnBook";
+            this.btnReturnBook.Size = new System.Drawing.Size(118, 33);
+            this.btnReturnBook.TabIndex = 10;
+            this.btnReturnBook.Text = "Return Book";
+            this.btnReturnBook.UseVisualStyleBackColor = true;
+            this.btnReturnBook.Click += new System.EventHandler(this.btnReturnBook_Click);
+            // 
             // FrmBookSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -143,6 +154,7 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(892, 545);
+            this.Controls.Add(this.btnReturnBook);
             this.Controls.Add(this.btnBorrowBook);
             this.Controls.Add(this.btnViewLibrarians);
             this.Controls.Add(this.btnMembers);
@@ -177,5 +189,6 @@
         private System.Windows.Forms.Button btnViewLibrarians;
         private System.Windows.Forms.Button btnBorrowBook;
         private System.Windows.Forms.HelpProvider hpBookSearch;
+        private System.Windows.Forms.Button btnReturnBook;
     }
 }

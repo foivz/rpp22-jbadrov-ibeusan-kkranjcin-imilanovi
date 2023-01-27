@@ -18,5 +18,7 @@ namespace DataAccessLayer.Repositories
                         select b;
             return query;
         }
+
+        
     }
 }

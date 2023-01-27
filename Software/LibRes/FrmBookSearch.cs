@@ -125,5 +125,11 @@ namespace LibRes
             FrmBookBorrow frmBookBorrow = new FrmBookBorrow();
             frmBookBorrow.ShowDialog();
         }
+
+        private void btnReturnBook_Click(object sender, EventArgs e)
+        {
+            FrmBookReturn frmBookReturn = new FrmBookReturn();
+            frmBookReturn.ShowDialog();
+        }
     }
 }

@@ -19,6 +19,14 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
+        public IQueryable<BorrowedBookOverview> GetBorrowedBookOverviewsByLibrraryMember(int LibraryMemberId)
+        {
+            var query = from b in Entities
+                        where b.IdLibraryMember == LibraryMemberId && b.IdState == 1
+                        select b;
+            return query;
+        }
+
         public IQueryable<BorrowedBookOverview> GetBookOverviewByBookIDAndLibraryMemberId(int bookId, int libraryMemberId)
         {
             var query = from b in Entities
@@ -61,6 +69,8 @@ namespace DataAccessLayer.Repositories
 
             return SaveChanges();
         }
+
+        
 
         public bool IsReserved(int id)
         {
