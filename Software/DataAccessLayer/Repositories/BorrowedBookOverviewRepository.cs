@@ -53,6 +53,14 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
+        public IQueryable<BorrowedBookOverview> GetBorrowedBookOverviewsById(int id)
+        {
+            var query = from b in Entities
+                        where b.Id ==id
+                        select b;
+            return query;
+        }
+
 
 
         public override int Add(BorrowedBookOverview entity)

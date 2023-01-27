@@ -12,6 +12,7 @@ using AForge.Video;
 using AForge.Video.DirectShow;
 using ZXing;
 using DataAccessLayer;
+using DataAccessLayer.DataGridViewModels;
 
 namespace LibRes
 {
@@ -58,8 +59,26 @@ namespace LibRes
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Successfully borrowed book!");
-            Close();
+            if(dgvBookOverviews.SelectedRows.Count == 1)
+            {
+                var item = dgvBookOverviews.CurrentRow.DataBoundItem as BorrowedBookDetails;
+                var service = new BorrowedBookOverviewService();
+                var borrowedBookOverview = service.GetBorrowedBookOverviewById(item.Id)[0];
+                borrowedBookOverview.IdState = 2;
+                var sucess = service.UpdateBorrowedBookOverview(borrowedBookOverview);
+
+                if (sucess)
+                {
+                    MessageBox.Show("Succes");
+                }
+                ShowBookOverviewsForLibraryMember();
+                
+            }
+            else
+            {
+                MessageBox.Show("Choose one book");
+            }
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -150,10 +169,15 @@ namespace LibRes
 
         private void cmbMember_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ShowBookOverviewsForLibraryMember();
+            
+        }
+
+        private void ShowBookOverviewsForLibraryMember()
+        {
             var member = cmbMember.SelectedItem as LibraryMember;
             var serviceOverview = new BorrowedBookOverviewService();
             dgvBookOverviews.DataSource = serviceOverview.GetBorrowedBookDetailsByLibraryMember(member.Id);
-            
         }
     }
 }
