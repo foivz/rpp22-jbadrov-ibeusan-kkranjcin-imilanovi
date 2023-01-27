@@ -1,13 +1,6 @@
 ﻿using BusinessLogicLayer.Services;
 using DataAccessLayer;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LibRes
@@ -46,8 +39,35 @@ namespace LibRes
 
         private void btnUpdateBookCopy_Click(object sender, EventArgs e)
         {
-            var publisher = cmbPublishers.SelectedItem as Publisher;
+            if(cmbPublishers.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a publisher!");
+                return;
+            }
+            if(txtEdition.Text == "")
+            {
 
+                MessageBox.Show("Please fill in the edition of the book copy!");
+                return;
+            }
+
+
+            if (txtLanguage.Text == "")
+            {
+
+                MessageBox.Show("Please fill in the language of the book copy!");
+                return;
+            }
+
+
+            if (txtYearOfPublication.Text == "")
+            {
+
+                MessageBox.Show("Please fill in the year of publication of the book copy!");
+                return;
+            }
+
+            var publisher = cmbPublishers.SelectedItem as Publisher;
             _bookCopy.Edition = txtEdition.Text;
             _bookCopy.IdPublisher = publisher.Id;
             _bookCopy.YearOfPublication = int.Parse(txtYearOfPublication.Text);
@@ -55,7 +75,7 @@ namespace LibRes
 
             if (bookCopyService.UpdateBookCopy(_bookCopy))
             {
-                MessageBox.Show("Successfully updated the book copy!");
+                MessageBox.Show("Successfully updated this copy of the book: " + _book.Title);
             }
             else
             {

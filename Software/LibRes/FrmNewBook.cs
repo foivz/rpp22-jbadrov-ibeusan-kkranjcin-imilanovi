@@ -76,12 +76,17 @@ namespace LibRes
                 return;
             }
 
-            /*
             if (txtISBN.Text == "")
             {
                 MessageBox.Show("Please write an ISBN for this book.");
                 return;
-            }*/
+            }
+
+
+            if(txtISBN.Text.Length != 10 || !IsDigitsOnly(txtISBN.Text))
+            {
+                MessageBox.Show("ISBN 10 has to be a number with 10 digits.");
+            }
 
             Book book;
             if (chbBorrowable.Checked == true)
@@ -107,7 +112,7 @@ namespace LibRes
 
             if (bookService.AddBook(book))
             {
-                MessageBox.Show("Successfully added the book!");
+                MessageBox.Show("Successfully added a new book: " + book.Title + "!");
             }
             else
             {
@@ -164,6 +169,17 @@ namespace LibRes
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private bool IsDigitsOnly(string str)
+        {
+            foreach (char c in str)
+            {
+                if (c < '0' || c > '9')
+                    return false;
+            }
+
+            return true;
         }
     }
 }

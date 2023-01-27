@@ -1,13 +1,6 @@
 ﻿using BusinessLogicLayer.Services;
 using DataAccessLayer;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LibRes
@@ -21,6 +14,18 @@ namespace LibRes
 
         private void btnAddPublisher_Click(object sender, EventArgs e)
         {
+            if (txtName.Text == "")
+            {
+                MessageBox.Show("Please fill in the name of the publisher!");
+                return;
+            }
+
+            if (txtYearOfEst.Text == "")
+            {
+                MessageBox.Show("Please fill in the year of establishment of the publisher!");
+                return;
+            }
+
             Publisher publisher = new Publisher
             {
                 Name = txtName.Text,
@@ -30,11 +35,11 @@ namespace LibRes
             PublisherService publisherService = new PublisherService();
             if (publisherService.AddPublisher(publisher))
             {
-                MessageBox.Show("Successfully added a new publisher!");
+                MessageBox.Show("Successfully added a new publisher: " + txtName + "!");
             }
             else
             {
-                MessageBox.Show("Problem occurred while adding new publisher!");
+                MessageBox.Show("Problem occurred while adding a new publisher!");
             }
             Close();
         }

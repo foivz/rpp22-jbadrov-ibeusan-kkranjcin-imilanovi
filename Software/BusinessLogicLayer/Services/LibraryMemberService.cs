@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using DataAccessLayer;
 using DataAccessLayer.Repositories;
 
@@ -39,6 +37,13 @@ namespace BusinessLogicLayer.Services
 
         public bool UpdateLibraryMember(LibraryMember libraryMember)
         {
+            var email = libraryMember.Email;
+            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+            Match match = regex.Match(email);
+            if (!match.Success)
+            {
+                throw new Exception("The e-mail adress you provided is not valid!");
+            }
             using (var repo = new LibraryMemberRepository())
             {
                 var num = repo.Update(libraryMember);
@@ -78,12 +83,12 @@ namespace BusinessLogicLayer.Services
             }
         }
 
-        public LibraryMember GetLibraryMemberById(int id)
+        public List<LibraryMember> GetLibraryMemberById(int id)
         {
             using (var repo = new LibraryMemberRepository())
             {
                 var libraryMembers = repo.GetById(id);
-                return libraryMembers as LibraryMember;
+                return libraryMembers.ToList();
             }
         }
     }

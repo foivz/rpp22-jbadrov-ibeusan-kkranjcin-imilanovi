@@ -114,6 +114,7 @@
             // 
             // pnFilter
             // 
+            this.pnFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pnFilter.Controls.Add(this.btnLastNameDesc);
             this.pnFilter.Controls.Add(this.btnLastNameAsc);
             this.pnFilter.Controls.Add(this.btnFirstNameDesc);
@@ -170,6 +171,7 @@
             // 
             // btnFilter
             // 
+            this.btnFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFilter.BackColor = System.Drawing.SystemColors.Control;
             this.btnFilter.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnFilter.FlatAppearance.BorderSize = 0;

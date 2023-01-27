@@ -16,6 +16,14 @@ namespace LibRes
         private void FrmBookSearch_Load(object sender, EventArgs e)
         {
             ShowAllBooks();
+            if (LibResUser.IsAdmin())
+            {
+                btnViewLibrarians.Visible = true;
+            }
+            else
+            {
+                btnViewLibrarians.Visible = false;
+            }
         }
 
         private void ShowAllBooks()
@@ -106,10 +114,16 @@ namespace LibRes
             }
         }
 
-        private void btnAddLibrarian_Click(object sender, EventArgs e)
+        private void btnViewLibrarians_Click(object sender, EventArgs e)
         {
-            FrmNewLibrarian frmNewLibrarian = new FrmNewLibrarian();
-            frmNewLibrarian.ShowDialog();
+            FrmLibrarians frmLibrarians = new FrmLibrarians();
+            frmLibrarians.ShowDialog();
+        }
+
+        private void btnBorrowBook_Click(object sender, EventArgs e)
+        {
+            FrmBookBorrow frmBookBorrow = new FrmBookBorrow();
+            frmBookBorrow.ShowDialog();
         }
     }
 }

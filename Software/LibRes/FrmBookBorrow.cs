@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AForge.Video;
 using AForge.Video.DirectShow;
+using BusinessLogicLayer.Services;
+using DataAccessLayer;
 using ZXing;
 
 namespace LibRes
@@ -24,6 +26,7 @@ namespace LibRes
         VideoCaptureDevice videoCaptureDevice;
         private void FrmBookBorrow_Load(object sender, EventArgs e)
         {
+            
             filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             foreach (FilterInfo filterInfo in filterInfoCollection)
             {
@@ -31,19 +34,33 @@ namespace LibRes
             }
             cmbDevices.SelectedIndex = 0;
 
-            //ShowAllMembers();
-            //ShowAllBooks();
+            ShowAllMembers();
+            ShowAllBooks();
+            ShowAllBookCopies();
+            pictureBoxScaned.Visible = false;
+            pictureBoxScanedBook.Visible = false;
+        }
+
+        private void ShowAllBookCopies()
+        {
+            var book = cmbBook.SelectedItem as Book;
+            var service = new BookCopyService();
+            comboBox2.DataSource = service.GetBookCopiesByBookId(book.Id);
         }
 
         private void ShowAllMembers()
         {
-            throw new NotImplementedException();
+            var service = new LibraryMemberService();
+            comboBox1.DataSource = service.GetLibraryMembers();
         }
 
         private void ShowAllBooks()
         {
-            
+            var service = new BookService();
+            cmbBook.DataSource = service.GetBooks();
         }
+
+        
 
         private void btnScanMember_Click(object sender, EventArgs e)
         {
@@ -51,8 +68,6 @@ namespace LibRes
             videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
             videoCaptureDevice.Start();
             timmerForScaning.Start();
-
-            MessageBox.Show("Successfully scanned a member!");
         }
 
         private void VideoCaptureDevice_NewFrame(object sender, NewFrameEventArgs eventArgs)
@@ -62,12 +77,62 @@ namespace LibRes
 
         private void btnScanBook_Click(object sender, EventArgs e)
         {
-
+            videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cmbDevices.SelectedIndex].MonikerString);
+            videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
+            videoCaptureDevice.Start();
+            timerForScaningBook.Start();
         }
 
         private void btnBorrow_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Successfully borrowed book!");
+            var bookCopy = comboBox2.SelectedItem as BookCopy;
+            var libraryMember = comboBox1.SelectedItem as LibraryMember;
+            var stateService = new BorrowedBookStateService();
+            var bookState = stateService.GetBorrowedBookStates();
+            DateTime borrowDate = DateTime.Now;
+            DateTime returnDate = borrowDate.AddDays(21);
+
+            var service = new BorrowedBookOverviewService();
+            if (service.IsBorrowed(bookCopy.Id))
+            {
+                MessageBox.Show("The book is already borrowed");
+            }
+            else if (service.IsReserved(bookCopy.Id))
+            {
+                if(service.IsReservedForLibraryMember(bookCopy.Id, libraryMember.Id))
+                {
+                    var toUpdate = service.GetBookOverviewByIdBookAndIdLibraryMember(bookCopy.Id, libraryMember.Id)[0];
+
+                    toUpdate.BorrowDate = borrowDate;
+                    toUpdate.ReturnDate = returnDate;
+                    toUpdate.IdState = bookState[0].Id;
+
+                    service.UpdateBorrowedBookOverview(toUpdate);
+                    MessageBox.Show("Success");
+
+                }
+                else
+                {
+                    MessageBox.Show("The book is already reserved");
+                }
+
+            }
+            else
+            {
+
+                var borrowableBookOverview = new BorrowedBookOverview
+                {
+                    IdLibraryMember = libraryMember.Id,
+                    IdState = 1,
+                    BorrowDate = borrowDate,
+                    ReturnDate = returnDate,
+                    IdBookCopy = bookCopy.Id
+                };
+
+                service.AddBorrowedBookOverview(borrowableBookOverview);
+                MessageBox.Show("Success");
+            }
+            //MessageBox.Show("Successfully borrowed book!");
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -75,40 +140,150 @@ namespace LibRes
             Close();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbDevices_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void FrmBookBorrow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (videoCaptureDevice.IsRunning)
+            if (videoCaptureDevice != null)
             {
-                videoCaptureDevice.Stop();
-            }
+                if (videoCaptureDevice.IsRunning)
+                {
+                    videoCaptureDevice.Stop();
+                }
+
+            }    
         }
 
         private void timmerForScaning_Tick(object sender, EventArgs e)
         {
             if (pictureBox1.Image != null)
             {
+
+                pictureBoxScanedBook.Visible = false;
                 BarcodeReader barcodeReader = new BarcodeReader();
                 Result result = barcodeReader.Decode((Bitmap)pictureBox1.Image);
-                if (result != null)
+                try
                 {
-                    comboBox1.Text = result.ToString();
+                    if (result != null)
+                    {
+                        var service = new LibraryMemberService();
+                        var scaned = service.GetLibraryMemberById(int.Parse(result.ToString()))[0];
+
+                        foreach (var item in comboBox1.Items)
+                        {
+                            var member = item as LibraryMember;
+                            if (scaned.Id == member.Id)
+                            {
+                                comboBox1.SelectedItem = item;
+                                break;
+                            }
+                        }
+
+
+                        timmerForScaning.Stop();
+                        if (videoCaptureDevice.IsRunning)
+                        {
+                            videoCaptureDevice.Stop();
+                            pictureBox1.Image = null;
+                            pictureBoxScaned.Visible = true;
+
+                        }
+                    }
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Wrong QR code");
                     timmerForScaning.Stop();
                     if (videoCaptureDevice.IsRunning)
                     {
                         videoCaptureDevice.Stop();
+                        pictureBox1.Image = null;
                     }
                 }
+
             }
+        }
+
+        private void cmbBook_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ShowAllBookCopies();
+        }
+
+        private void timerForScaningBook_Tick(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+
+                pictureBoxScanedBook.Visible = false;
+                BarcodeReader barcodeReader = new BarcodeReader();
+                Result result = barcodeReader.Decode((Bitmap)pictureBox1.Image);
+                //cmbBook.Text = result.ToString();
+
+                try
+                {
+                    if (result != null)
+                    {
+                        var service = new BookCopyService();
+                        var scaned = service.GetBookCopyById(int.Parse(result.ToString()))[0];
+
+                        var bookService = new BookService();
+                        var bookForCopy = bookService.GetBookById(int.Parse(scaned.IdBook.ToString()))[0];
+
+                        foreach (var item in cmbBook.Items)
+                        {
+                            var book = item as Book;
+                            if (bookForCopy.Id == book.Id)
+                            {
+                                cmbBook.SelectedItem = item;
+                                ShowAllBookCopies();
+                                break;
+                            }
+                        }
+
+                        foreach (var item in comboBox2.Items)
+                        {
+                            var bookCopy = item as BookCopy;
+                            if (scaned.Id == bookCopy.Id)
+                            {
+                                comboBox2.SelectedItem = item;
+                                break;
+                            }
+                        }
+
+
+
+
+                        timmerForScaning.Stop();
+                        if (videoCaptureDevice.IsRunning)
+                        {
+                            videoCaptureDevice.Stop();
+                            pictureBox1.Image = null;
+                            pictureBoxScanedBook.Visible = true;
+
+                        }
+                    }
+                    
+
+                }
+                catch(Exception)
+                {
+                    MessageBox.Show("Wrong QR code");
+                    timmerForScaning.Stop();
+                    if (videoCaptureDevice.IsRunning)
+                    {
+                        videoCaptureDevice.Stop();
+                        pictureBox1.Image = null;
+                        
+
+                    }
+                }
+                
+            }
+
+        }
+
+        private void pictureBoxScaned_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

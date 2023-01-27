@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BusinessLogicLayer.Services;
+using System;
 using System.Windows.Forms;
 
 namespace LibRes
 {
     public partial class FrmLogin : Form
     {
+        UserService userService = new UserService();
         public FrmLogin()
         {
             InitializeComponent();
@@ -19,15 +14,47 @@ namespace LibRes
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            FrmBookSearch frmBookSearch = new FrmBookSearch();
-            Hide();
-            frmBookSearch.Closed += (s, args) => Close();
-            frmBookSearch.Show();
+            if(txtUsername.Text == "")
+            {
+
+                MessageBox.Show("Please fill in your username!");
+                return;
+            }
+
+            if (txtPassword.Text == "")
+            {
+
+                MessageBox.Show("Please fill in your password!");
+                return;
+            }
+
+            var userFromDB = userService.GetUserByUsername(txtUsername.Text);
+            if (userFromDB.Count > 0)
+            {
+                if (userFromDB[0].Password == txtPassword.Text)
+                {
+                    MessageBox.Show("Login successful!");
+                    LibResUser.CurrentUser = userFromDB[0];
+                    FrmBookSearch frmBookSearch = new FrmBookSearch();
+                    Hide();
+                    frmBookSearch.FormClosed += (s, args) => Close();
+                    frmBookSearch.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Password is incorrect!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("User with username '" + txtUsername.Text + "' does not exist!");
+                return;
+            }
         }
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-
+            txtPassword.UseSystemPasswordChar = true;
         }
 
         private void btnExit_Click(object sender, EventArgs e)

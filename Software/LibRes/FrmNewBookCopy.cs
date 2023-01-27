@@ -1,15 +1,8 @@
 ﻿using BusinessLogicLayer.Services;
 using DataAccessLayer;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using QRCode;
 
 namespace LibRes
 {
@@ -24,7 +17,6 @@ namespace LibRes
             _book = book;
         }
 
-
         private void FrmNewBookCopy_Load(object sender, EventArgs e)
         {
             txtTitle.Text = _book.Title;
@@ -38,6 +30,26 @@ namespace LibRes
 
         private void btnAddBookCopy_Click(object sender, EventArgs e)
         {
+            if(cmbPublishers.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a publisher!");
+                return;
+            }
+            if(txtEdition.Text == "")
+            {
+                MessageBox.Show("Please fill in the edition of the book copy!");
+                return;
+            }
+            if (txtLanguage.Text == "")
+            {
+                MessageBox.Show("Please fill in the language of the book copy!");
+                return;
+            }
+            if (txtYearOfPublication.Text == "")
+            {
+                MessageBox.Show("Please fill in the year of publication of the book copy!");
+                return;
+            }
             var publisher = cmbPublishers.SelectedItem as Publisher;
             var bookCopy = new BookCopy 
             { 
@@ -50,11 +62,11 @@ namespace LibRes
 
             if (bookCopyService.AddBookCopy(bookCopy))
             {
-                MessageBox.Show("Successfully added a new book copy!");
+                MessageBox.Show("Successfully added a new book copy of: " + _book.Title + "!");
 
                 var bookCopies = bookCopyService.GetBookCopies();
-                var book = bookCopies.Last();
-                FrmQRCode frmQRCode = new FrmQRCode(book.Id.ToString());
+                var addedBookCopy = bookCopies.Last();
+                FrmQRCode frmQRCode = new FrmQRCode(addedBookCopy.Id.ToString());
                 frmQRCode.ShowDialog();
                 Close();
             }

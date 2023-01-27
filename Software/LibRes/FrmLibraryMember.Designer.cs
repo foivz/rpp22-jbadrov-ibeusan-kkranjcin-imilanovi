@@ -49,7 +49,6 @@
             this.dgvMembersBooks.RowTemplate.Height = 24;
             this.dgvMembersBooks.Size = new System.Drawing.Size(776, 293);
             this.dgvMembersBooks.TabIndex = 0;
-            this.dgvMembersBooks.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMembersBooks_CellContentClick);
             // 
             // lblEmail
             // 

@@ -34,6 +34,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\LibRes\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>..\LibRes\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <HintPath>..\LibRes\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\LibRes\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -52,30 +61,38 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="zxing, Version=0.16.8.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\LibRes\packages\ZXing.Net.0.16.8\lib\net48\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.8.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\LibRes\packages\ZXing.Net.0.16.8\lib\net48\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Author.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Author.Ext.cs" />
+    <Compile Include="Extentions\Author.Ext.cs" />
     <Compile Include="Book.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Extentions\Book.Ext.cs" />
     <Compile Include="BookAuthor.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BookAuthor.Ext.cs" />
+    <Compile Include="Extentions\BookAuthor.Ext.cs" />
     <Compile Include="BookCopy.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Extentions\BookCopy.Ext.cs" />
     <Compile Include="BookGenre.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BookGenre.Ext.cs" />
+    <Compile Include="Extentions\BookGenre.Ext.cs" />
     <Compile Include="BorrowableBookState.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="BorrowableBookState.Ext.cs" />
+    <Compile Include="Extentions\BorrowableBookState.Ext.cs" />
     <Compile Include="BorrowedBookOverview.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
@@ -85,10 +102,11 @@
     <Compile Include="Genre.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Genre.Ext.cs" />
+    <Compile Include="Extentions\Genre.Ext.cs" />
     <Compile Include="LibraryMember.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Extentions\LibraryMember.Ext.cs" />
     <Compile Include="LibResModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -108,7 +126,7 @@
     <Compile Include="Publisher.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Publisher.Ext.cs" />
+    <Compile Include="Extentions\Publisher.Ext.cs" />
     <Compile Include="Repositories\AuthorRepository.cs" />
     <Compile Include="Repositories\BookAuthorRepository.cs" />
     <Compile Include="Repositories\BookCopyStateRepository.cs" />
@@ -155,6 +173,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

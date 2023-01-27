@@ -1,14 +1,8 @@
-﻿using DataAccessLayer;
-using QRCode;
+﻿using QRCode;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LibRes
@@ -43,6 +37,12 @@ namespace LibRes
 
         protected void btnPrint_Click(object sender, EventArgs e)
         {
+            if(cbPrinters.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a printer!");
+                return;
+            }
+
             PrinterSettings printerSettings = new PrinterSettings();
             printerSettings.PrinterName = cbPrinters.SelectedItem as string;
 

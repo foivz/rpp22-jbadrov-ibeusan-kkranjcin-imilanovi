@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DataAccessLayer;
 using DataAccessLayer.Repositories;
 
@@ -73,12 +70,22 @@ namespace BusinessLogicLayer.Services
 
         }
 
-        public BookCopy GetBookCopyById(int id)
+        public List<BookCopy> GetBookCopyById(int id)
         {
             using (var repo = new BookCopyRepository())
             {
                 var bookCopy = repo.GetBookCopyById(id);
-                return bookCopy as BookCopy;
+                return bookCopy.ToList();
+            }
+
+        }
+
+        public List<BookCopy> GetBookCopiesByBookId(int id)
+        {
+            using (var repo = new BookCopyRepository())
+            {
+                var bookCopy = repo.GetBookCopiesByBookId(id);
+                return bookCopy.ToList();
             }
 
         }

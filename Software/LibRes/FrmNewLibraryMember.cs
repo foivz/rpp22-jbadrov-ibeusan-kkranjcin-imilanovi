@@ -1,14 +1,7 @@
 ﻿using BusinessLogicLayer.Services;
 using DataAccessLayer;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LibRes
@@ -23,10 +16,24 @@ namespace LibRes
 
         private void btnAddMember_Click(object sender, EventArgs e)
         {
-            if(txtFirstName.Text == "" || txtLastName.Text == "" || txtMemberEmail.Text == "")
+            if (txtFirstName.Text == "")
             {
-                MessageBox.Show("All member data is required!");
+                MessageBox.Show("Please fill in the first name of the library member!");
+                return;
             }
+
+            if (txtLastName.Text == "")
+            {
+                MessageBox.Show("Please fill in the last name of the library member!");
+                return;
+            }
+
+            if (txtMemberEmail.Text == "")
+            {
+                MessageBox.Show("Please fill in the e-mail adress of the library member!");
+                return;
+            }
+
             else
             {
 
@@ -48,7 +55,7 @@ namespace LibRes
                 }
                 if (add)
                 {
-                    var dr = MessageBox.Show("Successfully added a new library member!");
+                    var dr = MessageBox.Show("Successfully added a new library member: " + member.FirstName + " " + member.LastName + "!");
                     if(dr == DialogResult.OK)
                     {
                         var memberForQr = service.GetLibraryMembers().Last();

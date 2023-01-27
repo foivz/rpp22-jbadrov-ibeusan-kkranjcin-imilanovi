@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    public partial class Genre
+    public partial class BookCopy
     {
         public override string ToString()
         {
-            return Name;
+            return Id + " "+Edition + " " + YearOfPublication + " " + Language;
         }
+
+
+
+
     }
 }

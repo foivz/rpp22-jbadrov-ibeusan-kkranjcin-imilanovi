@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 using DataAccessLayer;
 using DataAccessLayer.Repositories;
@@ -11,7 +9,7 @@ namespace BusinessLogicLayer.Services
 {
     public class BorrowedBookOverviewService
     {
-        private readonly System.Timers.Timer _timer = new System.Timers.Timer(300000);
+        private readonly System.Timers.Timer _timer = new System.Timers.Timer(86400000);
         
 
         public BorrowedBookOverviewService()
@@ -23,13 +21,13 @@ namespace BusinessLogicLayer.Services
 
         private static void OnTimedEvent(object source, ElapsedEventArgs e)
         {
-            var dateTime = DateTime.Now;
+            //var dateTime = DateTime.Now;
             using(var repo = new BorrowedBookOverviewRepository())
             {
                 var borrowedBookOverviews = repo.GetAll().ToList();
                 foreach(var borrowedBookOverview in borrowedBookOverviews)
                 {
-                    if(borrowedBookOverview.ReturnDate >dateTime && borrowedBookOverview.IdState == 3)
+                    if(borrowedBookOverview.ReturnDate > DateTime.Now && borrowedBookOverview.IdState == 3)
                     {
                         repo.Delete(borrowedBookOverview);
                     }
@@ -94,12 +92,38 @@ namespace BusinessLogicLayer.Services
             }
         }
 
+        public List<BorrowedBookOverview> GetBookOverviewByIdBookAndIdLibraryMember(int bookId, int libraryMemberId)
+        {
+            using (var repo = new BorrowedBookOverviewRepository())
+            {
+                var borrowedBookOverviews = repo.GetBookOverviewByBookIDAndLibraryMemberId(bookId, libraryMemberId);
+                return borrowedBookOverviews.ToList();
+            }
+        }
+
         public bool IsReserved(int id)
         {
             using(var repo = new BorrowedBookOverviewRepository())
             {
                 return repo.IsReserved(id);
             }
+        }
+
+        public bool IsBorrowed(int id)
+        {
+            using (var repo = new BorrowedBookOverviewRepository())
+            {
+                return repo.IsBorrowed(id);
+            }
+        }
+
+        public bool IsReservedForLibraryMember(int bookId, int libraryMemberId)
+        {
+            using (var repo = new BorrowedBookOverviewRepository())
+            {
+                return repo.IsReservedForLibraryMember(bookId, libraryMemberId);
+            }
+
         }
     }
 }

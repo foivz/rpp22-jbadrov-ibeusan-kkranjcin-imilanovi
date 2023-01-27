@@ -1,13 +1,8 @@
 ﻿using BusinessLogicLayer.Services;
 using DataAccessLayer;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LibRes
@@ -37,7 +32,7 @@ namespace LibRes
                 var membersBooks = from b in service.GetBorrowedBookOverviews()
                                    where b.IdLibraryMember == _member.Id
                                    select b;
-                dgvMembersBooks.DataSource = membersBooks;
+                dgvMembersBooks.DataSource = membersBooks.ToList();
             }
         }
 
@@ -51,11 +46,6 @@ namespace LibRes
         private void FrmUpdateMember_FormClosed(object sender, FormClosedEventArgs e)
         {
             ShowMemberData();
-        }
-
-        private void dgvMembersBooks_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

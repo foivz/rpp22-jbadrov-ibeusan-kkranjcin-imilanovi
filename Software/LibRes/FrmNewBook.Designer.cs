@@ -145,9 +145,9 @@
             this.lblISBN.AutoSize = true;
             this.lblISBN.Location = new System.Drawing.Point(28, 213);
             this.lblISBN.Name = "lblISBN";
-            this.lblISBN.Size = new System.Drawing.Size(41, 16);
+            this.lblISBN.Size = new System.Drawing.Size(58, 16);
             this.lblISBN.TabIndex = 13;
-            this.lblISBN.Text = "ISBN:";
+            this.lblISBN.Text = "ISBN 10:";
             // 
             // txtISBN
             // 
