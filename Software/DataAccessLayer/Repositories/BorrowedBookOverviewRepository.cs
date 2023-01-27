@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataAccessLayer.DataGridViewModels;
 
 namespace DataAccessLayer.Repositories
 {
@@ -16,6 +17,23 @@ namespace DataAccessLayer.Repositories
         {
             var query = from b in Entities
                         select b;
+            return query;
+        }
+
+        public IQueryable<BorrowedBookDetails> GetBorrowedBookDetailsByLibraryMember(int libraryMemberId)
+        {
+            var query = from bbo in Context.BorrowedBookOverviews
+                        join bc in Context.BookCopies on bbo.IdBookCopy equals bc.Id
+                        join b in Context.Books on bc.IdBook equals b.Id
+                        where bbo.IdLibraryMember == libraryMemberId && bbo.IdState == 1
+                        select new BorrowedBookDetails
+                        {
+                            Id = bbo.Id,
+                            BorrowedDate = bbo.BorrowDate,
+                            ReturnDate = bbo.ReturnDate,
+                            Title = b.Title
+                        };
+
             return query;
         }
 

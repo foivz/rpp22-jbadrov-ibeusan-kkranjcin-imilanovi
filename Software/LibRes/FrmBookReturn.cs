@@ -152,10 +152,8 @@ namespace LibRes
         {
             var member = cmbMember.SelectedItem as LibraryMember;
             var serviceOverview = new BorrowedBookOverviewService();
-            dgvBookOverviews.DataSource = serviceOverview.GetBorrowedBookOverviewsByIdLibraryMember(member.Id);
-            dgvBookOverviews.Columns["BookCopy"].Visible = false;
-            dgvBookOverviews.Columns["BorrowedBookState"].Visible = false;
-            dgvBookOverviews.Columns["LibraryMember"].Visible = false;
+            dgvBookOverviews.DataSource = serviceOverview.GetBorrowedBookDetailsByLibraryMember(member.Id);
+            
         }
     }
 }

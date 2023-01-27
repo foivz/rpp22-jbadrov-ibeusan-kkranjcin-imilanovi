@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
 using DataAccessLayer;
+using DataAccessLayer.DataGridViewModels;
 using DataAccessLayer.Repositories;
 
 namespace BusinessLogicLayer.Services
@@ -88,6 +89,15 @@ namespace BusinessLogicLayer.Services
             using(var repo = new BorrowedBookOverviewRepository())
             {
                 var borrowedBookOverviews = repo.GetAll();
+                return borrowedBookOverviews.ToList();
+            }
+        }
+
+        public List<BorrowedBookDetails> GetBorrowedBookDetailsByLibraryMember(int libraryMemberId)
+        {
+            using (var repo = new BorrowedBookOverviewRepository())
+            {
+                var borrowedBookOverviews = repo.GetBorrowedBookDetailsByLibraryMember(libraryMemberId);
                 return borrowedBookOverviews.ToList();
             }
         }
