@@ -45,7 +45,7 @@ namespace DataAccessLayer.Repositories
             return SaveChanges();
         }
 
-        public IQueryable<Book> GetBookById(int id)
+        public IQueryable<Book> GetById(int id)
         {
             var query = from b in Entities.Include("BorrowableBookState")
                                           .Include("BookAuthors")
@@ -54,30 +54,6 @@ namespace DataAccessLayer.Repositories
                                           .Include("BookGenres")
                                           .Include("BookGenres.Genre")
                         where b.Id == id
-                        select b;
-            return query;
-        }
-
-        public IQueryable<Book> GetBooksByTitle(string title)
-        {
-            var query = from b in Entities
-                        where b.Title == title
-                        select b;
-            return query;
-        }
-
-        public IQueryable<Book> GetBooksByAuthors(string author)
-        {
-            var query = from b in Entities
-                        where b.BookAuthors.All(a => a.Author.FirstName == author || a.Author.LastName == author || a.Author.FirstName + ' ' + a.Author.LastName == author)
-                        select b;
-            return query;
-        }
-
-        public IQueryable<Book> GetBooksByGenre(string genre)
-        {
-            var query = from b in Entities
-                        where b.BookGenres.All(g => g.Genre.Name == genre)
                         select b;
             return query;
         }

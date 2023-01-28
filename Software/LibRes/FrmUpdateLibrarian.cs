@@ -17,6 +17,11 @@ namespace LibRes
 
         private void FrmUpdateLibrarian_Load(object sender, EventArgs e)
         {
+            ShowLibrarian();
+        }
+
+        private void ShowLibrarian()
+        {
             txtFirstName.Text = _librarian.FirstName;
             txtLastName.Text = _librarian.LastName;
             txtUsername.Text = _librarian.Username;

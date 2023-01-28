@@ -63,8 +63,6 @@ namespace LibRes
             {
                 MessageBox.Show("Choose one librarian that you want to update.");
             }
-
-            
         }
 
         private void btnDeleteLibrarian_Click(object sender, EventArgs e)

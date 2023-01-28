@@ -97,7 +97,7 @@
             this.Controls.Add(this.dgvLibrarians);
             this.Name = "FrmLibrarians";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmLibrarians";
+            this.Text = "Librarians";
             this.Load += new System.EventHandler(this.FrmLibrarians_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLibrarians)).EndInit();
             this.ResumeLayout(false);
