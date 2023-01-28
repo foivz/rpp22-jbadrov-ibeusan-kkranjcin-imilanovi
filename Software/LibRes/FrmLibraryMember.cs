@@ -33,6 +33,9 @@ namespace LibRes
                                    where b.IdLibraryMember == _member.Id
                                    select b;
                 dgvMembersBooks.DataSource = membersBooks.ToList();
+                dgvMembersBooks.Columns["BookCopy"].Visible = false;
+                dgvMembersBooks.Columns["BorrowedBookState"].Visible = false;
+                dgvMembersBooks.Columns["LibraryMember"].Visible = false;
             }
         }
 

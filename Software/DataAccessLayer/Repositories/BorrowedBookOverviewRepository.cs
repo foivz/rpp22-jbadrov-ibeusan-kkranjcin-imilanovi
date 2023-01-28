@@ -20,7 +20,13 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
-        public IQueryable<BorrowedBookDetails> GetBorrowedBookDetailsByLibraryMember(int libraryMemberId)
+        /// <summary>
+        /// The method is 
+        /// </summary>
+        /// <param name="libraryMemberId"></param>
+        /// <returns></returns>
+
+        public IQueryable<BorrowedBookDetails> GetDetailsByLibraryMember(int libraryMemberId)
         {
             var query = from bbo in Context.BorrowedBookOverviews
                         join bc in Context.BookCopies on bbo.IdBookCopy equals bc.Id
@@ -37,15 +43,7 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
-        public IQueryable<BorrowedBookOverview> GetBorrowedBookOverviewsByLibrraryMember(int LibraryMemberId)
-        {
-            var query = from b in Entities
-                        where b.IdLibraryMember == LibraryMemberId && b.IdState == 1
-                        select b;
-            return query;
-        }
-
-        public IQueryable<BorrowedBookOverview> GetBookOverviewByBookIDAndLibraryMemberId(int bookId, int libraryMemberId)
+        public IQueryable<BorrowedBookOverview> GetByBookIDAndLibraryMemberId(int bookId, int libraryMemberId)
         {
             var query = from b in Entities
                         where b.IdBookCopy == bookId && b.IdLibraryMember == libraryMemberId
@@ -53,10 +51,18 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
-        public IQueryable<BorrowedBookOverview> GetBorrowedBookOverviewsById(int id)
+        public IQueryable<BorrowedBookOverview> GetById(int id)
         {
             var query = from b in Entities
                         where b.Id ==id
+                        select b;
+            return query;
+        }
+
+        public IQueryable<BorrowedBookOverview> GetReservedByIdBook(int idBook)
+        {
+            var query = from b in Entities
+                        where b.IdBookCopy == idBook && b.IdState == 3
                         select b;
             return query;
         }

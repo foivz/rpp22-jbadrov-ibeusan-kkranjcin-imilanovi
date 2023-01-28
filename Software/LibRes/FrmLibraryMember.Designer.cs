@@ -136,6 +136,7 @@
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.dgvMembersBooks);
             this.Name = "FrmLibraryMember";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmLibraryMember";
             this.Load += new System.EventHandler(this.FrmLibraryMember_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMembersBooks)).EndInit();

@@ -46,6 +46,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.lblReturn = new System.Windows.Forms.Label();
             this.pbScanMember = new System.Windows.Forms.PictureBox();
+            this.lblBorrowedBooks = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbScan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookOverviews)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbScanMember)).BeginInit();
@@ -190,12 +191,22 @@
             this.pbScanMember.TabIndex = 22;
             this.pbScanMember.TabStop = false;
             // 
+            // lblBorrowedBooks
+            // 
+            this.lblBorrowedBooks.AutoSize = true;
+            this.lblBorrowedBooks.Location = new System.Drawing.Point(409, 121);
+            this.lblBorrowedBooks.Name = "lblBorrowedBooks";
+            this.lblBorrowedBooks.Size = new System.Drawing.Size(109, 16);
+            this.lblBorrowedBooks.TabIndex = 23;
+            this.lblBorrowedBooks.Text = "Borrowed books:";
+            // 
             // FrmBookReturn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1325, 607);
+            this.Controls.Add(this.lblBorrowedBooks);
             this.Controls.Add(this.pbScanMember);
             this.Controls.Add(this.lblReturn);
             this.Controls.Add(this.btnOK);
@@ -242,5 +253,6 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Label lblReturn;
         private System.Windows.Forms.PictureBox pbScanMember;
+        private System.Windows.Forms.Label lblBorrowedBooks;
     }
 }

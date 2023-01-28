@@ -199,6 +199,7 @@
             this.Controls.Add(this.txtSearchMember);
             this.Controls.Add(this.dgvMembers);
             this.Name = "FrmLibraryMemberSearch";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmMember";
             this.Load += new System.EventHandler(this.FrmLibraryMemberSearch_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMembers)).EndInit();

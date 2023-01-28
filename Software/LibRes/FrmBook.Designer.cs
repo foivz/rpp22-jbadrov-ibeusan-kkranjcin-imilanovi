@@ -35,7 +35,6 @@
             this.lblNumberOfPages = new System.Windows.Forms.Label();
             this.txtNumberOfPages = new System.Windows.Forms.TextBox();
             this.btnReserve = new System.Windows.Forms.Button();
-            this.btnBorrow = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.cmbMember = new System.Windows.Forms.ComboBox();
             this.lblMember = new System.Windows.Forms.Label();
@@ -50,6 +49,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvGenres = new System.Windows.Forms.DataGridView();
             this.dgvAuthors = new System.Windows.Forms.DataGridView();
+            this.btnDeleteReservation = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookCopies)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGenres)).BeginInit();
@@ -110,23 +110,13 @@
             // 
             // btnReserve
             // 
-            this.btnReserve.Location = new System.Drawing.Point(542, 527);
+            this.btnReserve.Location = new System.Drawing.Point(367, 524);
             this.btnReserve.Name = "btnReserve";
             this.btnReserve.Size = new System.Drawing.Size(104, 43);
             this.btnReserve.TabIndex = 21;
             this.btnReserve.Text = "Reserve Copy";
             this.btnReserve.UseVisualStyleBackColor = true;
             this.btnReserve.Click += new System.EventHandler(this.btnReserve_Click);
-            // 
-            // btnBorrow
-            // 
-            this.btnBorrow.Location = new System.Drawing.Point(432, 527);
-            this.btnBorrow.Name = "btnBorrow";
-            this.btnBorrow.Size = new System.Drawing.Size(104, 43);
-            this.btnBorrow.TabIndex = 22;
-            this.btnBorrow.Text = "Borrow Copy";
-            this.btnBorrow.UseVisualStyleBackColor = true;
-            this.btnBorrow.Click += new System.EventHandler(this.btnBorrow_Click);
             // 
             // btnUpdate
             // 
@@ -177,7 +167,6 @@
             this.dgvBookCopies.RowTemplate.Height = 24;
             this.dgvBookCopies.Size = new System.Drawing.Size(682, 447);
             this.dgvBookCopies.TabIndex = 28;
-            //this.dgvBookCopies.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBookCopies_CellContentClick);
             // 
             // lblBookCopies
             // 
@@ -283,11 +272,22 @@
             this.dgvAuthors.Size = new System.Drawing.Size(204, 43);
             this.dgvAuthors.TabIndex = 37;
             // 
+            // btnDeleteReservation
+            // 
+            this.btnDeleteReservation.Location = new System.Drawing.Point(477, 526);
+            this.btnDeleteReservation.Name = "btnDeleteReservation";
+            this.btnDeleteReservation.Size = new System.Drawing.Size(169, 41);
+            this.btnDeleteReservation.TabIndex = 36;
+            this.btnDeleteReservation.Text = "Cancel Reservation";
+            this.btnDeleteReservation.UseVisualStyleBackColor = true;
+            this.btnDeleteReservation.Click += new System.EventHandler(this.btnDeleteReservation_Click);
+            // 
             // FrmBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(988, 582);
+            this.Controls.Add(this.btnDeleteReservation);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAddCopy);
             this.Controls.Add(this.btnDelete);
@@ -297,7 +297,6 @@
             this.Controls.Add(this.btnReserveForMember);
             this.Controls.Add(this.lblMember);
             this.Controls.Add(this.cmbMember);
-            this.Controls.Add(this.btnBorrow);
             this.Controls.Add(this.btnReserve);
             this.Name = "FrmBook";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -322,7 +321,6 @@
         private System.Windows.Forms.Label lblNumberOfPages;
         private System.Windows.Forms.TextBox txtNumberOfPages;
         private System.Windows.Forms.Button btnReserve;
-        private System.Windows.Forms.Button btnBorrow;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.ComboBox cmbMember;
         private System.Windows.Forms.Label lblMember;
@@ -337,5 +335,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvAuthors;
         private System.Windows.Forms.DataGridView dgvGenres;
+        private System.Windows.Forms.Button btnDeleteReservation;
     }
 }

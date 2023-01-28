@@ -37,7 +37,7 @@ namespace LibRes
             ShowAllMembers();
             ShowAllBooks();
             ShowAllBookCopies();
-            pictureBoxScaned.Visible = false;
+            pictureBoxScanedMember.Visible = false;
             pictureBoxScanedBook.Visible = false;
         }
 
@@ -45,13 +45,13 @@ namespace LibRes
         {
             var book = cmbBook.SelectedItem as Book;
             var service = new BookCopyService();
-            comboBox2.DataSource = service.GetBookCopiesByBookId(book.Id);
+            cmbBookCopy.DataSource = service.GetBookCopiesByBookId(book.Id);
         }
 
         private void ShowAllMembers()
         {
             var service = new LibraryMemberService();
-            comboBox1.DataSource = service.GetLibraryMembers();
+            cmbLibraryMembers.DataSource = service.GetLibraryMembers();
         }
 
         private void ShowAllBooks()
@@ -67,12 +67,12 @@ namespace LibRes
             videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cmbDevices.SelectedIndex].MonikerString);
             videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
             videoCaptureDevice.Start();
-            timmerForScaning.Start();
+            timerForScaningMember.Start();
         }
 
         private void VideoCaptureDevice_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
-            pictureBox1.Image = (Bitmap)eventArgs.Frame.Clone();
+            pbScan.Image = (Bitmap)eventArgs.Frame.Clone();
         }
 
         private void btnScanBook_Click(object sender, EventArgs e)
@@ -85,8 +85,8 @@ namespace LibRes
 
         private void btnBorrow_Click(object sender, EventArgs e)
         {
-            var bookCopy = comboBox2.SelectedItem as BookCopy;
-            var libraryMember = comboBox1.SelectedItem as LibraryMember;
+            var bookCopy = cmbBookCopy.SelectedItem as BookCopy;
+            var libraryMember = cmbLibraryMembers.SelectedItem as LibraryMember;
             var stateService = new BorrowedBookStateService();
             var bookState = stateService.GetBorrowedBookStates();
             DateTime borrowDate = DateTime.Now;
@@ -110,7 +110,7 @@ namespace LibRes
                     var success = service.UpdateBorrowedBookOverview(toUpdate);
                     if (success)
                     {
-                        MessageBox.Show("The book is borrowed.");
+                        MessageBox.Show("The book has been successfully borrowed.");
                         Close();
                     }
                     else
@@ -171,12 +171,12 @@ namespace LibRes
 
         private void timmerForScaning_Tick(object sender, EventArgs e)
         {
-            if (pictureBox1.Image != null)
+            if (pbScan.Image != null)
             {
 
-                pictureBoxScaned.Visible = false;
+                pictureBoxScanedMember.Visible = false;
                 BarcodeReader barcodeReader = new BarcodeReader();
-                Result result = barcodeReader.Decode((Bitmap)pictureBox1.Image);
+                Result result = barcodeReader.Decode((Bitmap)pbScan.Image);
                 try
                 {
                     if (result != null)
@@ -184,23 +184,23 @@ namespace LibRes
                         var service = new LibraryMemberService();
                         var scaned = service.GetLibraryMemberById(int.Parse(result.ToString()))[0];
 
-                        foreach (var item in comboBox1.Items)
+                        foreach (var item in cmbLibraryMembers.Items)
                         {
                             var member = item as LibraryMember;
                             if (scaned.Id == member.Id)
                             {
-                                comboBox1.SelectedItem = item;
+                                cmbLibraryMembers.SelectedItem = item;
                                 break;
                             }
                         }
 
 
-                        timmerForScaning.Stop();
+                        timerForScaningMember.Stop();
                         if (videoCaptureDevice.IsRunning)
                         {
                             videoCaptureDevice.Stop();
-                            pictureBox1.Image = null;
-                            pictureBoxScaned.Visible = true;
+                            pbScan.Image = null;
+                            pictureBoxScanedMember.Visible = true;
 
                         }
                     }
@@ -209,11 +209,11 @@ namespace LibRes
                 catch (Exception)
                 {
                     MessageBox.Show("Wrong QR code");
-                    timmerForScaning.Stop();
+                    timerForScaningMember.Stop();
                     if (videoCaptureDevice.IsRunning)
                     {
                         videoCaptureDevice.Stop();
-                        pictureBox1.Image = null;
+                        pbScan.Image = null;
                     }
                 }
 
@@ -227,12 +227,12 @@ namespace LibRes
 
         private void timerForScaningBook_Tick(object sender, EventArgs e)
         {
-            if (pictureBox1.Image != null)
+            if (pbScan.Image != null)
             {
 
                 pictureBoxScanedBook.Visible = false;
                 BarcodeReader barcodeReader = new BarcodeReader();
-                Result result = barcodeReader.Decode((Bitmap)pictureBox1.Image);
+                Result result = barcodeReader.Decode((Bitmap)pbScan.Image);
                 //cmbBook.Text = result.ToString();
 
                 try
@@ -256,12 +256,12 @@ namespace LibRes
                             }
                         }
 
-                        foreach (var item in comboBox2.Items)
+                        foreach (var item in cmbBookCopy.Items)
                         {
                             var bookCopy = item as BookCopy;
                             if (scaned.Id == bookCopy.Id)
                             {
-                                comboBox2.SelectedItem = item;
+                                cmbBookCopy.SelectedItem = item;
                                 break;
                             }
                         }
@@ -269,11 +269,11 @@ namespace LibRes
 
 
 
-                        timmerForScaning.Stop();
+                        timerForScaningMember.Stop();
                         if (videoCaptureDevice.IsRunning)
                         {
                             videoCaptureDevice.Stop();
-                            pictureBox1.Image = null;
+                            pbScan.Image = null;
                             pictureBoxScanedBook.Visible = true;
 
                         }
@@ -284,11 +284,11 @@ namespace LibRes
                 catch(Exception)
                 {
                     MessageBox.Show("Wrong QR code");
-                    timmerForScaning.Stop();
+                    timerForScaningMember.Stop();
                     if (videoCaptureDevice.IsRunning)
                     {
                         videoCaptureDevice.Stop();
-                        pictureBox1.Image = null;
+                        pbScan.Image = null;
                         
 
                     }

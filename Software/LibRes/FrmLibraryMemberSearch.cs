@@ -65,6 +65,7 @@ namespace LibRes
         {
             var allMembers = service.GetLibraryMembers();
             dgvMembers.DataSource = allMembers;
+            dgvMembers.Columns["Id"].Visible = false;
             dgvMembers.Columns[4].Visible = false;
         }
 
@@ -74,6 +75,7 @@ namespace LibRes
                           where m.ToString().ToLower().Contains(txtSearchMember.Text.ToLower())
                           select m;
             dgvMembers.DataSource = members.ToList();
+            dgvMembers.Columns["Id"].Visible = false;
         }
 
         private void btnFilter_Click(object sender, EventArgs e)

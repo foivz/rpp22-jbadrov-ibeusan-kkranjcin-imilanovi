@@ -28,7 +28,7 @@ namespace BusinessLogicLayer.Services
                 var borrowedBookOverviews = repo.GetAll().ToList();
                 foreach(var borrowedBookOverview in borrowedBookOverviews)
                 {
-                    if(borrowedBookOverview.ReturnDate > DateTime.Now && borrowedBookOverview.IdState == 3)
+                    if(borrowedBookOverview.ReturnDate < DateTime.Now && borrowedBookOverview.IdState == 3)
                     {
                         repo.Delete(borrowedBookOverview);
                     }
@@ -93,20 +93,11 @@ namespace BusinessLogicLayer.Services
             }
         }
 
-        public List<BorrowedBookDetails> GetBorrowedBookDetailsByLibraryMember(int libraryMemberId)
+        public List<BorrowedBookDetails> GetDetailsByLibraryMember(int libraryMemberId)
         {
             using (var repo = new BorrowedBookOverviewRepository())
             {
-                var borrowedBookOverviews = repo.GetBorrowedBookDetailsByLibraryMember(libraryMemberId);
-                return borrowedBookOverviews.ToList();
-            }
-        }
-
-        public List<BorrowedBookOverview> GetBorrowedBookOverviewsByIdLibraryMember(int libraryMemberId)
-        {
-            using (var repo = new BorrowedBookOverviewRepository())
-            {
-                var borrowedBookOverviews = repo.GetBorrowedBookOverviewsByLibrraryMember(libraryMemberId);
+                var borrowedBookOverviews = repo.GetDetailsByLibraryMember(libraryMemberId);
                 return borrowedBookOverviews.ToList();
             }
         }
@@ -115,19 +106,30 @@ namespace BusinessLogicLayer.Services
         {
             using (var repo = new BorrowedBookOverviewRepository())
             {
-                var borrowedBookOverviews = repo.GetBookOverviewByBookIDAndLibraryMemberId(bookId, libraryMemberId);
+                var borrowedBookOverviews = repo.GetByBookIDAndLibraryMemberId(bookId, libraryMemberId);
                 return borrowedBookOverviews.ToList();
             }
         }
 
-        public List<BorrowedBookOverview> GetBorrowedBookOverviewById(int id)
+        public List<BorrowedBookOverview> GetBorrowedBookOverviewsById(int id)
         {
             using (var repo = new BorrowedBookOverviewRepository())
             {
-                var borrowedBookOverviews = repo.GetBorrowedBookOverviewsById(id);
+                var borrowedBookOverviews = repo.GetById(id);
                 return borrowedBookOverviews.ToList();
             }
         }
+
+        public List<BorrowedBookOverview> GetReserveddBookOverviewsByIdBook(int idBook)
+        {
+            using (var repo = new BorrowedBookOverviewRepository())
+            {
+                var borrowedBookOverviews = repo.GetReservedByIdBook(idBook);
+                return borrowedBookOverviews.ToList();
+            }
+        }
+
+        
 
         public bool IsReserved(int id)
         {

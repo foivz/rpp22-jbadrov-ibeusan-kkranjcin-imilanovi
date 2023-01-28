@@ -108,6 +108,7 @@ namespace LibRes
                 else
                 {
                     MessageBox.Show("Problem occurred while adding the book!");
+                    return;
                 }
 
                 var allBooks = bookService.GetBooks();

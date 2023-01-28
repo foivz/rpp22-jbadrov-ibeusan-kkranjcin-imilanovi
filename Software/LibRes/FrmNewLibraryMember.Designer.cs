@@ -108,6 +108,7 @@
             this.Controls.Add(this.lblFirstName);
             this.Controls.Add(this.txtFirstName);
             this.Name = "FrmNewLibraryMember";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAddMember";
             this.ResumeLayout(false);
             this.PerformLayout();

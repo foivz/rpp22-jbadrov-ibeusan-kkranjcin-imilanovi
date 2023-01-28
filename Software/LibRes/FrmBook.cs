@@ -30,13 +30,10 @@ namespace LibRes
         private void ShowAllLibraryMembers()
         {
             var service = new LibraryMemberService();
-            cmbMember.DataSource = service.GetLibraryMembers();
-            cmbMember.DisplayMember = "Id";
-            
+            cmbMember.DataSource = service.GetLibraryMembers();           
         }
 
-        
-
+       
         private void ShowBook()
         {
             var updatedBook = GetUpdatedBook();
@@ -115,11 +112,7 @@ namespace LibRes
             
         }
 
-        private void btnBorrow_Click(object sender, EventArgs e)
-        {
-            FrmBookBorrow frmBookBorrow = new FrmBookBorrow();
-            frmBookBorrow.ShowDialog();
-        }
+        
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -130,60 +123,68 @@ namespace LibRes
 
         private void btnReserveForMember_Click(object sender, EventArgs e)
         {
-            //var service = new BorrowedBookOverviewService();
-            var bookCopy = dgvBookCopies.CurrentRow.DataBoundItem as BookCopy;
-            if (service.IsReserved(bookCopy.Id))
+            try
             {
-                MessageBox.Show("Book is already reserved");
-            }
-            else if (service.IsBorrowed(bookCopy.Id))
-            {
-                MessageBox.Show("Book is already borrowed");
-            }
-
-            else if (dgvBookCopies.SelectedRows.Count == 1)
-            {
-                var libraryMember = cmbMember.SelectedItem as LibraryMember;
-                
-                var borrowedDate = DateTime.Now;
-                var returnDate = DateTime.Now.AddDays(1);
-                var borrowedBookState = new BorrowedBookState();
-                var borrowedBookStateService = new BorrowedBookStateService();
-                borrowedBookState = borrowedBookStateService.GetBorrowedBookStates()[2];
-                var bookOverview = new BorrowedBookOverview
+                var bookCopy = dgvBookCopies.CurrentRow.DataBoundItem as BookCopy;
+                if (service.IsReserved(bookCopy.Id))
                 {
-                    IdLibraryMember = libraryMember.Id,
-                    IdState = borrowedBookState.Id,
-                    BorrowDate = borrowedDate,
-                    ReturnDate = returnDate,
-                    IdBookCopy = bookCopy.Id,
-                    BookCopy = bookCopy,
-                    BorrowedBookState = borrowedBookState,
-                    LibraryMember = libraryMember
+                    MessageBox.Show("Book is already reserved");
+                }
 
-                };
-                
-                var success = service.AddBorrowedBookOverview(bookOverview);
-                if (success)
+                else if (service.IsBorrowed(bookCopy.Id))
                 {
-                    MessageBox.Show("Successfully reserved book!");
-                    Close();
+                    MessageBox.Show("Book is borrowed");
+
+                }
+
+                else if (dgvBookCopies.SelectedRows.Count == 1)
+                {
+                    var libraryMember = cmbMember.SelectedItem as LibraryMember;
+
+                    var borrowedDate = DateTime.Now;
+                    var returnDate = DateTime.Now.AddDays(1);
+                    var borrowedBookState = new BorrowedBookState();
+                    var borrowedBookStateService = new BorrowedBookStateService();
+                    borrowedBookState = borrowedBookStateService.GetBorrowedBookStates()[2];
+                    var bookOverview = new BorrowedBookOverview
+                    {
+                        IdLibraryMember = libraryMember.Id,
+                        IdState = 3,
+                        BorrowDate = borrowedDate,
+                        ReturnDate = returnDate,
+                        IdBookCopy = bookCopy.Id
+
+                    };
+
+
+                    var success = service.AddBorrowedBookOverview(bookOverview);
+                    if (success)
+                    {
+                        MessageBox.Show("Successfully reserved book!");
+                        ShowBook();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("The book is not reserved, an error has occurred.");
+                    }
+
+
 
                 }
                 else
                 {
-                    MessageBox.Show("Book was not successfully reserved");
+                    MessageBox.Show("Select one book");
+
                 }
 
-                
-
             }
-            else
+            catch(Exception exc)
             {
-                MessageBox.Show("Select one book");
-
+                MessageBox.Show("You did not approve the correct parameters");
             }
             
+
         }
 
         private void btnAddCopy_Click(object sender, EventArgs e)
@@ -250,6 +251,45 @@ namespace LibRes
                 row.DefaultCellStyle.BackColor= Color.Red;
             }
             
+        }
+
+        private void btnDeleteReservation_Click(object sender, EventArgs e)
+        {
+            
+
+            var bookCopy = dgvBookCopies.CurrentRow.DataBoundItem as BookCopy;
+            if(dgvBookCopies.SelectedRows.Count == 1)
+            {
+                if (service.IsReserved(bookCopy.Id))
+                {
+                    var borrowedBookOverview = service.GetReserveddBookOverviewsByIdBook(bookCopy.Id)[0];
+                    var success = service.DeleteBorrowedBookOverview(borrowedBookOverview);
+                    if (success)
+                    {
+                        MessageBox.Show("The reservation has been canceled.");
+                        ShowBook();
+                    }
+                    else
+                    {
+                        MessageBox.Show("The reservation has not been canceled, an error has occurred.");
+                    }
+                }
+                else if (service.IsBorrowed(bookCopy.Id))
+                {
+                    MessageBox.Show("Book is borrowed");
+                }
+                else
+                {
+                    MessageBox.Show("The book is not reserved.");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Choose one book copy");
+            }
+            
+
         }
     }
 }

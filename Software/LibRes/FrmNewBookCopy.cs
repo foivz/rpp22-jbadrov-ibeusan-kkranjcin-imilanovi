@@ -50,6 +50,11 @@ namespace LibRes
                 MessageBox.Show("Please fill in the year of publication of the book copy!");
                 return;
             }
+            if (int.Parse(txtYearOfPublication.Text) > 2023)
+            {
+                MessageBox.Show("Year of publication can't be in the future!");
+                return;
+            }
             var publisher = cmbPublishers.SelectedItem as Publisher;
             var bookCopy = new BookCopy 
             { 

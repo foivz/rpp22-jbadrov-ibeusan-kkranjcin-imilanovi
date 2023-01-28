@@ -84,7 +84,7 @@ namespace LibRes
             {
                 var item = dgvBookOverviews.CurrentRow.DataBoundItem as BorrowedBookDetails;
                 var service = new BorrowedBookOverviewService();
-                var borrowedBookOverview = service.GetBorrowedBookOverviewById(item.Id)[0];
+                var borrowedBookOverview = service.GetBorrowedBookOverviewsById(item.Id)[0];
                 int lateDays = CalculateDifferenceInDays(borrowedBookOverview.ReturnDate);
                 double penalty = lateDays * 0.1;
                 borrowedBookOverview.IdState = 2;
@@ -232,7 +232,7 @@ namespace LibRes
         {
             var member = cmbMember.SelectedItem as LibraryMember;
             var serviceOverview = new BorrowedBookOverviewService();
-            dgvBookOverviews.DataSource = serviceOverview.GetBorrowedBookDetailsByLibraryMember(member.Id);
+            dgvBookOverviews.DataSource = serviceOverview.GetDetailsByLibraryMember(member.Id);
         }
 
         private void btnOK_Click(object sender, EventArgs e)
