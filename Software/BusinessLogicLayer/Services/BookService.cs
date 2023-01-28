@@ -10,22 +10,9 @@ namespace BusinessLogicLayer.Services
 {
     public class BookService
     {
-        public bool IsInputCorrect(string isbn)
-        {
-            Regex regex = new Regex(@"^(97(8|9))?\d{9}(\d|X)$");
-            Match match = regex.Match(isbn);
-            if (match.Success)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         public bool AddBook(Book book)
         {
+            CheckISBN(book.ISBN);
             using (var repo = new BookRepository())
             {
                 var num = repo.Add(book);
@@ -42,6 +29,7 @@ namespace BusinessLogicLayer.Services
 
         public bool UpdateBook(Book book)
         {
+            CheckISBN(book.ISBN);
             using (var repo = new BookRepository())
             {
                 var num = repo.Update(book);
@@ -85,35 +73,18 @@ namespace BusinessLogicLayer.Services
         {
             using (var repo = new BookRepository())
             {
-                var book = repo.GetBookById(id);
+                var book = repo.GetById(id);
                 return book.ToList();
             }
         }
 
-        public List<Book> GetBooksByTitle(string title)
+        private void CheckISBN(string isbn)
         {
-            using (var repo = new BookRepository())
+            Regex regex = new Regex(@"^(97(8|9))?\d{9}(\d|X)$");
+            Match match = regex.Match(isbn);
+            if (!match.Success)
             {
-                var book = repo.GetBooksByTitle(title);
-                return book.ToList();
-            }
-        }
-
-        public List<Book> GetBooksByAuthors(string author)
-        {
-            using (var repo = new BookRepository())
-            {
-                var book = repo.GetBooksByAuthors(author);
-                return book.ToList();
-            }
-        }
-
-        public List<Book> GetBooksByGenre(string genre)
-        {
-            using (var repo = new BookRepository())
-            {
-                var book = repo.GetBooksByGenre(genre);
-                return book.ToList();
+                throw new Exception("ISBN 10 must be a number with 10 digits!");
             }
         }
     }

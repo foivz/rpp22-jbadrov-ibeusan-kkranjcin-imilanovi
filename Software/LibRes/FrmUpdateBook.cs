@@ -119,32 +119,52 @@ namespace LibRes
 
         private void btnUpdateBook_Click(object sender, EventArgs e)
         {
-            if (bookService.IsInputCorrect(txtISBN.Text))
+            var updatedBook = GetUpdatedBook();
+            var hasChanged = false;
+
+            updatedBook.Title = txtTitle.Text;
+            updatedBook.NumberOfPages = (int?)nudNumberOfPages.Value;
+            updatedBook.ISBN = txtISBN.Text;
+            if (chbBorrowable.Checked)
             {
-                var updatedBook = GetUpdatedBook();
-                var hasChanged = false;
+                updatedBook.IdBorrowableState = 1;
+            }
+            else
+            {
+                updatedBook.IdBorrowableState = 2;
+            }
 
-                updatedBook.Title = txtTitle.Text;
-                updatedBook.NumberOfPages = (int?)nudNumberOfPages.Value;
-                updatedBook.ISBN = txtISBN.Text;
-                if (chbBorrowable.Checked)
-                {
-                    updatedBook.IdBorrowableState = 1;
-                }
-                else
-                {
-                    updatedBook.IdBorrowableState = 2;
-                }
+            var bookAuthorsList = updatedBook.BookAuthors.ToList();
+            var authorsCount = clbAuthors.Items.Count;
+            for (int i = 0; i < authorsCount; i++)
+            {
+                var author = clbAuthors.Items[i] as Author;
 
-                var bookAuthorsList = updatedBook.BookAuthors.ToList();
-                var authorsCount = clbAuthors.Items.Count;
-                for (int i = 0; i < authorsCount; i++)
+                if (clbAuthors.GetItemChecked(i))
                 {
-                    var author = clbAuthors.Items[i] as Author;
-
-                    if (clbAuthors.GetItemChecked(i))
+                    if (bookAuthorsList.Count == 0)
                     {
-                        if (bookAuthorsList.Count == 0)
+                        var bookAuthor = new BookAuthor
+                        {
+                            IdBook = updatedBook.Id,
+                            IdAuthor = author.Id
+                        };
+                        if (bookAuthorService.AddBookAuthor(bookAuthor))
+                        {
+                            hasChanged = true;
+                        }
+                    }
+                    else
+                    {
+                        bool hasAuthor = false;
+                        foreach (var a in bookAuthorsList)
+                        {
+                            if (a.IdAuthor == author.Id)
+                            {
+                                hasAuthor = true;
+                            }
+                        }
+                        if (!hasAuthor)
                         {
                             var bookAuthor = new BookAuthor
                             {
@@ -156,54 +176,54 @@ namespace LibRes
                                 hasChanged = true;
                             }
                         }
-                        else
-                        {
-                            bool hasAuthor = false;
-                            foreach (var a in bookAuthorsList)
-                            {
-                                if (a.IdAuthor == author.Id)
-                                {
-                                    hasAuthor = true;
-                                }
-                            }
-                            if (!hasAuthor)
-                            {
-                                var bookAuthor = new BookAuthor
-                                {
-                                    IdBook = updatedBook.Id,
-                                    IdAuthor = author.Id
-                                };
-                                if (bookAuthorService.AddBookAuthor(bookAuthor))
-                                {
-                                    hasChanged = true;
-                                }
-                            }
-                        }
                     }
-                    else
+                }
+                else
+                {
+                    foreach (var a in bookAuthorsList)
                     {
-                        foreach (var a in bookAuthorsList)
+                        if (a.IdAuthor == author.Id)
                         {
-                            if (a.IdAuthor == author.Id)
+                            if (bookAuthorService.DeleteBookAuthor(a))
                             {
-                                if (bookAuthorService.DeleteBookAuthor(a))
-                                {
-                                    hasChanged = true;
-                                }
+                                hasChanged = true;
                             }
                         }
                     }
                 }
+            }
 
-                var bookGenresList = updatedBook.BookGenres.ToList();
-                var genresCount = clbGenres.Items.Count;
-                for (int i = 0; i < genresCount; i++)
+            var bookGenresList = updatedBook.BookGenres.ToList();
+            var genresCount = clbGenres.Items.Count;
+            for (int i = 0; i < genresCount; i++)
+            {
+                var genre = clbGenres.Items[i] as Genre;
+
+                if (clbGenres.GetItemChecked(i))
                 {
-                    var genre = clbGenres.Items[i] as Genre;
-
-                    if (clbGenres.GetItemChecked(i))
+                    if (bookGenresList.Count == 0)
                     {
-                        if (bookGenresList.Count == 0)
+                        var bookGenre = new BookGenre
+                        {
+                            IdBook = updatedBook.Id,
+                            IdGenre = genre.Id
+                        };
+                        if (bookGenreService.AddBookGenre(bookGenre))
+                        {
+                            hasChanged = true;
+                        }
+                    }
+                    else
+                    {
+                        var hasGenre = false;
+                        foreach (var g in bookGenresList)
+                        {
+                            if (g.IdGenre == genre.Id)
+                            {
+                                hasGenre = true;
+                            }
+                        }
+                        if (!hasGenre)
                         {
                             var bookGenre = new BookGenre
                             {
@@ -215,45 +235,25 @@ namespace LibRes
                                 hasChanged = true;
                             }
                         }
-                        else
-                        {
-                            var hasGenre = false;
-                            foreach (var g in bookGenresList)
-                            {
-                                if (g.IdGenre == genre.Id)
-                                {
-                                    hasGenre = true;
-                                }
-                            }
-                            if (!hasGenre)
-                            {
-                                var bookGenre = new BookGenre
-                                {
-                                    IdBook = updatedBook.Id,
-                                    IdGenre = genre.Id
-                                };
-                                if (bookGenreService.AddBookGenre(bookGenre))
-                                {
-                                    hasChanged = true;
-                                }
-                            }
-                        }
                     }
-                    else
+                }
+                else
+                {
+                    foreach (var g in bookGenresList)
                     {
-                        foreach (var g in bookGenresList)
+                        if (g.IdGenre == genre.Id)
                         {
-                            if (g.IdGenre == genre.Id)
+                            if (bookGenreService.DeleteBookGenre(g))
                             {
-                                if (bookGenreService.DeleteBookGenre(g))
-                                {
-                                    hasChanged = true;
-                                }
+                                hasChanged = true;
                             }
                         }
                     }
                 }
+            }
 
+            try
+            {
                 if (bookService.UpdateBook(updatedBook) || hasChanged)
                 {
                     MessageBox.Show("Successfully updated the book: " + updatedBook.Title + "!");
@@ -262,15 +262,13 @@ namespace LibRes
                 {
                     MessageBox.Show("Nothing was changed!");
                 }
-
-                Close();
             }
-            else
+            catch (Exception ex)
             {
-                var ex = new UserInputException("Book ISBN should be 10 digits long and start with 978 or 979!");
-                MessageBox.Show(ex.MessageForUser);
-                return;
+                MessageBox.Show(ex.Message);
             }
+
+            Close();
         }
 
         private Book GetUpdatedBook()

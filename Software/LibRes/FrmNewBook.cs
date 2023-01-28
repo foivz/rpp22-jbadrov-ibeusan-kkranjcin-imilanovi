@@ -77,30 +77,30 @@ namespace LibRes
                 return;
             }
 
-            if (bookService.IsInputCorrect(txtISBN.Text))
+            Book book;
+            if (chbBorrowable.Checked == true)
             {
-                Book book;
-                if (chbBorrowable.Checked == true)
+                book = new Book
                 {
-                    book = new Book
-                    {
-                        IdBorrowableState = 1,
-                        Title = txtTitle.Text,
-                        NumberOfPages = (int?)nudNumberOfPages.Value,
-                        ISBN = txtISBN.Text
-                    };
-                }
-                else
+                    IdBorrowableState = 1,
+                    Title = txtTitle.Text,
+                    NumberOfPages = (int?)nudNumberOfPages.Value,
+                    ISBN = txtISBN.Text
+                };
+            }
+            else
+            {
+                book = new Book
                 {
-                    book = new Book
-                    {
-                        IdBorrowableState = 2,
-                        Title = txtTitle.Text,
-                        NumberOfPages = (int?)nudNumberOfPages.Value,
-                        ISBN = txtISBN.Text
-                    };
-                }
+                    IdBorrowableState = 2,
+                    Title = txtTitle.Text,
+                    NumberOfPages = (int?)nudNumberOfPages.Value,
+                    ISBN = txtISBN.Text
+                };
+            }
 
+            try
+            {
                 if (bookService.AddBook(book))
                 {
                     MessageBox.Show("Successfully added a new book: " + book.Title + "!");
@@ -109,38 +109,36 @@ namespace LibRes
                 {
                     MessageBox.Show("Problem occurred while adding the book!");
                 }
-
-                var allBooks = bookService.GetBooks();
-                var addedBook = allBooks.Last();
-
-                foreach (var author in authorsList)
-                {
-                    BookAuthor bookAuthor = new BookAuthor
-                    {
-                        IdBook = addedBook.Id,
-                        IdAuthor = author.Id
-                    };
-                    bookAuthorService.AddBookAuthor(bookAuthor);
-                }
-
-                foreach (var genre in genresList)
-                {
-                    BookGenre bookGenre = new BookGenre
-                    {
-                        IdBook = addedBook.Id,
-                        IdGenre = genre.Id
-                    };
-                    bookGenreService.AddBookGenre(bookGenre);
-                }
-
-                Close();
             }
-            else
+            catch (Exception ex)
             {
-                var ex = new UserInputException("Book ISBN should be 10 digits long and start with 978 or 979!");
-                MessageBox.Show(ex.MessageForUser);
-                return;
+                MessageBox.Show(ex.Message);
             }
+
+            var allBooks = bookService.GetBooks();
+            var addedBook = allBooks.Last();
+
+            foreach (var author in authorsList)
+            {
+                BookAuthor bookAuthor = new BookAuthor
+                {
+                    IdBook = addedBook.Id,
+                    IdAuthor = author.Id
+                };
+                bookAuthorService.AddBookAuthor(bookAuthor);
+            }
+
+            foreach (var genre in genresList)
+            {
+                BookGenre bookGenre = new BookGenre
+                {
+                    IdBook = addedBook.Id,
+                    IdGenre = genre.Id
+                };
+                bookGenreService.AddBookGenre(bookGenre);
+            }
+
+            Close();
         }
 
         private void btnAddAuthor_Click(object sender, EventArgs e)
