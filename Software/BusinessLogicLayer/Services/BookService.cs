@@ -1,12 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using DataAccessLayer;
 using DataAccessLayer.Repositories;
+using LibRes.Exceptions;
 
 namespace BusinessLogicLayer.Services
 {
     public class BookService
     {
+        public bool IsInputCorrect(string isbn)
+        {
+            Regex regex = new Regex(@"^(97(8|9))?\d{9}(\d|X)$");
+            Match match = regex.Match(isbn);
+            if (match.Success)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool AddBook(Book book)
         {
             using (var repo = new BookRepository())
