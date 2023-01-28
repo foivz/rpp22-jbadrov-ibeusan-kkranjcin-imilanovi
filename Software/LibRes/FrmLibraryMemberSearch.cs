@@ -61,6 +61,9 @@ namespace LibRes
             SearchMembers();
         }
 
+        /// <summary>
+        /// Fills the <see cref="DataGridView"/> with all the library members.
+        /// </summary>
         private void ShowAllMembers()
         {
             var allMembers = service.GetLibraryMembers();
@@ -69,6 +72,9 @@ namespace LibRes
             dgvMembers.Columns[4].Visible = false;
         }
 
+        /// <summary>
+        /// Fills the <see cref="DataGridView"/> with all the library members that match the search criteria.
+        /// </summary>
         private void SearchMembers()
         {
             var members = from m in service.GetLibraryMembers()

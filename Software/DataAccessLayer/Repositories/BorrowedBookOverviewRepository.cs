@@ -25,7 +25,6 @@ namespace DataAccessLayer.Repositories
         /// </summary>
         /// <param name="libraryMemberId"></param>
         /// <returns></returns>
-
         public IQueryable<BorrowedBookDetails> GetDetailsByLibraryMember(int libraryMemberId)
         {
             var query = from bbo in Context.BorrowedBookOverviews
@@ -43,7 +42,7 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
-        public IQueryable<BorrowedBookOverview> GetByBookIDAndLibraryMemberId(int bookId, int libraryMemberId)
+        public IQueryable<BorrowedBookOverview> GetByBookIdAndLibraryMemberId(int bookId, int libraryMemberId)
         {
             var query = from b in Entities
                         where b.IdBookCopy == bookId && b.IdLibraryMember == libraryMemberId
@@ -76,9 +75,6 @@ namespace DataAccessLayer.Repositories
                 IdBookCopy = entity.IdBookCopy,
                 IdLibraryMember = entity.IdLibraryMember,
                 IdState = entity.IdState,
-                //BookCopy = entity.BookCopy,
-                //BorrowedBookState = entity.BorrowedBookState,
-               //LibraryMember = entity.LibraryMember,
                 BorrowDate = entity.BorrowDate,
                 ReturnDate = entity.ReturnDate
             };
@@ -90,15 +86,9 @@ namespace DataAccessLayer.Repositories
         public override int Update(BorrowedBookOverview entity)
         {
             var borrowedBookOverview = Entities.SingleOrDefault(b => b.Id == entity.Id);
-            //borrowedBookOverview.IdLibraryMember = entity.IdLibraryMember;
             borrowedBookOverview.IdState = entity.IdState;
             borrowedBookOverview.BorrowDate = entity.BorrowDate;
             borrowedBookOverview.ReturnDate = entity.ReturnDate;
-           
-            
-            //borrowedBookOverview.IdBookCopy = entity.IdState;
-
-
             return SaveChanges();
         }
 
@@ -108,7 +98,7 @@ namespace DataAccessLayer.Repositories
         {
             using (var repo = new BookCopyRepository())
             {
-                var bookCopy = repo.GetBookCopyById(id).ToList();
+                var bookCopy = repo.GetById(id).ToList();
                 foreach (var book in bookCopy)
                 {
                     if (book != null)
@@ -123,12 +113,8 @@ namespace DataAccessLayer.Repositories
                                 }
                             }
                         }
-
                     }
-
                 }
-                
-                
             }
             return false;
         }
@@ -137,7 +123,7 @@ namespace DataAccessLayer.Repositories
         {
             using (var repo = new BookCopyRepository())
             {
-                var bookCopy = repo.GetBookCopyById(id).ToList();
+                var bookCopy = repo.GetById(id).ToList();
                 foreach (var book in bookCopy)
                 {
                     if (book != null)
@@ -152,12 +138,8 @@ namespace DataAccessLayer.Repositories
                                 }
                             }
                         }
-
                     }
-
                 }
-
-
             }
             return false;
         }
@@ -166,7 +148,7 @@ namespace DataAccessLayer.Repositories
         {
             using (var repo = new BookCopyRepository())
             {
-                var bookCopy = repo.GetBookCopyById(bookId).ToList();
+                var bookCopy = repo.GetById(bookId).ToList();
                 foreach (var book in bookCopy)
                 {
                     if (book != null)
@@ -181,18 +163,10 @@ namespace DataAccessLayer.Repositories
                                 }
                             }
                         }
-
                     }
-
                 }
-
-
             }
             return false;
         }
-
-
     }
-
-   
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace DataAccessLayer.Repositories
 {
@@ -12,6 +8,10 @@ namespace DataAccessLayer.Repositories
         {
         }
 
+        /// <summary>
+        /// Gets all library members from DB
+        /// </summary>
+        /// <returns>Link query containing all library members</returns>
         public override IQueryable<LibraryMember> GetAll()
         {
             var query = from lm in Entities
@@ -19,6 +19,11 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
+        /// <summary>
+        /// Gets a library member with the matching <paramref name="id"/>
+        /// </summary>
+        /// <param name="id">Id of the targeted member</param>
+        /// <returns>Linq query containing the library memeber</returns>
         public IQueryable<LibraryMember> GetById(int id)
         {
             var query = from lm in Entities
@@ -27,6 +32,11 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
+        /// <summary>
+        /// Adds the <paramref name="entity"/> library member into the DB
+        /// </summary>
+        /// <param name="entity">The library memeber intended for adding into the database</param>
+        /// <returns>1 if add is successfull, 0 if not</returns>
         public override int Add(LibraryMember entity)
         {
             var libraryMember = new LibraryMember()
@@ -40,6 +50,11 @@ namespace DataAccessLayer.Repositories
             return SaveChanges();
         }
 
+        /// <summary>
+        /// Updates the <paramref name="entity"/> library member in the DB
+        /// </summary>
+        /// <param name="entity">The library memeber intended for updating in the database</param>
+        /// <returns>1 if update is successfull, 0 if not</returns>
         public override int Update(LibraryMember entity)
         {
             var libraryMember = Entities.SingleOrDefault(lm => lm.Id == entity.Id);

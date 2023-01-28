@@ -19,7 +19,7 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
-        public IQueryable<BookCopy> GetBookCopyById(int id)
+        public IQueryable<BookCopy> GetById(int id)
         {
             var query = from b in Entities
                         where b.Id == id
@@ -61,7 +61,7 @@ namespace DataAccessLayer.Repositories
             return SaveChanges();
         }
 
-        public IQueryable<BookCopy> GetBookCopiesByBookId(int id)
+        public IQueryable<BookCopy> GetByBookId(int id)
         {
             var query = from bc in Entities
                         where bc.IdBook == id

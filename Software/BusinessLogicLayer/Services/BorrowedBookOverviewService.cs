@@ -106,7 +106,7 @@ namespace BusinessLogicLayer.Services
         {
             using (var repo = new BorrowedBookOverviewRepository())
             {
-                var borrowedBookOverviews = repo.GetByBookIDAndLibraryMemberId(bookId, libraryMemberId);
+                var borrowedBookOverviews = repo.GetByBookIdAndLibraryMemberId(bookId, libraryMemberId);
                 return borrowedBookOverviews.ToList();
             }
         }

@@ -74,7 +74,7 @@ namespace BusinessLogicLayer.Services
         {
             using (var repo = new BookCopyRepository())
             {
-                var bookCopy = repo.GetBookCopyById(id);
+                var bookCopy = repo.GetById(id);
                 return bookCopy.ToList();
             }
 
@@ -84,7 +84,7 @@ namespace BusinessLogicLayer.Services
         {
             using (var repo = new BookCopyRepository())
             {
-                var bookCopy = repo.GetBookCopiesByBookId(id);
+                var bookCopy = repo.GetByBookId(id);
                 return bookCopy.ToList();
             }
 

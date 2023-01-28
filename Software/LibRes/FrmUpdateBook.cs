@@ -10,7 +10,7 @@ namespace LibRes
 {
     public partial class FrmUpdateBook : Form
     {
-        public Book _book { get; set; }
+        private Book _book;
         BookService bookService = new BookService();
         AuthorService authorService = new AuthorService();
         GenreService genreService = new GenreService();

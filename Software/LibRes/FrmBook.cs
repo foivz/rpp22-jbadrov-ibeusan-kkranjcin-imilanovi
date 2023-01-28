@@ -9,7 +9,7 @@ namespace LibRes
 {
     public partial class FrmBook : Form
     {
-        public Book _book { get; set; }
+        private Book _book;
         BookService bookService = new BookService();
         BookCopyService bookCopyService = new BookCopyService();
 
@@ -169,22 +169,16 @@ namespace LibRes
                         MessageBox.Show("The book is not reserved, an error has occurred.");
                     }
 
-
-
                 }
                 else
                 {
                     MessageBox.Show("Select one book");
-
                 }
-
             }
-            catch(Exception exc)
+            catch(Exception)
             {
                 MessageBox.Show("You did not approve the correct parameters");
             }
-            
-
         }
 
         private void btnAddCopy_Click(object sender, EventArgs e)

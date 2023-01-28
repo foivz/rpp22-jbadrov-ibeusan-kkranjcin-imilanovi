@@ -9,6 +9,12 @@ namespace BusinessLogicLayer.Services
 {
     public class LibraryMemberService
     {
+        /// <summary>
+        /// Adds the <paramref name="libraryMember"/> into the DB
+        /// </summary>
+        /// <param name="libraryMember">The library memeber intended for adding into the database</param>
+        /// <returns><see langword="True"/> if add is successfull, <see langword="False"/> if not</returns>
+        /// <exception cref="Exception">Throws <see cref="Exception"/> if member e-mail adress is invalid</exception>
         public bool AddLibraryMember(LibraryMember libraryMember)
         {
             var email = libraryMember.Email;
@@ -35,6 +41,12 @@ namespace BusinessLogicLayer.Services
             }
         }
 
+        /// <summary>
+        /// Updates the <paramref name="libraryMember"/> inside the DB
+        /// </summary>
+        /// <param name="libraryMember">The library memeber intended for updating inside the database</param>
+        /// <returns><see langword="True"/> if update is successfull, <see langword="False"/> if not</returns>
+        /// <exception cref="Exception">Throws <see cref="Exception"/> if member e-mail adress is invalid</exception>
         public bool UpdateLibraryMember(LibraryMember libraryMember)
         {
             var email = libraryMember.Email;
@@ -58,6 +70,11 @@ namespace BusinessLogicLayer.Services
             }
         }
 
+        /// <summary>
+        /// Deletes the <paramref name="libraryMember"/> inside the DB
+        /// </summary>
+        /// <param name="libraryMember">The library memeber intended for deleting inside the database</param>
+        /// <returns><see langword="True"/> if delete is successfull, <see langword="False"/> if not</returns>
         public bool DeleteLibraryMember(LibraryMember libraryMember)
         {
             using (var repo = new LibraryMemberRepository())
@@ -74,6 +91,10 @@ namespace BusinessLogicLayer.Services
             }
         }
 
+        /// <summary>
+        /// Gets all library members
+        /// </summary>
+        /// <returns>List of <see cref="LibraryMember"/> objects</returns>
         public List<LibraryMember> GetLibraryMembers()
         {
             using(var repo = new LibraryMemberRepository())
@@ -83,6 +104,11 @@ namespace BusinessLogicLayer.Services
             }
         }
 
+        /// <summary>
+        /// Gets the <see cref="LibraryMember"/> with the matching <paramref name="id"/>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>List containing only one <see cref="LibraryMember"/> object.</returns>
         public List<LibraryMember> GetLibraryMemberById(int id)
         {
             using (var repo = new LibraryMemberRepository())
