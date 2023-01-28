@@ -12,7 +12,7 @@ using AForge.Video;
 using AForge.Video.DirectShow;
 using ZXing;
 using DataAccessLayer;
-using DataAccessLayer.DataGridViewModels;
+using DataAccessLayer.DataGridViewModel;
 
 namespace LibRes
 {

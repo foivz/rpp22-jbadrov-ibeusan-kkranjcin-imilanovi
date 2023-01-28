@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
 using DataAccessLayer;
-using DataAccessLayer.DataGridViewModels;
+using DataAccessLayer.DataGridViewModel;
 using DataAccessLayer.Repositories;
 
 namespace BusinessLogicLayer.Services

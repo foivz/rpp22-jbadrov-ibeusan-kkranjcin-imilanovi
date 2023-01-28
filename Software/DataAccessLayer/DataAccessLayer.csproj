@@ -72,7 +72,7 @@
     <Compile Include="Author.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataGridViewModels\BorrowedBookDetails.cs" />
+    <Compile Include="DataGridViewModel\BorrowedBookDetails.cs" />
     <Compile Include="Extentions\Author.Ext.cs" />
     <Compile Include="Book.cs">
       <DependentUpon>LibResModel.tt</DependentUpon>
