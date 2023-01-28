@@ -29,7 +29,7 @@ namespace LibRes
 
         public void FrmBookReturn_Load(object sender, EventArgs e)
         {
-
+            
             filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             foreach (FilterInfo filterInfo in filterInfoCollection)
             {
@@ -39,11 +39,32 @@ namespace LibRes
             //ShowAllBooks();
             ShowAllMembers();
             dgvBookOverviews.DataSource = null;
+            HidePenaltyRelatedControls();
 
-            
+
         }
 
-        
+        public void HidePenaltyRelatedControls()
+        {
+            lblReturn.Visible = false;
+            lblLate.Visible = false;
+            lblPenalty.Visible = false;
+            txtLate.Visible = false;
+            txtPenalty.Visible = false;
+            btnOK.Visible = false;
+        }
+
+        public void ShowPenaltyRelatedControls()
+        {
+            lblReturn.Visible = true;
+            lblLate.Visible = true;
+            lblPenalty.Visible = true;
+            txtLate.Visible = true;
+            txtPenalty.Visible = true;
+            btnOK.Visible = true;
+        }
+
+
 
         private void ShowAllMembers()
         {
@@ -64,14 +85,27 @@ namespace LibRes
                 var item = dgvBookOverviews.CurrentRow.DataBoundItem as BorrowedBookDetails;
                 var service = new BorrowedBookOverviewService();
                 var borrowedBookOverview = service.GetBorrowedBookOverviewById(item.Id)[0];
+                int lateDays = CalculateDifferenceInDays(borrowedBookOverview.ReturnDate);
+                double penalty = lateDays * 0.1;
                 borrowedBookOverview.IdState = 2;
                 var sucess = service.UpdateBorrowedBookOverview(borrowedBookOverview);
 
                 if (sucess)
                 {
-                    MessageBox.Show("Succes");
+                    txtLate.Text = lateDays.ToString() + " days";
+                    txtPenalty.Text = penalty.ToString() + " EUR";
+                    lblReturn.Text = "The book has been returned";
+                    ShowPenaltyRelatedControls();
+
+                    ShowBookOverviewsForLibraryMember();
+
                 }
-                ShowBookOverviewsForLibraryMember();
+                else
+                {
+                    MessageBox.Show("The book has not been returned, an error occurred");
+                }
+
+                
                 
             }
             else
@@ -79,6 +113,25 @@ namespace LibRes
                 MessageBox.Show("Choose one book");
             }
             
+        }
+
+        private int CalculateDifferenceInDays(DateTime? returnDate)
+        {
+            DateTime today = DateTime.Today;
+            if (returnDate.HasValue)
+            {
+                TimeSpan difference = today - returnDate.Value ;
+                if (difference.TotalDays > 0)
+                {
+                    return difference.Days;
+                }
+                else return 0;
+                
+            }
+            else
+            {
+                return -1; 
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -178,6 +231,11 @@ namespace LibRes
             var member = cmbMember.SelectedItem as LibraryMember;
             var serviceOverview = new BorrowedBookOverviewService();
             dgvBookOverviews.DataSource = serviceOverview.GetBorrowedBookDetailsByLibraryMember(member.Id);
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            HidePenaltyRelatedControls();
         }
     }
 }

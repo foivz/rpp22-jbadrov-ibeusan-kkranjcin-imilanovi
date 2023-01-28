@@ -38,13 +38,19 @@
             this.pbScan = new System.Windows.Forms.PictureBox();
             this.dgvBookOverviews = new System.Windows.Forms.DataGridView();
             this.timerForScaning = new System.Windows.Forms.Timer(this.components);
+            this.lblLate = new System.Windows.Forms.Label();
+            this.lblPenalty = new System.Windows.Forms.Label();
+            this.txtLate = new System.Windows.Forms.TextBox();
+            this.txtPenalty = new System.Windows.Forms.TextBox();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.lblReturn = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbScan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookOverviews)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(1118, 599);
+            this.btnCancel.Location = new System.Drawing.Point(1006, 570);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(91, 28);
             this.btnCancel.TabIndex = 11;
@@ -54,7 +60,7 @@
             // 
             // btnReturn
             // 
-            this.btnReturn.Location = new System.Drawing.Point(982, 599);
+            this.btnReturn.Location = new System.Drawing.Point(886, 570);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(91, 28);
             this.btnReturn.TabIndex = 10;
@@ -67,7 +73,7 @@
             this.cmbMember.FormattingEnabled = true;
             this.cmbMember.Location = new System.Drawing.Point(32, 161);
             this.cmbMember.Name = "cmbMember";
-            this.cmbMember.Size = new System.Drawing.Size(359, 24);
+            this.cmbMember.Size = new System.Drawing.Size(239, 24);
             this.cmbMember.TabIndex = 7;
             this.cmbMember.SelectedIndexChanged += new System.EventHandler(this.cmbMember_SelectedIndexChanged);
             // 
@@ -95,7 +101,7 @@
             this.cmbDevices.FormattingEnabled = true;
             this.cmbDevices.Location = new System.Drawing.Point(298, 43);
             this.cmbDevices.Name = "cmbDevices";
-            this.cmbDevices.Size = new System.Drawing.Size(500, 24);
+            this.cmbDevices.Size = new System.Drawing.Size(604, 24);
             this.cmbDevices.TabIndex = 13;
             // 
             // pbScan
@@ -109,7 +115,7 @@
             // dgvBookOverviews
             // 
             this.dgvBookOverviews.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBookOverviews.Location = new System.Drawing.Point(524, 161);
+            this.dgvBookOverviews.Location = new System.Drawing.Point(412, 161);
             this.dgvBookOverviews.Name = "dgvBookOverviews";
             this.dgvBookOverviews.RowHeadersWidth = 51;
             this.dgvBookOverviews.RowTemplate.Height = 24;
@@ -120,11 +126,67 @@
             // 
             this.timerForScaning.Tick += new System.EventHandler(this.timerForScaning_Tick);
             // 
+            // lblLate
+            // 
+            this.lblLate.AutoSize = true;
+            this.lblLate.Location = new System.Drawing.Point(1115, 209);
+            this.lblLate.Name = "lblLate";
+            this.lblLate.Size = new System.Drawing.Size(36, 16);
+            this.lblLate.TabIndex = 16;
+            this.lblLate.Text = "Late:";
+            // 
+            // lblPenalty
+            // 
+            this.lblPenalty.AutoSize = true;
+            this.lblPenalty.Location = new System.Drawing.Point(1115, 249);
+            this.lblPenalty.Name = "lblPenalty";
+            this.lblPenalty.Size = new System.Drawing.Size(55, 16);
+            this.lblPenalty.TabIndex = 17;
+            this.lblPenalty.Text = "Penalty:";
+            // 
+            // txtLate
+            // 
+            this.txtLate.Location = new System.Drawing.Point(1171, 206);
+            this.txtLate.Name = "txtLate";
+            this.txtLate.Size = new System.Drawing.Size(137, 22);
+            this.txtLate.TabIndex = 18;
+            // 
+            // txtPenalty
+            // 
+            this.txtPenalty.Location = new System.Drawing.Point(1171, 246);
+            this.txtPenalty.Name = "txtPenalty";
+            this.txtPenalty.Size = new System.Drawing.Size(137, 22);
+            this.txtPenalty.TabIndex = 19;
+            // 
+            // btnOK
+            // 
+            this.btnOK.Location = new System.Drawing.Point(1231, 301);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(77, 31);
+            this.btnOK.TabIndex = 20;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // lblReturn
+            // 
+            this.lblReturn.AutoSize = true;
+            this.lblReturn.Location = new System.Drawing.Point(1126, 164);
+            this.lblReturn.Name = "lblReturn";
+            this.lblReturn.Size = new System.Drawing.Size(0, 16);
+            this.lblReturn.TabIndex = 21;
+            // 
             // FrmBookReturn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1237, 653);
+            this.ClientSize = new System.Drawing.Size(1325, 607);
+            this.Controls.Add(this.lblReturn);
+            this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.txtPenalty);
+            this.Controls.Add(this.txtLate);
+            this.Controls.Add(this.lblPenalty);
+            this.Controls.Add(this.lblLate);
             this.Controls.Add(this.dgvBookOverviews);
             this.Controls.Add(this.pbScan);
             this.Controls.Add(this.cmbDevices);
@@ -155,5 +217,11 @@
         private System.Windows.Forms.PictureBox pbScan;
         private System.Windows.Forms.DataGridView dgvBookOverviews;
         private System.Windows.Forms.Timer timerForScaning;
+        private System.Windows.Forms.Label lblLate;
+        private System.Windows.Forms.Label lblPenalty;
+        private System.Windows.Forms.TextBox txtLate;
+        private System.Windows.Forms.TextBox txtPenalty;
+        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.Label lblReturn;
     }
 }
