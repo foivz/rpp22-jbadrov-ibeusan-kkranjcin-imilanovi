@@ -10,7 +10,7 @@ namespace BusinessLogicLayer.Services
 {
     public class BorrowedBookOverviewService
     {
-        private readonly System.Timers.Timer _timer = new System.Timers.Timer(86400000);
+        private readonly System.Timers.Timer _timer = new System.Timers.Timer(1000);
         
 
         public BorrowedBookOverviewService()

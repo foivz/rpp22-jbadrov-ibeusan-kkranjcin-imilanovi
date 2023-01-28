@@ -107,8 +107,17 @@ namespace LibRes
                     toUpdate.ReturnDate = returnDate;
                     toUpdate.IdState = bookState[0].Id;
 
-                    service.UpdateBorrowedBookOverview(toUpdate);
-                    MessageBox.Show("Success");
+                    var success = service.UpdateBorrowedBookOverview(toUpdate);
+                    if (success)
+                    {
+                        MessageBox.Show("The book is borrowed.");
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("The book is not borrowed, an error has occurred.");
+                    }
+                    
 
                 }
                 else
@@ -129,8 +138,16 @@ namespace LibRes
                     IdBookCopy = bookCopy.Id
                 };
 
-                service.AddBorrowedBookOverview(borrowableBookOverview);
-                MessageBox.Show("Success");
+                var success = service.AddBorrowedBookOverview(borrowableBookOverview);
+                if (success)
+                {
+                    MessageBox.Show("The book is borrowed.");
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("The book is not borrowed, an error has occurred.");
+                }
             }
             //MessageBox.Show("Successfully borrowed book!");
         }
@@ -157,7 +174,7 @@ namespace LibRes
             if (pictureBox1.Image != null)
             {
 
-                pictureBoxScanedBook.Visible = false;
+                pictureBoxScaned.Visible = false;
                 BarcodeReader barcodeReader = new BarcodeReader();
                 Result result = barcodeReader.Decode((Bitmap)pictureBox1.Image);
                 try

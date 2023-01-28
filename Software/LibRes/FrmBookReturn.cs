@@ -29,7 +29,7 @@ namespace LibRes
 
         public void FrmBookReturn_Load(object sender, EventArgs e)
         {
-            
+            pbScanMember.Visible = false;
             filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             foreach (FilterInfo filterInfo in filterInfoCollection)
             {
@@ -159,7 +159,7 @@ namespace LibRes
         {
             if (pbScan.Image != null)
             {
-
+                pbScanMember.Visible = false;
                 BarcodeReader barcodeReader = new BarcodeReader();
                 Result result = barcodeReader.Decode((Bitmap)pbScan.Image);
                 try
@@ -186,6 +186,7 @@ namespace LibRes
                         {
                             videoCaptureDevice.Stop();
                             pbScan.Image = null;
+                            pbScanMember.Visible = true;
                            
 
                         }
@@ -200,6 +201,7 @@ namespace LibRes
                     {
                         videoCaptureDevice.Stop();
                         pbScan.Image = null;
+                        timerForScaning.Stop();
                     }
                 }
 

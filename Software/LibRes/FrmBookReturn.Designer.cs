@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBookReturn));
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnReturn = new System.Windows.Forms.Button();
             this.cmbMember = new System.Windows.Forms.ComboBox();
@@ -44,8 +45,10 @@
             this.txtPenalty = new System.Windows.Forms.TextBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.lblReturn = new System.Windows.Forms.Label();
+            this.pbScanMember = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbScan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookOverviews)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbScanMember)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -146,6 +149,7 @@
             // 
             // txtLate
             // 
+            this.txtLate.Enabled = false;
             this.txtLate.Location = new System.Drawing.Point(1171, 206);
             this.txtLate.Name = "txtLate";
             this.txtLate.Size = new System.Drawing.Size(137, 22);
@@ -153,6 +157,7 @@
             // 
             // txtPenalty
             // 
+            this.txtPenalty.Enabled = false;
             this.txtPenalty.Location = new System.Drawing.Point(1171, 246);
             this.txtPenalty.Name = "txtPenalty";
             this.txtPenalty.Size = new System.Drawing.Size(137, 22);
@@ -176,11 +181,22 @@
             this.lblReturn.Size = new System.Drawing.Size(0, 16);
             this.lblReturn.TabIndex = 21;
             // 
+            // pbScanMember
+            // 
+            this.pbScanMember.Image = ((System.Drawing.Image)(resources.GetObject("pbScanMember.Image")));
+            this.pbScanMember.Location = new System.Drawing.Point(291, 161);
+            this.pbScanMember.Name = "pbScanMember";
+            this.pbScanMember.Size = new System.Drawing.Size(43, 33);
+            this.pbScanMember.TabIndex = 22;
+            this.pbScanMember.TabStop = false;
+            // 
             // FrmBookReturn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1325, 607);
+            this.Controls.Add(this.pbScanMember);
             this.Controls.Add(this.lblReturn);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.txtPenalty);
@@ -196,11 +212,13 @@
             this.Controls.Add(this.cmbMember);
             this.Controls.Add(this.btnScanMember);
             this.Name = "FrmBookReturn";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmBookReturn";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmBookReturn_FormClosing);
             this.Load += new System.EventHandler(this.FrmBookReturn_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbScan)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookOverviews)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbScanMember)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,5 +241,6 @@
         private System.Windows.Forms.TextBox txtPenalty;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Label lblReturn;
+        private System.Windows.Forms.PictureBox pbScanMember;
     }
 }
