@@ -10,6 +10,7 @@ namespace LibRes
     public partial class FrmLibraryMemberSearch : Form
     {
         LibraryMemberService service = new LibraryMemberService();
+        BorrowedBookOverviewService borrowedBookOverviewService = new BorrowedBookOverviewService();
         public FrmLibraryMemberSearch()
         {
             InitializeComponent();
@@ -44,6 +45,11 @@ namespace LibRes
             if(dr == DialogResult.Yes)
             {
                 var member = dgvMembers.CurrentRow.DataBoundItem as LibraryMember;
+                var bookOverviews = member.BorrowedBookOverviews;
+                foreach (var item in bookOverviews)
+                {
+                    borrowedBookOverviewService.DeleteBorrowedBookOverview(item);
+                }
                 service.DeleteLibraryMember(member);
             }
             ShowAllMembers();

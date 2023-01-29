@@ -41,7 +41,7 @@ namespace LibRes
             PublisherService publisherService = new PublisherService();
             if (publisherService.AddPublisher(publisher))
             {
-                MessageBox.Show("Successfully added a new publisher: " + txtName + "!");
+                MessageBox.Show("Successfully added a new publisher: " + txtName.Text + "!");
             }
             else
             {

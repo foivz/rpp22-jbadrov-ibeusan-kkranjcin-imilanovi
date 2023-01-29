@@ -14,7 +14,7 @@ namespace DataAccessLayer.Repositories
         /// <returns>LINQ query containing all library members</returns>
         public override IQueryable<LibraryMember> GetAll()
         {
-            var query = from lm in Entities
+            var query = from lm in Entities.Include("BorrowedBookOverviews")
                         select lm;
             return query;
         }

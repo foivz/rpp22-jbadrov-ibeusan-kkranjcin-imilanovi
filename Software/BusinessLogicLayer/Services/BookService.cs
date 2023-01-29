@@ -105,7 +105,7 @@ namespace BusinessLogicLayer.Services
         /// </summary>
         private void CheckISBN(string isbn)
         {
-            Regex regex = new Regex(@"^(97(8|9))?\d{9}(\d|X)$");
+            Regex regex = new Regex(@"^(978|979)[0-9]{7}$");
             Match match = regex.Match(isbn);
             if (!match.Success)
             {
