@@ -10,6 +10,12 @@ namespace LibRes
         public FrmNewAuthor()
         {
             InitializeComponent();
+            HelpRequested += FrmNewAuthor_HelpRequested;
+        }
+
+        private void FrmNewAuthor_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            Help.ShowHelp(this, "..\\..\\Resources\\help.chm", HelpNavigator.KeywordIndex, "NewAuthor");
         }
 
         private void btnAddAuthor_Click(object sender, EventArgs e)

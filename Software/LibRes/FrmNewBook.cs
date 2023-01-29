@@ -12,6 +12,12 @@ namespace LibRes
         public FrmNewBook()
         {
             InitializeComponent();
+            HelpRequested += FrmNewBook_HelpRequested;
+        }
+
+        private void FrmNewBook_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            Help.ShowHelp(this, "..\\..\\Resources\\help.chm", HelpNavigator.KeywordIndex, "NewBook");
         }
 
         private void FrmNewBook_Load(object sender, EventArgs e)

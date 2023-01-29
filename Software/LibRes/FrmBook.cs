@@ -19,8 +19,15 @@ namespace LibRes
         {
             InitializeComponent();
             _book = book;
+            this.HelpRequested += FrmBook_HelpRequested;
         }
-        
+
+        private void FrmBook_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            Help.ShowHelp(this, "..\\..\\Resources\\help.chm", HelpNavigator.KeywordIndex, "BookHelp");
+
+        }
+
         private void FrmBook_Load(object sender, EventArgs e)
         {
             ShowBook();

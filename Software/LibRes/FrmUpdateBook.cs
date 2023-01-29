@@ -20,6 +20,12 @@ namespace LibRes
         {
             InitializeComponent();
             _book = book;
+            HelpRequested += FrmUpdateBook_HelpRequested;
+        }
+
+        private void FrmUpdateBook_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            Help.ShowHelp(this, "..\\..\\Resources\\help.chm", HelpNavigator.KeywordIndex, "UpdateBook");
         }
 
         private void FrmUpdateBook_Load(object sender, EventArgs e)

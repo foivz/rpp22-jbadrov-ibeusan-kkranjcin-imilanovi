@@ -1,4 +1,7 @@
-﻿namespace LibRes
+﻿using System;
+using System.IO;
+
+namespace LibRes
 {
     partial class FrmBookBorrow
     {
@@ -36,17 +39,17 @@
             this.btnScanBook = new System.Windows.Forms.Button();
             this.btnBorrow = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.pbScan = new System.Windows.Forms.PictureBox();
             this.cmbDevices = new System.Windows.Forms.ComboBox();
             this.lblDevice = new System.Windows.Forms.Label();
             this.timerForScaningMember = new System.Windows.Forms.Timer(this.components);
             this.cmbBook = new System.Windows.Forms.ComboBox();
             this.timerForScaningBook = new System.Windows.Forms.Timer(this.components);
-            this.pictureBoxScanedMember = new System.Windows.Forms.PictureBox();
             this.pictureBoxScanedBook = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pbScan)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxScanedMember)).BeginInit();
+            this.pictureBoxScanedMember = new System.Windows.Forms.PictureBox();
+            this.pbScan = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxScanedBook)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxScanedMember)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbScan)).BeginInit();
             this.SuspendLayout();
             // 
             // btnScanMember
@@ -105,14 +108,6 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // pbScan
-            // 
-            this.pbScan.Location = new System.Drawing.Point(123, 235);
-            this.pbScan.Name = "pbScan";
-            this.pbScan.Size = new System.Drawing.Size(422, 309);
-            this.pbScan.TabIndex = 6;
-            this.pbScan.TabStop = false;
-            // 
             // cmbDevices
             // 
             this.cmbDevices.FormattingEnabled = true;
@@ -149,6 +144,15 @@
             this.timerForScaningBook.Interval = 1000;
             this.timerForScaningBook.Tick += new System.EventHandler(this.timerForScaningBook_Tick);
             // 
+            // pictureBoxScanedBook
+            // 
+            this.pictureBoxScanedBook.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxScanedBook.Image")));
+            this.pictureBoxScanedBook.Location = new System.Drawing.Point(554, 189);
+            this.pictureBoxScanedBook.Name = "pictureBoxScanedBook";
+            this.pictureBoxScanedBook.Size = new System.Drawing.Size(59, 31);
+            this.pictureBoxScanedBook.TabIndex = 11;
+            this.pictureBoxScanedBook.TabStop = false;
+            // 
             // pictureBoxScanedMember
             // 
             this.pictureBoxScanedMember.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxScanedMember.Image")));
@@ -159,14 +163,13 @@
             this.pictureBoxScanedMember.TabIndex = 10;
             this.pictureBoxScanedMember.TabStop = false;
             // 
-            // pictureBoxScanedBook
+            // pbScan
             // 
-            this.pictureBoxScanedBook.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxScanedBook.Image")));
-            this.pictureBoxScanedBook.Location = new System.Drawing.Point(554, 189);
-            this.pictureBoxScanedBook.Name = "pictureBoxScanedBook";
-            this.pictureBoxScanedBook.Size = new System.Drawing.Size(59, 31);
-            this.pictureBoxScanedBook.TabIndex = 11;
-            this.pictureBoxScanedBook.TabStop = false;
+            this.pbScan.Location = new System.Drawing.Point(123, 235);
+            this.pbScan.Name = "pbScan";
+            this.pbScan.Size = new System.Drawing.Size(422, 309);
+            this.pbScan.TabIndex = 6;
+            this.pbScan.TabStop = false;
             // 
             // FrmBookBorrow
             // 
@@ -191,9 +194,9 @@
             this.Text = "Borrow book";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmBookBorrow_FormClosing);
             this.Load += new System.EventHandler(this.FrmBookBorrow_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pbScan)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxScanedMember)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxScanedBook)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxScanedMember)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbScan)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,5 +219,6 @@
         private System.Windows.Forms.Timer timerForScaningBook;
         private System.Windows.Forms.PictureBox pictureBoxScanedMember;
         private System.Windows.Forms.PictureBox pictureBoxScanedBook;
+
     }
 }

@@ -12,6 +12,12 @@ namespace LibRes
         public FrmNewLibraryMember()
         {
             InitializeComponent();
+            HelpRequested += FrmNewLibraryMember_HelpRequested;
+        }
+
+        private void FrmNewLibraryMember_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            Help.ShowHelp(this, "..\\..\\Resources\\help.chm", HelpNavigator.KeywordIndex, "NewLibraryMember");
         }
 
         private void btnAddMember_Click(object sender, EventArgs e)

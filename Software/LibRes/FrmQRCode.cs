@@ -15,6 +15,12 @@ namespace LibRes
             InitializeComponent();
             LoadPrinters();
             _phrase = phrase;
+            HelpRequested += FrmQRCode_HelpRequested;
+        }
+
+        private void FrmQRCode_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            Help.ShowHelp(this, "..\\..\\Resources\\help.chm", HelpNavigator.KeywordIndex, "QRCode");
         }
 
         private void LoadPrinters()

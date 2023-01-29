@@ -15,6 +15,12 @@ namespace LibRes
             InitializeComponent();
             _bookCopy = bookCopy;
             _book = book;
+            HelpRequested += FrmUpdateBookCopy_HelpRequested;
+        }
+
+        private void FrmUpdateBookCopy_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            Help.ShowHelp(this, "..\\..\\Resources\\help.chm", HelpNavigator.KeywordIndex, "UpdateBookCopy");
         }
 
         private void FrmUpdateBookCopy_Load(object sender, EventArgs e)

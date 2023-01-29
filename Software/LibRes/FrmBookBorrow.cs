@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,13 +21,20 @@ namespace LibRes
         public FrmBookBorrow()
         {
             InitializeComponent();
+            this.HelpRequested += FrmBookBorrow_HelpRequested;
+        }
+
+        private void FrmBookBorrow_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            Help.ShowHelp(this, "..\\..\\Resources\\help.chm", HelpNavigator.KeywordIndex, "BookBorrow");
         }
 
         FilterInfoCollection filterInfoCollection;
         VideoCaptureDevice videoCaptureDevice;
         private void FrmBookBorrow_Load(object sender, EventArgs e)
         {
-            
+            //hpBookBorrow.HelpNamespace = Path.Combine(Environment.CurrentDirectory + "..\\..\\Resources\\help.chm");
+            //MessageBox.Show(hpBookBorrow.HelpNamespace);
             filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             foreach (FilterInfo filterInfo in filterInfoCollection)
             {

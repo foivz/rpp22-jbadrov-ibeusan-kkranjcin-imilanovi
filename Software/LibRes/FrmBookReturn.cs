@@ -15,7 +15,14 @@ namespace LibRes
         public FrmBookReturn()
         {
             InitializeComponent();
+            HelpRequested += FrmBookReturn_HelpRequested;
         }
+
+        private void FrmBookReturn_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            Help.ShowHelp(this, "..\\..\\Resources\\help.chm", HelpNavigator.KeywordIndex, "BookReturn");
+        }
+
         FilterInfoCollection filterInfoCollection;
         VideoCaptureDevice videoCaptureDevice;
 

@@ -11,6 +11,12 @@ namespace LibRes
         public FrmBookSearch()
         {
             InitializeComponent();
+            HelpRequested += FrmBookSearch_HelpRequested;
+        }
+
+        private void FrmBookSearch_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            Help.ShowHelp(this, "..\\..\\Resources\\help.chm", HelpNavigator.KeywordIndex, "BookSearch");
         }
 
         private void FrmBookSearch_Load(object sender, EventArgs e)

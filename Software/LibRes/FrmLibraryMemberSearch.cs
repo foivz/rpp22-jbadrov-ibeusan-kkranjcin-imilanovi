@@ -13,6 +13,12 @@ namespace LibRes
         public FrmLibraryMemberSearch()
         {
             InitializeComponent();
+            HelpRequested += FrmLibraryMemberSearch_HelpRequested;
+        }
+
+        private void FrmLibraryMemberSearch_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            Help.ShowHelp(this, "..\\..\\Resources\\help.chm", HelpNavigator.KeywordIndex, "LibraryMemberSearch");
         }
 
         private void FrmLibraryMemberSearch_Load(object sender, EventArgs e)

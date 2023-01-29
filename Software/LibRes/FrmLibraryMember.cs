@@ -17,6 +17,13 @@ namespace LibRes
             InitializeComponent();
             _member = member;
             Text = _member.FirstName + " " + _member.LastName;
+            HelpRequested += FrmLibraryMember_HelpRequested;
+        }
+
+        private void FrmLibraryMember_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            Help.ShowHelp(this, "..\\..\\Resources\\help.chm", HelpNavigator.KeywordIndex, "LibraryMember");
+
         }
 
         private void FrmLibraryMember_Load(object sender, EventArgs e)

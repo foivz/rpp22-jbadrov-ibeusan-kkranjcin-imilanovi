@@ -10,6 +10,12 @@ namespace LibRes
         public FrmNewPublisher()
         {
             InitializeComponent();
+            HelpRequested += FrmNewPublisher_HelpRequested;
+        }
+
+        private void FrmNewPublisher_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            Help.ShowHelp(this, "..\\..\\Resources\\help.chm", HelpNavigator.KeywordIndex, "NewPublisher");
         }
 
         private void btnAddPublisher_Click(object sender, EventArgs e)

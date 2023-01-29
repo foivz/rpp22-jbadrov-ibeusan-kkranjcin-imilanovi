@@ -14,6 +14,12 @@ namespace LibRes
             InitializeComponent();
             libraryMember = member;
             ShowMemberDate();
+            HelpRequested += FrmUpdateMember_HelpRequested;
+        }
+
+        private void FrmUpdateMember_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            Help.ShowHelp(this, "..\\..\\Resources\\help.chm", HelpNavigator.KeywordIndex, "UpdateMember");
         }
 
         private void ShowMemberDate()
