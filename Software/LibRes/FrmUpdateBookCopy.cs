@@ -7,8 +7,8 @@ namespace LibRes
 {
     public partial class FrmUpdateBookCopy : Form
     {
-        public BookCopy _bookCopy { get; set; }
-        public Book _book { get; set; }
+        private BookCopy _bookCopy;
+        private Book _book;
         BookCopyService bookCopyService = new BookCopyService();
         public FrmUpdateBookCopy(BookCopy bookCopy, Book book)
         {

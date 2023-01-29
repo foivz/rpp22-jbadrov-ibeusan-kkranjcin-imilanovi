@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace DataAccessLayer.Repositories
 {
@@ -12,6 +8,10 @@ namespace DataAccessLayer.Repositories
         {
         }
 
+        /// <summary>
+        /// Gets all users from database
+        /// </summary>
+        /// <returns>LINQ query containing all users</returns>
         public override IQueryable<User> GetAll()
         {
             var query = from u in Entities
@@ -19,6 +19,11 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
+        /// <summary>
+        /// Gets a user with the matching <paramref name="username"/>
+        /// </summary>
+        /// <param name="username">Username of a user</param>
+        /// <returns>LINQ query containing the users</returns>
         public IQueryable<User> GetByUsername(string username)
         {
             var query = from u in Entities
@@ -27,6 +32,11 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
+        /// <summary>
+        /// Adds the <paramref name="entity"/> of type <see cref="User"/> into the database
+        /// </summary>
+        /// <param name="entity">User intended for adding into the database</param>
+        /// <returns>1 if adding the user was successful, 0 if not</returns>
         public override int Add(User entity)
         {
             var user = new User
@@ -42,6 +52,11 @@ namespace DataAccessLayer.Repositories
             return SaveChanges();
         }
 
+        /// <summary>
+        /// Updates the <paramref name="entity"/> of type <see cref="User"/> into the database
+        /// </summary>
+        /// <param name="entity">User intended for updating into the database</param>
+        /// <returns>1 if update is successful, 0 if not</returns>
         public override int Update(User entity)
         {
             var user = Entities.SingleOrDefault(u => u.Id == entity.Id);

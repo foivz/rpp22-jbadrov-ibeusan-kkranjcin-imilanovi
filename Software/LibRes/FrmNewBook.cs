@@ -1,6 +1,5 @@
 ﻿using BusinessLogicLayer.Services;
 using DataAccessLayer;
-using LibRes.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -104,6 +103,30 @@ namespace LibRes
                 if (bookService.AddBook(book))
                 {
                     MessageBox.Show("Successfully added a new book: " + book.Title + "!");
+                    var allBooks = bookService.GetBooks();
+                    var addedBook = allBooks.Last();
+
+                    foreach (var author in authorsList)
+                    {
+                        BookAuthor bookAuthor = new BookAuthor
+                        {
+                            IdBook = addedBook.Id,
+                            IdAuthor = author.Id
+                        };
+                        bookAuthorService.AddBookAuthor(bookAuthor);
+                    }
+
+                    foreach (var genre in genresList)
+                    {
+                        BookGenre bookGenre = new BookGenre
+                        {
+                            IdBook = addedBook.Id,
+                            IdGenre = genre.Id
+                        };
+                        bookGenreService.AddBookGenre(bookGenre);
+                    }
+
+                    Close();
                 }
                 else
                 {
@@ -114,32 +137,8 @@ namespace LibRes
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return;
             }
-
-            var allBooks = bookService.GetBooks();
-            var addedBook = allBooks.Last();
-
-            foreach (var author in authorsList)
-            {
-                BookAuthor bookAuthor = new BookAuthor
-                {
-                    IdBook = addedBook.Id,
-                    IdAuthor = author.Id
-                };
-                bookAuthorService.AddBookAuthor(bookAuthor);
-            }
-
-            foreach (var genre in genresList)
-            {
-                BookGenre bookGenre = new BookGenre
-                {
-                    IdBook = addedBook.Id,
-                    IdGenre = genre.Id
-                };
-                bookGenreService.AddBookGenre(bookGenre);
-            }
-
-            Close();
         }
 
         private void btnAddAuthor_Click(object sender, EventArgs e)

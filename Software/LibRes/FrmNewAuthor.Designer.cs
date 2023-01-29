@@ -121,7 +121,7 @@
             this.Controls.Add(this.txtFirstName);
             this.Name = "FrmNewAuthor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmNewAuthor";
+            this.Text = "New author";
             this.ResumeLayout(false);
             this.PerformLayout();
 

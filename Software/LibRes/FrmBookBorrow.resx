@@ -117,17 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="timmerForScaning.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="timerForScaningMember.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <metadata name="timerForScaningBook.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>198, 17</value>
+    <value>243, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBoxScaned.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="pictureBoxScanedMember.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACMAAAAfCAYAAABtYXSPAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAAgdJREFUWEftlltLAkEYhvt/RUV2lA6WUkF/pcNtWf2BiOyc0o0bVHagsqtOEFhJ
+        wAAADsABataJCQAAAgdJREFUWEftlltLAkEYhvt/RUV2lA6WUkF/pcNtWf2BiOyc0o0bVHagsqtOEFhJ
         dqFSpEXh27zLCurO2Gxr4IWvvKDON988OzPfzDahjtSAUckVTOYji4NkDJMn0xgJj6Jt1WOa36dOZ8y2
         rIjR1Z9gCoUCjIc9eLcG0RJqR/NKm9Rs824PwnjcQ0F8fpNjmNxXHnOXC2hf7ZQCyMzYoOiT+8pZWeRy
         BMOnm43PSwfUcfBy0ZxVlRzBcGmczEil2TcqcqikDcPNyj0iG8SJmYO5ZNKG2X86rLpZZfasdWOuYlmZ
@@ -139,10 +139,10 @@
         VwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="pictureBoxScaned.InitialImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="pictureBoxScanedMember.InitialImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAFajSURBVHhe7Z0J
+        vwAADr8BOAVTJAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAFajSURBVHhe7Z0J
         fFTV2f+Dttq+77+vte3bWuvrC5l7A4gLilrrivvSYl0aFcjMnSQQ1oAgClLUuADKIiDQFltf3K0z904I
         CWHfQxIQFfeN4oriCsiqQu7/nMlJwZsHyDIz97n3/r79fD9ak8zcOefc53dm5t5zsgAAvMmNZR0ejbU9
         JhrLPsmIZ18cjmu5YTPUO2Lqt0YsbXQkrk2PmNpThqmVRszQQvHvVeK/rxX/fFu4Qfz7V9/T1L4V2g6/
@@ -518,7 +518,7 @@
   <data name="pictureBoxScanedBook.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACMAAAAfCAYAAABtYXSPAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAAgdJREFUWEftlltLAkEYhvt/RUV2lA6WUkF/pcNtWf2BiOyc0o0bVHagsqtOEFhJ
+        wAAADsABataJCQAAAgdJREFUWEftlltLAkEYhvt/RUV2lA6WUkF/pcNtWf2BiOyc0o0bVHagsqtOEFhJ
         dqFSpEXh27zLCurO2Gxr4IWvvKDON988OzPfzDahjtSAUckVTOYji4NkDJMn0xgJj6Jt1WOa36dOZ8y2
         rIjR1Z9gCoUCjIc9eLcG0RJqR/NKm9Rs824PwnjcQ0F8fpNjmNxXHnOXC2hf7ZQCyMzYoOiT+8pZWeRy
         BMOnm43PSwfUcfBy0ZxVlRzBcGmczEil2TcqcqikDcPNyj0iG8SJmYO5ZNKG2X86rLpZZfasdWOuYlmZ

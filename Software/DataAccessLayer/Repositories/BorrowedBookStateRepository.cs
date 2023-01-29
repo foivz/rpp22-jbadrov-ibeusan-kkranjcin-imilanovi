@@ -12,6 +12,10 @@ namespace DataAccessLayer.Repositories
         {
         }
 
+        /// <summary>
+        /// Gets all borrowed book states from database
+        /// </summary>
+        /// <returns>LINQ query containing all borrowed book states</returns>
         public override IQueryable<BorrowedBookState> GetAll()
         {
             var query = from b in Entities

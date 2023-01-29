@@ -224,7 +224,7 @@
             this.Controls.Add(this.btnScanMember);
             this.Name = "FrmBookReturn";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmBookReturn";
+            this.Text = "Return book";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmBookReturn_FormClosing);
             this.Load += new System.EventHandler(this.FrmBookReturn_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbScan)).EndInit();

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace DataAccessLayer.Repositories
 {
@@ -12,6 +8,10 @@ namespace DataAccessLayer.Repositories
         {
         }
 
+        /// <summary>
+        /// Gets all genres from database
+        /// </summary>
+        /// <returns>LINQ query containing all genres</returns>
         public override IQueryable<Genre> GetAll()
         {
             var query = from g in Entities

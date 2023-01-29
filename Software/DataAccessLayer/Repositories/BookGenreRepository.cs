@@ -12,14 +12,11 @@ namespace DataAccessLayer.Repositories
         {
         }
 
-        public IQueryable<BookGenre> GetBookGenreById(int id)
-        {
-            var query = from g in Entities
-                        where g.Id == id
-                        select g;
-            return query;
-        }
-
+        /// <summary>
+        /// Adds the <paramref name="entity"/> of type <see cref="BookGenre"/> into the database
+        /// </summary>
+        /// <param name="entity">Genre of the book intended for adding into the database</param>
+        /// <returns>1 if adding the genre of the book was successful, 0 if not</returns>
         public override int Add(BookGenre entity)
         {
             var bookGenre = new BookGenre

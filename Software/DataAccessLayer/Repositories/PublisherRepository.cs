@@ -12,6 +12,10 @@ namespace DataAccessLayer.Repositories
         {
         }
 
+        /// <summary>
+        /// Gets all publishers from database
+        /// </summary>
+        /// <returns>LINQ query containing all publishers</returns>
         public override IQueryable<Publisher> GetAll()
         {
             var query = from p in Entities
@@ -19,6 +23,11 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
+        /// <summary>
+        /// Adds the <paramref name="entity"/> of type <see cref="Publisher"/> into the database
+        /// </summary>
+        /// <param name="entity">Publisher intended for adding into the database</param>
+        /// <returns>1 if adding the publisher was successful, 0 if not</returns>
         public override int Add(Publisher entity)
         {
             var publisher = new Publisher
@@ -28,14 +37,6 @@ namespace DataAccessLayer.Repositories
             };
 
             Entities.Add(publisher);
-            return SaveChanges();
-        }
-
-        public override int Update(Publisher entity)
-        {
-            var publisher = Entities.SingleOrDefault(p => p.Id == entity.Id);
-            publisher.Name = entity.Name;
-
             return SaveChanges();
         }
     }

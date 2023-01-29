@@ -7,6 +7,11 @@ namespace BusinessLogicLayer.Services
 {
     public class PublisherService
     {
+        /// <summary>
+        /// Adds the <paramref name="publisher"/> into the database
+        /// </summary>
+        /// <param name="publisher">Publisher of the book intended for adding into the database</param>
+        /// <returns><see langword="True"/> if publisher was added successfully, <see langword="False"/> if problem occurred</returns>
         public bool AddPublisher(Publisher publisher)
         {
             using (var repo = new PublisherRepository())
@@ -23,38 +28,10 @@ namespace BusinessLogicLayer.Services
             }
         }
 
-        public bool UpdatePublisher(Publisher publisher)
-        {
-            using (var repo = new PublisherRepository())
-            {
-                var num = repo.Update(publisher);
-                if (num > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-
-        public bool DeletePublisher(Publisher publisher)
-        {
-            using (var repo = new PublisherRepository())
-            {
-                var num = repo.Delete(publisher);
-                if (num > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-
+        /// <summary>
+        /// Gets all publishers
+        /// </summary>
+        /// <returns>List of <see cref="Publisher"/> objects</returns>
         public List<Publisher> GetPublishers()
         {
             using(var repo = new PublisherRepository())

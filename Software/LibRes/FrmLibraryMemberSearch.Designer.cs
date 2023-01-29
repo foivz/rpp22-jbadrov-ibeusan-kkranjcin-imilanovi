@@ -200,7 +200,7 @@
             this.Controls.Add(this.dgvMembers);
             this.Name = "FrmLibraryMemberSearch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmMember";
+            this.Text = "Members";
             this.Load += new System.EventHandler(this.FrmLibraryMemberSearch_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMembers)).EndInit();
             this.pnFilter.ResumeLayout(false);

@@ -23,8 +23,8 @@ namespace LibRes
         
         private void FrmBook_Load(object sender, EventArgs e)
         {
-            ShowAllLibraryMembers();
             ShowBook();
+            ShowAllLibraryMembers();
         }
 
         private void ShowAllLibraryMembers()
@@ -36,9 +36,9 @@ namespace LibRes
        
         private void ShowBook()
         {
+            Text = _book.Title;
+            gbBookData.Text = _book.Title;
             var updatedBook = GetUpdatedBook();
-
-            txtTitle.Text = updatedBook.Title;
 
             dgvAuthors.DataSource = updatedBook.BookAuthors.ToList();
             dgvAuthors.RowHeadersVisible = false;
@@ -82,8 +82,6 @@ namespace LibRes
 
         private void btnReserve_Click(object sender, EventArgs e)
         {
-
-            //var service = new BorrowedBookOverviewService();
             var bookCopy = dgvBookCopies.CurrentRow.DataBoundItem as BookCopy;
             if (service.IsReserved(bookCopy.Id))
             {
@@ -107,12 +105,8 @@ namespace LibRes
                 cmbMember.Visible = true;
                 btnReserve.Visible = false;
                 btnReserveForMember.Visible = true;
-
             }
-            
         }
-
-        
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -231,7 +225,6 @@ namespace LibRes
 
         private void dgvBookCopies_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-
             var row = dgvBookCopies.Rows[e.RowIndex];
 
             var bookCopy = (BookCopy)row.DataBoundItem;
@@ -244,19 +237,16 @@ namespace LibRes
             {
                 row.DefaultCellStyle.BackColor= Color.Red;
             }
-            
         }
 
         private void btnDeleteReservation_Click(object sender, EventArgs e)
         {
-            
-
             var bookCopy = dgvBookCopies.CurrentRow.DataBoundItem as BookCopy;
             if(dgvBookCopies.SelectedRows.Count == 1)
             {
                 if (service.IsReserved(bookCopy.Id))
                 {
-                    var borrowedBookOverview = service.GetReserveddBookOverviewsByIdBook(bookCopy.Id)[0];
+                    var borrowedBookOverview = service.GetReservedBookOverviewsByIdBook(bookCopy.Id)[0];
                     var success = service.DeleteBorrowedBookOverview(borrowedBookOverview);
                     if (success)
                     {
@@ -282,8 +272,6 @@ namespace LibRes
             {
                 MessageBox.Show("Choose one book copy");
             }
-            
-
         }
     }
 }

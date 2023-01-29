@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblTitle = new System.Windows.Forms.Label();
             this.lblGenre = new System.Windows.Forms.Label();
-            this.txtTitle = new System.Windows.Forms.TextBox();
             this.lblAuthor = new System.Windows.Forms.Label();
             this.lblNumberOfPages = new System.Windows.Forms.Label();
             this.txtNumberOfPages = new System.Windows.Forms.TextBox();
@@ -46,24 +44,15 @@
             this.btnAddCopy = new System.Windows.Forms.Button();
             this.lblISBN = new System.Windows.Forms.Label();
             this.txtISBN = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbBookData = new System.Windows.Forms.GroupBox();
             this.dgvGenres = new System.Windows.Forms.DataGridView();
             this.dgvAuthors = new System.Windows.Forms.DataGridView();
             this.btnDeleteReservation = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookCopies)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gbBookData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGenres)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuthors)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(3, 31);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(36, 16);
-            this.lblTitle.TabIndex = 10;
-            this.lblTitle.Text = "Title:";
             // 
             // lblGenre
             // 
@@ -74,18 +63,10 @@
             this.lblGenre.TabIndex = 17;
             this.lblGenre.Text = "Genre(s):";
             // 
-            // txtTitle
-            // 
-            this.txtTitle.Enabled = false;
-            this.txtTitle.Location = new System.Drawing.Point(6, 50);
-            this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(160, 22);
-            this.txtTitle.TabIndex = 13;
-            // 
             // lblAuthor
             // 
             this.lblAuthor.AutoSize = true;
-            this.lblAuthor.Location = new System.Drawing.Point(3, 84);
+            this.lblAuthor.Location = new System.Drawing.Point(3, 35);
             this.lblAuthor.Name = "lblAuthor";
             this.lblAuthor.Size = new System.Drawing.Size(63, 16);
             this.lblAuthor.TabIndex = 14;
@@ -224,25 +205,23 @@
             this.txtISBN.Size = new System.Drawing.Size(160, 22);
             this.txtISBN.TabIndex = 34;
             // 
-            // groupBox1
+            // gbBookData
             // 
-            this.groupBox1.Controls.Add(this.dgvGenres);
-            this.groupBox1.Controls.Add(this.dgvAuthors);
-            this.groupBox1.Controls.Add(this.txtTitle);
-            this.groupBox1.Controls.Add(this.txtISBN);
-            this.groupBox1.Controls.Add(this.lblTitle);
-            this.groupBox1.Controls.Add(this.lblISBN);
-            this.groupBox1.Controls.Add(this.lblAuthor);
-            this.groupBox1.Controls.Add(this.lblNumberOfPages);
-            this.groupBox1.Controls.Add(this.lblGenre);
-            this.groupBox1.Controls.Add(this.txtNumberOfPages);
-            this.groupBox1.Controls.Add(this.btnUpdate);
-            this.groupBox1.Location = new System.Drawing.Point(12, 29);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(253, 466);
-            this.groupBox1.TabIndex = 35;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Selected book data";
+            this.gbBookData.Controls.Add(this.dgvGenres);
+            this.gbBookData.Controls.Add(this.dgvAuthors);
+            this.gbBookData.Controls.Add(this.txtISBN);
+            this.gbBookData.Controls.Add(this.lblISBN);
+            this.gbBookData.Controls.Add(this.lblAuthor);
+            this.gbBookData.Controls.Add(this.lblNumberOfPages);
+            this.gbBookData.Controls.Add(this.lblGenre);
+            this.gbBookData.Controls.Add(this.txtNumberOfPages);
+            this.gbBookData.Controls.Add(this.btnUpdate);
+            this.gbBookData.Location = new System.Drawing.Point(12, 29);
+            this.gbBookData.Name = "gbBookData";
+            this.gbBookData.Size = new System.Drawing.Size(253, 466);
+            this.gbBookData.TabIndex = 35;
+            this.gbBookData.TabStop = false;
+            this.gbBookData.Text = "Selected book data";
             // 
             // dgvGenres
             // 
@@ -265,11 +244,11 @@
             this.dgvAuthors.AllowUserToResizeColumns = false;
             this.dgvAuthors.AllowUserToResizeRows = false;
             this.dgvAuthors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAuthors.Location = new System.Drawing.Point(6, 104);
+            this.dgvAuthors.Location = new System.Drawing.Point(6, 54);
             this.dgvAuthors.Name = "dgvAuthors";
             this.dgvAuthors.RowHeadersWidth = 51;
             this.dgvAuthors.RowTemplate.Height = 24;
-            this.dgvAuthors.Size = new System.Drawing.Size(204, 43);
+            this.dgvAuthors.Size = new System.Drawing.Size(204, 92);
             this.dgvAuthors.TabIndex = 37;
             // 
             // btnDeleteReservation
@@ -288,7 +267,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(988, 582);
             this.Controls.Add(this.btnDeleteReservation);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbBookData);
             this.Controls.Add(this.btnAddCopy);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdateCopy);
@@ -303,8 +282,8 @@
             this.Text = "Selected book";
             this.Load += new System.EventHandler(this.FrmBook_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookCopies)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbBookData.ResumeLayout(false);
+            this.gbBookData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGenres)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuthors)).EndInit();
             this.ResumeLayout(false);
@@ -313,10 +292,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblGenre;
-        private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.Label lblAuthor;
         private System.Windows.Forms.Label lblNumberOfPages;
         private System.Windows.Forms.TextBox txtNumberOfPages;
@@ -332,7 +308,7 @@
         private System.Windows.Forms.Button btnAddCopy;
         private System.Windows.Forms.Label lblISBN;
         private System.Windows.Forms.TextBox txtISBN;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbBookData;
         private System.Windows.Forms.DataGridView dgvAuthors;
         private System.Windows.Forms.DataGridView dgvGenres;
         private System.Windows.Forms.Button btnDeleteReservation;

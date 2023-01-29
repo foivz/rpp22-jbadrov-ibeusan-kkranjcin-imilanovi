@@ -12,8 +12,8 @@ namespace BusinessLogicLayer.Services
         /// <summary>
         /// Adds the <paramref name="libraryMember"/> into the DB
         /// </summary>
-        /// <param name="libraryMember">The library memeber intended for adding into the database</param>
-        /// <returns><see langword="True"/> if add is successfull, <see langword="False"/> if not</returns>
+        /// <param name="libraryMember">The library member intended for adding into the database</param>
+        /// <returns><see langword="True"/> if add is successful, <see langword="False"/> if not</returns>
         /// <exception cref="Exception">Throws <see cref="Exception"/> if member e-mail adress is invalid</exception>
         public bool AddLibraryMember(LibraryMember libraryMember)
         {

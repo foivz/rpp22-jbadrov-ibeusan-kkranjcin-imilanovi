@@ -13,6 +13,10 @@ namespace DataAccessLayer.Repositories
         {
         }
 
+        /// <summary>
+        /// Gets all authors from database
+        /// </summary>
+        /// <returns>LINQ query containing all authors</returns>
         public override IQueryable<Author> GetAll()
         {
             var query = from a in Entities
@@ -20,6 +24,11 @@ namespace DataAccessLayer.Repositories
             return query;
         }
 
+        /// <summary>
+        /// Adds the <paramref name="entity"/> of type <see cref="Author"/> into the database
+        /// </summary>
+        /// <param name="entity">Author intended for adding into the database</param>
+        /// <returns>1 if adding author was successful, 0 if not</returns>
         public override int Add(Author entity)
         {
             var author = new Author
@@ -33,6 +42,11 @@ namespace DataAccessLayer.Repositories
             return SaveChanges();
         }
 
+        /// <summary>
+        /// Updates the <paramref name="entity"/> of type <see cref="Author"/> into the database
+        /// </summary>
+        /// <param name="entity">Author intended for updating into the database</param>
+        /// <returns>1 if update is successful, 0 if not</returns>
         public override int Update(Author entity)
         {
             var author = Entities.SingleOrDefault(a => a.Id == entity.Id);
@@ -41,21 +55,6 @@ namespace DataAccessLayer.Repositories
             author.DateOfBirth = entity.DateOfBirth;
 
             return SaveChanges();
-        }
-
-        public IQueryable<Author> GetAuthorByName(string name)
-        {
-            var split = name.Split(' ');
-            IQueryable<Author> query = null;
-            foreach(var item in split)
-            {
-                query.Concat(from a in Entities
-                        where a.FirstName == item || a.LastName == item
-                        select a);
-               
-            }
-
-            return query;
         }
     }
 }

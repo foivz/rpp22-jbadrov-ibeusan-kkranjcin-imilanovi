@@ -12,14 +12,11 @@ namespace DataAccessLayer.Repositories
         {
         }
 
-        public IQueryable<BookAuthor> GetBookAuthorById(int id)
-        {
-            var query = from a in Entities
-                        where a.Id == id
-                        select a;
-            return query;
-        }
-
+        /// <summary>
+        /// Adds the <paramref name="entity"/> of type <see cref="BookAuthor"/> into the database
+        /// </summary>
+        /// <param name="entity">Author of the book intended for adding into the database</param>
+        /// <returns>1 if adding the author of the book was successful, 0 if not</returns>
         public override int Add(BookAuthor entity)
         {
             var bookAuthor = new BookAuthor

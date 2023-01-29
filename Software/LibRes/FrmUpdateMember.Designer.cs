@@ -108,7 +108,8 @@
             this.Controls.Add(this.lblFirstName);
             this.Controls.Add(this.txtFirstName);
             this.Name = "FrmUpdateMember";
-            this.Text = "FrmUpdateMember";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Update member";
             this.ResumeLayout(false);
             this.PerformLayout();
 

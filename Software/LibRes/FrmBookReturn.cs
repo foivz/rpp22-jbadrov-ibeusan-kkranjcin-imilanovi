@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BusinessLogicLayer.Services;
 using AForge.Video;
@@ -25,8 +19,6 @@ namespace LibRes
         FilterInfoCollection filterInfoCollection;
         VideoCaptureDevice videoCaptureDevice;
 
-        
-
         public void FrmBookReturn_Load(object sender, EventArgs e)
         {
             pbScanMember.Visible = false;
@@ -36,12 +28,9 @@ namespace LibRes
                 cmbDevices.Items.Add(filterInfo.Name);
             }
             cmbDevices.SelectedIndex = 0;
-            //ShowAllBooks();
             ShowAllMembers();
             dgvBookOverviews.DataSource = null;
             HidePenaltyRelatedControls();
-
-
         }
 
         public void HidePenaltyRelatedControls()
@@ -64,19 +53,12 @@ namespace LibRes
             btnOK.Visible = true;
         }
 
-
-
         private void ShowAllMembers()
         {
             var service = new LibraryMemberService();
             cmbMember.DataSource = service.GetLibraryMembers();
-
         }
 
-        private void btnScanBook_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
@@ -88,6 +70,7 @@ namespace LibRes
                 int lateDays = CalculateDifferenceInDays(borrowedBookOverview.ReturnDate);
                 double penalty = lateDays * 0.1;
                 borrowedBookOverview.IdState = 2;
+                borrowedBookOverview.ReturnDate = DateTime.Now;
                 var sucess = service.UpdateBorrowedBookOverview(borrowedBookOverview);
 
                 if (sucess)
@@ -104,9 +87,6 @@ namespace LibRes
                 {
                     MessageBox.Show("The book has not been returned, an error occurred");
                 }
-
-                
-                
             }
             else
             {
@@ -126,7 +106,6 @@ namespace LibRes
                     return difference.Days;
                 }
                 else return 0;
-                
             }
             else
             {
@@ -145,13 +124,10 @@ namespace LibRes
             videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
             videoCaptureDevice.Start();
             timerForScaning.Start();
-            
-
         }
 
         private void VideoCaptureDevice_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
-            
             pbScan.Image = (Bitmap)eventArgs.Frame.Clone();
         }
 
@@ -180,15 +156,12 @@ namespace LibRes
                             }
                         }
 
-
                         timerForScaning.Stop();
                         if (videoCaptureDevice.IsRunning)
                         {
                             videoCaptureDevice.Stop();
                             pbScan.Image = null;
                             pbScanMember.Visible = true;
-                           
-
                         }
                     }
 
@@ -217,15 +190,12 @@ namespace LibRes
                 {
                     videoCaptureDevice.Stop();
                 }
-
             }
-
         }
 
         private void cmbMember_SelectedIndexChanged(object sender, EventArgs e)
         {
             ShowBookOverviewsForLibraryMember();
-            
         }
 
         private void ShowBookOverviewsForLibraryMember()

@@ -45,7 +45,15 @@ namespace LibRes
         {
             var book = cmbBook.SelectedItem as Book;
             var service = new BookCopyService();
-            cmbBookCopy.DataSource = service.GetBookCopiesByBookId(book.Id);
+            var bookCopies = service.GetBookCopiesByBookId(book.Id);
+            if(bookCopies.Count != 0)
+            {
+                cmbBookCopy.DataSource= bookCopies;
+            }
+            else
+            {
+                cmbBookCopy.DataSource = null;
+            }
         }
 
         private void ShowAllMembers()
@@ -85,6 +93,11 @@ namespace LibRes
 
         private void btnBorrow_Click(object sender, EventArgs e)
         {
+            if(cmbBookCopy.SelectedIndex == -1 || cmbBook.SelectedIndex ==-1 || cmbLibraryMembers.SelectedIndex ==-1)
+            {
+                MessageBox.Show("Wrong inputs!");
+                return;
+            }
             var bookCopy = cmbBookCopy.SelectedItem as BookCopy;
             var libraryMember = cmbLibraryMembers.SelectedItem as LibraryMember;
             var stateService = new BorrowedBookStateService();
@@ -141,7 +154,7 @@ namespace LibRes
                 var success = service.AddBorrowedBookOverview(borrowableBookOverview);
                 if (success)
                 {
-                    MessageBox.Show("The book is borrowed.");
+                    MessageBox.Show("The book has been successfully borrowed.");
                     Close();
                 }
                 else
@@ -149,7 +162,6 @@ namespace LibRes
                     MessageBox.Show("The book is not borrowed, an error has occurred.");
                 }
             }
-            //MessageBox.Show("Successfully borrowed book!");
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -173,7 +185,6 @@ namespace LibRes
         {
             if (pbScan.Image != null)
             {
-
                 pictureBoxScanedMember.Visible = false;
                 BarcodeReader barcodeReader = new BarcodeReader();
                 Result result = barcodeReader.Decode((Bitmap)pbScan.Image);
@@ -216,7 +227,6 @@ namespace LibRes
                         pbScan.Image = null;
                     }
                 }
-
             }
         }
 
@@ -229,12 +239,9 @@ namespace LibRes
         {
             if (pbScan.Image != null)
             {
-
                 pictureBoxScanedBook.Visible = false;
                 BarcodeReader barcodeReader = new BarcodeReader();
                 Result result = barcodeReader.Decode((Bitmap)pbScan.Image);
-                //cmbBook.Text = result.ToString();
-
                 try
                 {
                     if (result != null)
@@ -266,9 +273,6 @@ namespace LibRes
                             }
                         }
 
-
-
-
                         timerForScaningMember.Stop();
                         if (videoCaptureDevice.IsRunning)
                         {
@@ -278,8 +282,6 @@ namespace LibRes
 
                         }
                     }
-                    
-
                 }
                 catch(Exception)
                 {
@@ -289,18 +291,9 @@ namespace LibRes
                     {
                         videoCaptureDevice.Stop();
                         pbScan.Image = null;
-                        
-
                     }
-                }
-                
+                }   
             }
-
-        }
-
-        private void pictureBoxScaned_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

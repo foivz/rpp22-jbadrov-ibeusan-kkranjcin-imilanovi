@@ -7,7 +7,7 @@ namespace LibRes
 {
     public partial class FrmUpdateLibrarian : Form
     {
-        private User _librarian { get; set; }
+        private User _librarian;
         UserService userService = new UserService();
         public FrmUpdateLibrarian(User librarian)
         {

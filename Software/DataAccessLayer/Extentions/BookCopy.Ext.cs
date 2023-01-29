@@ -12,9 +12,5 @@ namespace DataAccessLayer
         {
             return Id + " "+Edition + " " + YearOfPublication + " " + Language;
         }
-
-
-
-
     }
 }
